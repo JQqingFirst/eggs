@@ -8,6 +8,8 @@ const Hello = resolve => require(['../components/Hello.vue'], resolve)
 const Vcx = resolve => require(['../components/Vcx.vue'], resolve)
 const User = resolve => require(['../components/User.vue'], resolve)
 
+const Mycoop = resolve => require(['../components/mycoop/Mycoop.vue'], resolve)
+
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -25,6 +27,11 @@ export default new Router({
       path: '/user/:userId/password/:password',
       name: 'user',
       component: User
+    },
+    {
+      path: '/Mycoop',
+      name: 'Mycoop',
+      component: Mycoop
     }
   ]
 })

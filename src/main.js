@@ -4,9 +4,18 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store/'
+
+
 import { Button,Pagination } from 'element-ui'
+
+
 Vue.use(Button);
 Vue.use(Pagination);
+
+
+
+
+
 Vue.config.productionTip = false
 
 Vue.directive('title', {
