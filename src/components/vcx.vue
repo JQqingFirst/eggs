@@ -17,7 +17,13 @@
             <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
             <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
             <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-        </ul>
+        </ul>  
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
+        <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
+        <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
+        <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+      </el-tabs>
     </div>
 </template>
 <script>
@@ -26,7 +32,8 @@ export default {
     name: 'vcx',
     data() {
         return {
-            msg: 'Welcome to Your Vue.js App'
+            msg: 'Welcome to Your Vue.js App',
+             activeName: 'second'
         }
     },
     methods: {
@@ -44,6 +51,9 @@ export default {
                 console.log(findTeamsetup1)
             })()
         },
+           handleClick(tab, event) {
+            console.log(tab, event);
+          }
     },
     created() {
         // this.init()

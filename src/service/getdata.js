@@ -1,8 +1,8 @@
 /* 
  * @Author: 问天
  * @Date:   2017-06-27 10:19:13
- * @Last Modified by:   问天
- * @Last Modified time: 2017-07-20 18:02:53
+ * @Last Modified by:   just success
+ * @Last Modified time: 2017-07-24 09:30:23
  */
 import axios from 'axios'
 import qs from 'qs'
@@ -26,13 +26,13 @@ function changejson(json){
 	return json
 }
 console.log(signature);
-//3a859c5e80e418031d944f96dde8370c
 // 获取团队筹建个人信息
-export const getBrands = (json) =>new axios.post("/api/Product/getBrands", qs.stringify(json));
+// export const getBrands = (json) =>new axios.post("/api/Product/getBrands", qs.stringify(json));
 // // 获取团队筹建个人信息
 // export const getQuestions = (json) =>new axios.post("/rt/vcx/common/getQuestions", qs.stringify(toSring(json)));
 
 //我的鸡笼
-export const info = (json) =>new axios.get("/api/ZjisheDankuang/info",{'params':changejson(json)});
+// export const info = (json) =>new axios.get("/api/ZjisheDankuang/info",{'params':changejson(json)});
+export const info = (json) =>new axios.post("/h5/webapi/ssq/issue",qs.stringify(''));
 //我的鸡笼
 // export const info2 = (json) =>new axios.post("/api/ZjisheDankuang/info", {'params':json});

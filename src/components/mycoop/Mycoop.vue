@@ -2,27 +2,50 @@
     <div class="mycoop" v-title='"我的鸡笼"'>
         <div class="top">
             <img src="./images/mypic.png" height="121" width="120">
-            <span>我的名字</span>
+            <span>{{name}}</span>
         </div>
         <ul>
-            <li><a><img src="./images/coin.png" height="30" width="30"></a></li>
-            <li><a><img src="./images/address.png" height="30" width="30"></a></li>
+            <li>
+                    <span class="fl" @click="textvuex('gold')">
+                        <img src="./images/coin.png" height="30" width="30">
+                        {{gold}} 金币
+                    </span>
+                <router-link to="/goldchange">
+                    <span class="fr">
+                        去兑换 >
+                    </span>
+                </router-link>
+            </li>
+            <li>
+                <span class="fl">
+                    <img src="./images/address.png" height="30" width="30">
+                    {{address}}
+                </span>
+                <router-link to="/address">
+                    <span class="fr">
+                        更改 >
+                    </span>
+                </router-link>
+            </li>
         </ul>
-        <el-button>默认按钮</el-button>
-        <el-button type="primary">主要按钮</el-button>
-        <el-button type="text">文字按钮</el-button>
     </div>
 </template>
 <script>
     import {info} from '../../service/getdata.js'
+    import {mapState, mapMutations} from 'vuex'
 export default {
   name: 'mycoop',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+        name:'隔壁老王',
+        address:'北京市 海淀区 永丰屯',
+        gold:'800'
     }
   },
     methods: {
+         ...mapMutations([
+           'RECORD_ADDRESS' 
+        ]),
         init() {
             let infojson = {
                 'user_id':'1',
@@ -33,18 +56,18 @@ export default {
                 console.log(info)
             })()
         },
+        textvuex(x){
+            this.RECORD_ADDRESS(x);
+        }
     },
     created() {
         // this.init()
     },
     mounted(){
         this.init();
-    },
-    watch: { //深度 watcher
     }
 }
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     .top{
         height: 354px;
