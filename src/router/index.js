@@ -10,6 +10,7 @@ const User = resolve => require(['../components/User.vue'], resolve)
 const Mycoop = resolve => require(['../components/mycoop/Mycoop.vue'], resolve) //我的鸡笼
 const Goldchange = resolve => require(['../components/goldchange/Goldchange.vue'], resolve) //金币对换
 const Address = resolve => require(['../components/address/Address.vue'], resolve) //金币对换
+const Eggbasket = resolve => require(['../components/eggbasket/Eggbasket.vue'], resolve) //我的蛋筐
 
 
 Vue.use(Router)
@@ -38,5 +39,9 @@ export default new Router({
     path: '/address',
     name: 'address',
     component: Address
+  }, {
+    path: '/eggbasket',
+    name: 'eggbasket',
+    component: Eggbasket
   }]
 })

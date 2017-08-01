@@ -21,7 +21,14 @@
                 <div class="text-center changesuccess">
                     <img src="./img/success.gif" alt="">
                 </div>
-                <p>兑换成功，您可以到“我的蛋筐”查看</p>
+                <p>兑换成功，您可以到“
+
+                <router-link to="/eggbasket">
+                        我的蛋筐 
+                </router-link>
+                
+
+                ”查看</p>
               <span slot="footer" class="dialog-footer"></span>
             </el-dialog>
             <!-- rules -->
