@@ -6,7 +6,7 @@
         </div>
         <ul>
             <li>
-                    <span class="fl" @click="textvuex('gold')">
+                    <span class="fl">
                         <img src="./images/coin.png" height="30" width="30">
                         {{gold}} 金币
                     </span>
@@ -55,9 +55,6 @@ export default {
                 let info = await x;
                 console.log(info)
             })()
-        },
-        textvuex(x){
-            this.RECORD_ADDRESS(x);
         }
     },
     created() {
