@@ -15,7 +15,10 @@ import {
 	Dialog,
 	Form,
 	FormItem,
-	Input 
+	Input,
+	Checkbox,
+	CheckboxGroup,
+	Card , 
 } from 'element-ui'
 
 
@@ -28,6 +31,12 @@ Vue.use(Dialog);
 Vue.use(Form);
 Vue.use(FormItem);
 Vue.use(Input);
+Vue.use(Checkbox);
+Vue.use(CheckboxGroup);
+Vue.use(Card);
+
+
+
 
 Vue.config.productionTip = false
 

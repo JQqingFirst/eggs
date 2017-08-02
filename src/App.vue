@@ -42,6 +42,10 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
+  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
+}
+html,body{
+  height: 100%;
 }
 ol, ul {
   list-style: none;
@@ -58,15 +62,35 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+a{
+  text-decoration: none;
+}
+.clear1{
+  height: 1px;
+  clear: both;
+}
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
 .text-center{
   text-align: center;
 }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   padding: 5px;
+  height: 100%;
+}
+.clearfix:before,.clearfix:after {
+    content:"";
+    display:table;
+}
+.clearfix:after{clear:both;}
+.clearfix{
+    *zoom:1;/*IE/7/6*/
 }
 </style>
