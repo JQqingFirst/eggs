@@ -7,13 +7,16 @@ import Router from 'vue-router'
 const Hello = resolve => require(['../components/Hello.vue'], resolve)
 const Vcx = resolve => require(['../components/Vcx.vue'], resolve)
 const User = resolve => require(['../components/User.vue'], resolve)
+
+
+const Index = resolve => require(['../components/index/Index.vue'], resolve) //首页
 const Mycoop = resolve => require(['../components/mycoop/Mycoop.vue'], resolve) //我的鸡笼
 const Goldchange = resolve => require(['../components/goldchange/Goldchange.vue'], resolve) //金币对换
 const Address = resolve => require(['../components/address/Address.vue'], resolve) //金币对换
 const Eggbasket = resolve => require(['../components/eggbasket/Eggbasket.vue'], resolve) //我的蛋筐
 const Adopt = resolve => require(['../components/adopt/Adopt.vue'], resolve) //领养
 const AdoptPay = resolve => require(['../components/adoptPay/AdoptPay.vue'], resolve) //领养支付
-const Friend = resolve => require(['../components/friend/Friend.vue'], resolve) //领养支付
+const Friend = resolve => require(['../components/friend/Friend.vue'], resolve) //朋友榜
 const Distribution = resolve => require(['../components/distribution/Distribution.vue'], resolve) //配送
 
 
@@ -23,8 +26,8 @@ Vue.use(Router)
 export default new Router({
   routes: [{
     path: '/',
-    name: 'Hello',
-    component: Hello
+    name: 'Index',
+    component: Index
   }, {
     path: '/vcx',
     name: 'Vcx',

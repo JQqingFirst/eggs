@@ -24,8 +24,8 @@
                 <p>养一只鸡：每隔四周配送一次，20枚；养两只鸡：每隔两周配送一次，20枚；养四只鸡：每隔一周配送一次，20枚</p>
             </div>
         </el-card>
-        <footer class="text-center">
-            <el-button type="warning" size="large">去领养</el-button>
+        <footer class="text-center" >
+            <router-link to="/AdoptPay" class='fr el-button el-button--warning el-button--large'>去领养</router-link>
         </footer>
     </div>
 </template>
@@ -131,7 +131,11 @@ export default {
         width: 100%;
         left: 0;
     }
-    footer button{
+
+    footer a{
+        width: 100%;
+    }
+    footer a button{
         width: 100%;
     }
 </style>
