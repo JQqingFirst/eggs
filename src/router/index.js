@@ -18,6 +18,9 @@ const Adopt = resolve => require(['../components/adopt/Adopt.vue'], resolve) //�
 const AdoptPay = resolve => require(['../components/adoptPay/AdoptPay.vue'], resolve) //领养支付
 const Friend = resolve => require(['../components/friend/Friend.vue'], resolve) //朋友榜
 const Distribution = resolve => require(['../components/distribution/Distribution.vue'], resolve) //配送
+const Getegg = resolve => require(['../components/getegg/Getegg.vue'], resolve) //领蛋
+
+
 
 
 
@@ -71,6 +74,11 @@ export default new Router({
     path: '/distribution',
     name: 'distribution',
     component: Distribution
+  },
+  {
+    path: '/getegg',
+    name: 'getegg',
+    component: Getegg
   }
 
   ]
