@@ -1,13 +1,13 @@
 <template>
-    <div class="adoptPay" v-title='"领养"'>
+    <div class="adoptPay" v-title='"确认订单"'>
         <div class="top">
             <div class="bg"></div>
-            <div class="unadd">
-                <router-link to='/address' v-if='!address.name'>
+            <div class="unadd" v-if='!address.name'>
+                <router-link to='/address'>
                     <i class="el-icon-plus"></i>请添加姓名，电话，地址
                 </router-link>
             </div>
-            <div class="address">
+            <div class="address" v-if='address.name'>
                 <p>
                     <span>{{address.name}}</span>
                     <span>{{address.mobile}}</span>
@@ -25,7 +25,7 @@ s                        </span>
             <div class="bg"></div>
         </div>
         <el-card class="box-card">
-            <div class="good">
+            <div class="good clearfix">
                 <img src="./img/checken.gif" alt="">
                 <div class="info">
                     <h2>{{good.name}}</h2>
@@ -39,6 +39,33 @@ s                        </span>
         </footer>
     </div>
 </template>
+<style scoped>
+    .adoptPay{height:100%;background-color: #f2f2f2;}
+    .top{background-color:#fff;font-weight:700;font-size:20px;}
+    .unadd i{float:left;margin-top:5px;margin-right:10px;padding:3px;border:solid 2px #f7ab26;border-radius:100%;font-size:13px;}
+    .unadd a{display:block;padding-left:20px;height:30px;color:#f7ab26;line-height:30px;}
+    .address{ padding-left: 10px; padding-right: 20px;}
+    .address p{color: #5a463a;font-size: 16px;font-weight: bold;}
+    .address p span{margin-right: 20px;}
+    .address i{margin-top: 15px;}
+    .top .bg{margin-bottom:10px;width:100%;height:4px;background:url(./img/bg.png) repeat-x;}
+    .address p{padding-left:50px;line-height:40px;}
+    .address p span{color:#8e837d;font-size:20px;}
+    .address a{display:block;padding-bottom:20px;color:#8e8e8e;font-weight:400;font-size:16px;line-height:40px;}
+    .address a img{margin-right:14px;}
+    .address a span{display:block;padding-right:30px;}
+    .box-card{width: 96%;margin-left: 2%;}
+    .good{ padding: 10px; }
+    .good img{float: left;width: 100px;height: 100px;border-radius: 6px;margin-right:15px;}
+    .good .info{float: left;}
+    .good .info h2{color: #5a463a;margin-bottom: 10px;padding-top: 15px;font-weight: 500;}
+    .good .info p{}
+    .good .info p span{font-size: 20px;font-weight: bolder;color: #ff0000;}
+    footer{position:fixed;bottom:0;left:0;width:100%;height:36px;background-color:#f2f2f2;line-height:36px;}
+    footer p{float:right;text-align:right;}
+    footer p span{margin:0 10px;color:#ff5400;}
+    footer button{float:right;}
+</style>
 <script>
     import {info} from '../../service/getdata.js'
     import {mapState, mapMutations} from 'vuex'
@@ -47,7 +74,7 @@ export default {
   data () {
     return {
         address:{
-            name:'dhy',
+            name:'ddd',
             mobile:'13070109282',
             address:'河北省/保定市/涞水县',
             detialAdd:'王村乡/辛庄头村148号'
@@ -87,81 +114,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-    .adoptPay{
-        height: 100%;
-    }
-    .top{
-        background-color: #fff;
-        font-size: 20px;
-        font-weight: bold;
-    }
-    .unadd i{
-        padding: 3px;
-        font-size: 13px;
-        border: solid 2px #f7ab26;
-        border-radius: 100%; 
-        float: left;
-        margin-top: 5px;
-        margin-right: 10px;
-    }
-    .unadd a{
-        color: #f7ab26;
-        display: block;
-        height: 30px;
-        line-height: 30px;
-        padding-left: 20px;
-    }
-    .top .bg{
-        width: 100%;
-        height:4px;
-        background: url(./img/bg.png) repeat-x;
-        margin: 10px 0;
-    }
-    .address{
-
-    }
-    .address p{
-        padding-left: 40px;
-        line-height: 40px;
-    }
-    .address p span{
-        font-size: 20px;
-        color: #8e837d;
-    }
-    .address a{
-        font-size: 16px;
-        font-weight: normal;
-        line-height: 40px;
-        color: #8e8e8e;
-        display: block;
-        padding-bottom: 20px;
-    }
-    .address a img{
-        margin-right: 10px;
-    }
-    .address a span{
-        display: block;
-        padding-right: 30px;
-    }
-    footer{
-        position:fixed;
-        bottom: 0;
-        width: 100%;
-        left: 0;
-        height: 36px;
-        line-height: 36px;
-        background-color: #f2f2f2;
-    }
-    footer p{
-        float: right;
-        text-align: right;
-    }
-    footer p span{
-        color: #ff5400;
-        margin:0 10px;
-    }
-    footer button{
-        float: right;
-    }
-</style>

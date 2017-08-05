@@ -1,60 +1,64 @@
 <template>
     <div class="friend" v-title='"好友榜"'>
         <div class="top">
-            <p>
-                <i class="el-icon-information"></i>
-                帮朋友喂鸡可以帮他提高产蛋率
-            </p>
-            <img src="./img/link.gif" alt="">
+            <img src="./img/warning.png">
+            20枚鸡蛋方可卖出或送好友
         </div>
-        <div>
-            <ul>
-                <li v-for='item in friends'>
-                    <img :src='item.img' alt="">
-                    {{item.name}}
+        <banner></banner>
+        <div class="clear10"></div>
+        <ul class="friend-list">
+            <li v-for='item in friends' class="clearfix">
+                <!-- <img :src='item.img' alt=""> -->
+                <img src="./img/1.png" alt="" class="fl">
+                <div class="info fl">
+                    <h2>{{item.name}}</h2>
+                    <p>{{item.chickenNum}}</p>
+                </div>
+                <div class='right fr'>
                     <span>
                         <img src="./img/egg.png" v-if='item.egg' @click='storeeggdialog'>
                     </span>
                     <span>
                         <img src="./img/feed.png" v-if='item.feed' @click='feedcheckendialog'>
                     </span>
-                </li>
-            </ul>
-        </div>
+                </div>
+            </li>
+        </ul>
         <el-dialog title="" :visible.sync="storeegg">
-            <div class="dialog-info">
-                <p>原价2元一枚的蛋，现帮您以1000金币卖出，您可以子啊个人中心查看</p>
+            <div class="dialog-info storeegg">
+                <img src="./img/storeegg.png" alt="">
+                <p>恭喜您成功偷取好友一枚喜蛋</p>
             </div>
-          <div slot="footer" class="dialog-footer">
-            <el-button type="warning" @click="storeegg = false">确 定</el-button>
-          </div>
         </el-dialog>
-        <el-dialog title="" :visible.sync="feedchecken">
-            <div class="dialog-info">
-                <p>原价2元一枚的蛋，现帮您以1000金币卖出，您可以子啊个人中心查看</p>
+        <el-dialog title="" :visible.sync="feedchecken" class='help'>
+            <div class="dialog-info helpfriend">
+                <img src="./img/helpfriend.png" alt="">
             </div>
-          <div slot="footer" class="dialog-footer">
-            <el-button type="warning" @click="feedchecken = false">确 定</el-button>
-          </div>
+        </el-dialog>
+        <el-dialog title="" :visible.sync="fodder">
+            <div class="dialog-info storeegg">
+                <img src="./img/fodder.png" alt="">
+                <p>每天只能替好友喂鸡3次</p>
+            </div>
         </el-dialog>
     </div>
-
-
-
 </template>
 <script>
+    import banner from '../common/banner/banner.vue'
     import {info} from '../../service/getdata.js'
     import {mapState, mapMutations} from 'vuex'
 export default {
   name: 'mycoop',
   data () {
     return {
-        storeegg:false,
-        feedchecken:false,
+        fodder:true,           //每天只能替好友喂鸡3次
+        storeegg:false,         //恭喜您成功偷取好友一枚喜蛋
+        feedchecken:false,       //喂鸡成功弹窗
         friends:[
             {
                 name:'dhy',
-                img:'',
+                img:'/assets/logo.png',
+                chickenNum:1,
                 egg:1,
                 feed:0,
                 userid:112,
@@ -62,6 +66,7 @@ export default {
             {
                 name:'dhy',
                 img:'',
+                chickenNum:1,
                 egg:0,
                 feed:1,
                 userid:112,
@@ -69,6 +74,7 @@ export default {
             {
                 name:'dhy',
                 img:'',
+                chickenNum:1,
                 egg:1,
                 feed:1,
                 userid:112,
@@ -76,6 +82,7 @@ export default {
             {
                 name:'dhy',
                 img:'',
+                chickenNum:1,
                 egg:0,
                 feed:1,
                 userid:1125,
@@ -130,6 +137,9 @@ export default {
             this.feedchecken = true
         }
     },
+    components:{
+        banner
+    },
     created() {
         // this.init()
     },
@@ -139,31 +149,27 @@ export default {
 }
 </script>
 <style>
-    span.el-checkbox__label{
-        display: none;
-    }
-    .el-dialog__footer{
-        box-sizing: content-box;
-    }
-    .el-dialog{
-        border-radius: 3px; 
-    }
-    .el-dialog--small {
-        width: 80%;
-    }
+    span.el-checkbox__label{display:none;}
+    .el-dialog__footer{box-sizing:content-box;}
+    .el-dialog{border-radius:3px;}
+    .el-dialog--small{width:80%;}
+    .help .el-dialog{background: transparent;box-shadow:none;}
 </style>
 <style scoped>
-    .top{
-        text-align: center;
-        color: #ff0000;
-        margin-top: -5px;
-    }
-    .top p{
-        height: 36px;
-        line-height: 36px;
-        background-color: #fae3d2;
-    }
-    .top img{
-        width: 100%;
-    }
+.friend{height: 100%;background-color: #f2f2f2;}
+.top{height:40px;color:red;text-align:center;line-height:40px;background-color: #fae3d2;color: #f39500;font-size: 16px;}
+.top img{width:18px;height: 18px;margin-right: 4px;margin-top: -4px;}
+.friend-list li{margin: 6px;background-color: #fff;padding: 10px 0 10px 45px;}
+.friend-list li:nth-child(1){ background:#fff url(./img/f1.png) no-repeat 8px center;background-size: 25px 25px;}
+.friend-list li:nth-child(2){ background:#fff url(./img/f2.png) no-repeat 8px center;background-size: 25px 25px;}
+.friend-list li:nth-child(3){ background:#fff url(./img/f3.png) no-repeat 8px center;background-size: 25px 25px;}
+.friend-list li>img{width: 80px;height: 80px;margin-right: 10px;}
+.info h2{font-size: 20px;font-weight: bolder;color:#5a463a;margin-bottom: 10px;margin-top: 15px;}
+.info p{color: #a6a09d;font-size: 16px;}
+.friend-list li .right img{width: 55px;margin-top:15px;margin-right: 10px;}
+.storeegg{position: relative;height: 100px;}
+.storeegg img{position: absolute;width: 150px;left: 50%;margin-left: -75px;top:-120px;}
+.storeegg p{padding-top: 50px;text-align: center;font-size: 14px;color: #5a463a;font-weight: 500;}
+.helpfriend{}
+.helpfriend img{width: 80%;margin-left: 10%;}
 </style>

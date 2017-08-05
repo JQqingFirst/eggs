@@ -16,12 +16,11 @@ const Address = resolve => require(['../components/address/Address.vue'], resolv
 const Eggbasket = resolve => require(['../components/eggbasket/Eggbasket.vue'], resolve) //我的蛋筐
 const Adopt = resolve => require(['../components/adopt/Adopt.vue'], resolve) //领养
 const AdoptPay = resolve => require(['../components/adoptPay/AdoptPay.vue'], resolve) //领养支付
+const Success = resolve => require(['../components/adoptPay/Success.vue'], resolve) //支付成功
 const Friend = resolve => require(['../components/friend/Friend.vue'], resolve) //朋友榜
 const Distribution = resolve => require(['../components/distribution/Distribution.vue'], resolve) //配送
 const Getegg = resolve => require(['../components/getegg/Getegg.vue'], resolve) //领蛋
-
-
-
+const Error = resolve => require(['../components/error/Error.vue'], resolve) //领蛋
 
 
 
@@ -66,6 +65,11 @@ export default new Router({
     component: AdoptPay
   },
   {
+    path: '/success',
+    name: 'success',
+    component: Success
+  },
+  {
     path: '/friend',
     name: 'friend',
     component: Friend
@@ -79,6 +83,11 @@ export default new Router({
     path: '/getegg',
     name: 'getegg',
     component: Getegg
+  },
+  {
+    path: '/*',
+    name: 'error',
+    component: Error
   }
 
   ]
