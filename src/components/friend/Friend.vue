@@ -7,19 +7,20 @@
         <banner></banner>
         <div class="clear10"></div>
         <ul class="friend-list">
-            <li v-for='item in friends' class="clearfix">
+            <li v-for='item in userFriendList.data' class="clearfix">
                 <!-- <img :src='item.img' alt=""> -->
-                <img src="./img/1.png" alt="" class="fl">
+                <img :src="item.friend_info.wx_pic" alt="" class="fl">
                 <div class="info fl">
-                    <h2>{{item.name}}</h2>
-                    <p>{{item.chickenNum}}</p>
+                    <h2>{{item.friend_info.wx_nick_name}}</h2>
+                    <p>{{item.friend_info.chicken_num}}只鸡</p>
                 </div>
                 <div class='right fr'>
                     <span>
-                        <img src="./img/egg.png" v-if='item.egg' @click='storeeggdialog'>
+                        {{item.friend_info.user_id}}
+                        <img src="./img/egg.png"  @click='storeeggdialog(item.user_id,item.friend_id)'>
                     </span>
                     <span>
-                        <img src="./img/feed.png" v-if='item.feed' @click='feedcheckendialog'>
+                        <img src="./img/feed.png" @click='feeddialog(item.user_id,item.friend_id)'>
                     </span>
                 </div>
             </li>
@@ -27,12 +28,13 @@
         <el-dialog title="" :visible.sync="storeegg">
             <div class="dialog-info storeegg">
                 <img src="./img/storeegg.png" alt="">
-                <p>恭喜您成功偷取好友一枚喜蛋</p>
+                <p>{{storemsg}}</p>
             </div>
         </el-dialog>
         <el-dialog title="" :visible.sync="feedchecken" class='help'>
             <div class="dialog-info helpfriend">
                 <img src="./img/helpfriend.png" alt="">
+                <p>{{feedmsg}}</p>
             </div>
         </el-dialog>
         <el-dialog title="" :visible.sync="fodder">
@@ -45,84 +47,35 @@
 </template>
 <script>
     import banner from '../common/banner/banner.vue'
-    import {info} from '../../service/getdata.js'
-    import {mapState, mapMutations} from 'vuex'
+    import {userFriendList,feed,stealEgg} from '../../service/getdata.js'
+    import {mapState} from 'vuex'
 export default {
   name: 'mycoop',
   data () {
     return {
-        fodder:true,           //每天只能替好友喂鸡3次
+        storemsg:'恭喜您成功偷取好友一枚喜蛋',
+        feedmsg:'成功帮好友提高30%产蛋率',
+        fodder:false,           //每天只能替好友喂鸡3次
         storeegg:false,         //恭喜您成功偷取好友一枚喜蛋
         feedchecken:false,       //喂鸡成功弹窗
-        friends:[
-            {
-                name:'dhy',
-                img:'/assets/logo.png',
-                chickenNum:1,
-                egg:1,
-                feed:0,
-                userid:112,
-            },
-            {
-                name:'dhy',
-                img:'',
-                chickenNum:1,
-                egg:0,
-                feed:1,
-                userid:112,
-            },
-            {
-                name:'dhy',
-                img:'',
-                chickenNum:1,
-                egg:1,
-                feed:1,
-                userid:112,
-            },
-            {
-                name:'dhy',
-                img:'',
-                chickenNum:1,
-                egg:0,
-                feed:1,
-                userid:1125,
-            }
-        ],
-        goodlist:[
-            {
-                good:'鸡蛋',
-                id:"112",
-                num:3,
-                category:1,
-            },
-            {
-                good:'鸡汤',
-                id:"113",
-                num:3,
-                category:2,
-            },
-            {
-                good:'鸡蛋',
-                id:"114",
-                num:20,
-                category:1,
-            }
-        ]
+        userFriendList:{
+        }
     }
   },
     methods: {
-         ...mapMutations([
-           'RECORD_ADDRESS' 
-        ]),
-        init() {
+        async init(){
+            let _this = this;
             let infojson = {
-                'user_id':'1',
+                user_id:this.$store.state.usreId
             }
-            let x = info(infojson);
-            (async function(){
-                let info = await x;
-                console.log(info)
-            })()
+            let info = await userFriendList(infojson);
+            let req = info.data;
+            console.log(req);
+            if(req.code===1){
+                _this.userFriendList = {...req.result};
+            }else if(req.code===0){
+
+            }
         },
         checkListss(val){
             console.log(val);
@@ -130,8 +83,39 @@ export default {
         sold(){     //点击卖出
             this.dialogFormVisible = true
         },
-        storeeggdialog(){
-            this.storeegg = true
+        storeeggdialog(user_id,friend_id){
+            let _this = this;
+            (async function(){
+                let infojson = {
+                    user_id:user_id,
+                    friend_id:friend_id
+                }
+                let info = await stealEgg(infojson);
+                let req = info.data;
+                // if(req.code===1){
+                // }else{
+                    // _this.storemsg = '已经偷过了，放过他吧'
+                    _this.feedmsg =req.msg
+                // }
+                    _this.storeegg = true;
+            })()
+        },
+        feeddialog(user_id,friend_id){
+            let _this = this;
+            (async function(){
+                let infojson = {
+                    user_id:user_id,
+                    friend_id:friend_id
+                }
+                let info = await feed(infojson);
+                let req = info.data;
+                // if(req.code===1){
+                // }else{
+                    // _this.storemsg = '已经偷过了，放过他吧'
+                    _this.storemsg =req.msg
+                // }
+                    _this.feedchecken = true;
+            })()
         },
         feedcheckendialog(){
             this.feedchecken = true
@@ -170,6 +154,7 @@ export default {
 .storeegg{position: relative;height: 100px;}
 .storeegg img{position: absolute;width: 150px;left: 50%;margin-left: -75px;top:-120px;}
 .storeegg p{padding-top: 50px;text-align: center;font-size: 14px;color: #5a463a;font-weight: 500;}
-.helpfriend{}
+.helpfriend{position: relative;}
 .helpfriend img{width: 80%;margin-left: 10%;}
+.helpfriend p{position: absolute;left: 0;width: 40%;margin-left: 30%;top: 60%;font-size: 16px;font-weight: bolder;text-align: center;line-height: 20px;color: #eee;}
 </style>

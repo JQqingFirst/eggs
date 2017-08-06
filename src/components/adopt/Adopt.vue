@@ -10,7 +10,7 @@
         </div>
         <div class="good clearfix">
             <div class="fl left">
-                每只<span> ¥{{price*num}}</span> <em>原价¥918</em>
+                每只<span> ¥{{price}}</span> <em>原价¥918</em>
             </div>
             <div class="fr right">
                 <el-input-number v-model="num" :step="1" :min='0' size="small"></el-input-number>
@@ -25,24 +25,24 @@
             </div>
         </el-card>
         <footer class="text-center" >
-            <router-link to="/AdoptPay" class='fr el-button el-button--warning el-button--large'>去领养</router-link>
+        <a class="el-button el-button--warning el-button--large" @click='storegood'>去领养</a>
         </footer>
     </div>
 </template>
 <script>
     import {info} from '../../service/getdata.js'
-    import {mapState, mapMutations} from 'vuex'
+    import {mapMutations} from 'vuex'
 export default {
   name: 'mycoop',
   data () {
     return {
-        price:170,
-        num:3
+        price:520,
+        num:this.$store.state.goodnum
     }
   },
     methods: {
          ...mapMutations([
-           'RECORD_ADDRESS' 
+           'CHANGE_GOODNUM' 
         ]),
         init() {
             let infojson = {
@@ -54,8 +54,9 @@ export default {
                 console.log(info)
             })()
         },
-        checkListss(val){
-            console.log(val);
+        storegood(){
+            this.CHANGE_GOODNUM(this.num);
+            this.$router.push({path:'/adoptPay'});
         }
     },
     created() {

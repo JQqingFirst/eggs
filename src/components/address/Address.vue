@@ -1,94 +1,98 @@
 <template>
     <div class="goldchange" v-title='"填写地址"'>
    <el-form :model="form" :rules="rules" ref="form" label-width="100px" class="demo-ruleForm">
-      <el-form-item label="收货人"  prop="name">
-        <el-input v-model="form.name"></el-input>
+      <el-form-item label="收货人"  prop="user_name">
+        <el-input v-model="form.user_name"></el-input>
       </el-form-item>
 
-      <el-form-item label="手机号码" prop="miobile">
-        <el-input type="miobile" v-model.number="form.miobile" auto-complete="off"></el-input>
+      <el-form-item label="手机号码" prop="tel">
+        <el-input type="tel" v-model.number="form.tel" auto-complete="off"></el-input>
       </el-form-item>
-      <el-form-item label="收货地址"  prop="address">
+      <!-- <el-form-item label="收货地址"  prop="address">
         <el-input v-model="form.address" @focus = "showdistpicker=true"></el-input>
-        </el-form-item>
-      <el-form-item label="楼号门牌"  prop="detialAdd">
-        <el-input v-model="form.detialAdd"></el-input>
+        </el-form-item> -->
+      <el-form-item label="收货地址"  prop="address">
+        <el-input v-model="form.address"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="warning" class='saveform' @click="submitForm('form')" size="large" :disabled="!isform">确定</el-button>
       </el-form-item>
 </el-form> 
-<v-distpicker type="mobile" @selected="onSelected" v-show='showdistpicker'></v-distpicker>
+<!-- <v-distpicker type="mobile" @selected="onSelected" v-show='showdistpicker'></v-distpicker> -->
     </div>
 </template>
 <script>
-    import {info} from '../../service/getdata.js'
-    import VDistpicker from 'v-distpicker'
+    import {info,add,getDefault} from '../../service/getdata.js'
+    // import VDistpicker from 'v-distpicker'
 export default {
   name: 'goldchange',
   data () {
     return {
-        showdistpicker:false,
+        // showdistpicker:false,
         form: {
-          name: '',
-          miobile:'',
+          user_name: '',
+          tel:'',
+          // address:'',
           address:'',
-          detialAdd:''
+          status:1      //是否默认
         },
         isform:false,
         rules: {
-          name: [
+          user_name: [
             { required: true, message: '请输入收货人', trigger: 'blur' },
             { min: 3, max: 5, message: '长度在 2 到 5 个字符', trigger: 'blur' }
           ],
-          miobile:[
+          tel:[
              { required: true, message: '手机不能为空'},
              { type: 'number', message: '手机必须为数字值'}
           ],
-          address:[
-             { required: true, message: '地址不能为空'}
-          ],
-          detialAdd: [
+          // address:[
+          //    { required: true, message: '地址不能为空'}
+          // ],
+          address: [
             { required: true, message: '请填写楼号门派', trigger: 'blur' }
           ]
         }
       }
   },
-  components: { VDistpicker },
+  // components: { VDistpicker },
     methods: {
+        async sendform(){
+            let info = await add(this.form);
+           this.$message(info.data.msg);
+        },
         init() {
-            let infojson = {
-                'user_id':'1',
-            }
-            let x = info(infojson);
+          let _this = this;
+            let x = getDefault();
             (async function(){
                 let info = await x;
-                console.log(info)
+                _this.form = {...info.data.result}
             })()
         },
           submitForm(formName) {
+            let _this = this;
             this.$refs[formName].validate((valid) => {
               if (valid) {
-                alert('submit!');
+                _this.sendform(); 
               } else {
-                console.log('error submit!!');
+                _this.$message('提交错误');
                 return false;
               }
             });
           },
+
           resetForm(formName) {
             this.$refs[formName].resetFields();
           },
           onSelected(data){
             this.form.address=data.province.value+' / '+data.city.value+' / '+data.area.value;
-            this.showdistpicker =false
+            // this.showdistpicker =false
           }
     },
     watch:{
         form:{
             handler(val,oldval){
-                console.log(val);
-　　　　　　　　if(val.name&&val.miobile&&val.address&&val.detialAdd){
+　　　　　　　　if(val.user_name&&val.tel&&val.address){
                     this.isform = true
                 }else{
                     this.isform = false

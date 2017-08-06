@@ -19,6 +19,7 @@ import {
 	Checkbox,
 	CheckboxGroup,
 	Card , 
+	Message ,
 } from 'element-ui'
 
 
@@ -37,6 +38,7 @@ Vue.use(Card);
 
 
 
+Vue.prototype.$message = Message
 
 Vue.config.productionTip = false
 

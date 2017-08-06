@@ -2,22 +2,22 @@
     <div class="adoptPay" v-title='"确认订单"'>
         <div class="top">
             <div class="bg"></div>
-            <div class="unadd" v-if='!address.name'>
+            <div class="unadd" v-if='!address.user_name'>
                 <router-link to='/address'>
                     <i class="el-icon-plus"></i>请添加姓名，电话，地址
                 </router-link>
             </div>
-            <div class="address" v-if='address.name'>
+            <div class="address" v-if='address.user_name'>
                 <p>
-                    <span>{{address.name}}</span>
-                    <span>{{address.mobile}}</span>
+                    <span>{{address.user_name}}</span>
+                    <span>{{address.tel}}</span>
                 </p>
                 <div>
                     <router-link to='/address'>
                         <img src="./img/add.png" class="fl">
                         <i class="el-icon-arrow-right fr"></i>
                         <span>                        
-                            {{address.address}}{{address.detialAdd}}
+                            {{address.address}}
 s                        </span>
                     </router-link>
                 </div>
@@ -34,11 +34,71 @@ s                        </span>
             </div>
         </el-card>
         <footer>
-            <el-button type="warning">去支付</el-button>
+            <el-button type="warning" @click='pay'>去支付</el-button>
             <p>待支付：<span>¥{{good.totleprice}}</span></p>
         </footer>
     </div>
 </template>
+<script>
+    import {getDefault,order} from '../../service/getdata.js'
+    import {mapState, mapMutations} from 'vuex'
+export default {
+  name: 'adoptPay',
+  data () {
+    return {
+        address:{
+            user_name: '',
+            tel:'',
+            // address:'',
+            address:'',
+            status:1      //是否默认
+        },
+        good:{
+            price:520,
+            num:this.$store.state.goodnum,
+            totleprice:520*this.$store.state.goodnum,
+            name:'快乐的鸡'
+        }
+
+    }
+  },
+    methods: {
+         ...mapMutations([
+           'RECORD_ADDRESS' 
+        ]),
+        init() {
+          let _this = this;
+            let x = getDefault();
+            (async function(){
+                let info = await x;
+                _this.address = {...info.data.result}
+            })()
+        },
+        async pay(){
+            let json  = {
+                user_id:this.$store.state.userId,
+                product_id:34.2,
+                address_id:this.address.id, 
+                payable:this.good.totleprice
+            }
+            let info = await order(json);
+            console.log(info);
+            if(info.data.code===1){
+
+            }else{
+               this.$message(info.data.msg);
+            }
+        }
+    },
+    created() {
+        // this.init()
+    },
+    mounted(){
+        this.init();
+    }
+}
+</script>
+
 <style scoped>
     .adoptPay{height:100%;background-color: #f2f2f2;}
     .top{background-color:#fff;font-weight:700;font-size:20px;}
@@ -66,51 +126,3 @@ s                        </span>
     footer p span{margin:0 10px;color:#ff5400;}
     footer button{float:right;}
 </style>
-<script>
-    import {info} from '../../service/getdata.js'
-    import {mapState, mapMutations} from 'vuex'
-export default {
-  name: 'adoptPay',
-  data () {
-    return {
-        address:{
-            name:'ddd',
-            mobile:'13070109282',
-            address:'河北省/保定市/涞水县',
-            detialAdd:'王村乡/辛庄头村148号'
-        },
-        good:{
-            price:520,
-            num:3,
-            totleprice:1560,
-            name:'快乐的鸡'
-        }
-
-    }
-  },
-    methods: {
-         ...mapMutations([
-           'RECORD_ADDRESS' 
-        ]),
-        init() {
-            let infojson = {
-                'user_id':'1',
-            }
-            let x = info(infojson);
-            (async function(){
-                let info = await x;
-                console.log(info)
-            })()
-        },
-        checkListss(val){
-            console.log(val);
-        }
-    },
-    created() {
-        // this.init()
-    },
-    mounted(){
-        this.init();
-    }
-}
-</script>

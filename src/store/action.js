@@ -4,7 +4,8 @@
 // } from '../service/getData'
 import {
 	GET_USERINFO,
-	SAVE_ADDRESS
+	SAVE_ADDRESS,
+	CHANGE_GOODNUM
 } from './mutation-types.js'
 
 export default {

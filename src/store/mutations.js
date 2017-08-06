@@ -28,6 +28,8 @@ import {
 	SAVE_QUESTION,
 	ADD_ADDRESS,
 	BUY_CART,
+	RECORD_USERID,
+	CHANGE_GOODNUM
 } from './mutation-types.js'
 
 // import {
@@ -44,7 +46,12 @@ export default {
 	[RECORD_ADDRESS](state, latitude) {
 		state.latitude = latitude;
 	},
-
+	[RECORD_USERID](state, userid) {
+		state.userid = userid;
+	},
+	[CHANGE_GOODNUM](state, goodnum) {
+		state.goodnum = goodnum;
+	}
 	// [RECORD_SHOPDETAIL](state, detail) {
 	// 	state.shopDetail = detail;
 	// },

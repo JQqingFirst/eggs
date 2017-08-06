@@ -25,14 +25,31 @@ function changejson(json){
 	json.version = version;
 	return json
 }
-console.log(signature);
-// 获取团队筹建个人信息
-// export const getBrands = (json) =>new axios.post("/api/Product/getBrands", qs.stringify(json));
-// // 获取团队筹建个人信息
-// export const getQuestions = (json) =>new axios.post("/rt/vcx/common/getQuestions", qs.stringify(toSring(json)));
 
 //我的鸡笼
-// export const info = (json) =>new axios.get("/api/ZjisheDankuang/info",{'params':changejson(json)});
-export const info = (json) =>new axios.post("/h5/webapi/ssq/issue",qs.stringify(''));
-//我的鸡笼
-// export const info2 = (json) =>new axios.post("/api/ZjisheDankuang/info", {'params':json});
+export const info = (json) =>new axios.get("/api/ZjisheDankuang/info",{'params':json});
+//我的好友列表
+export const userFriendList = (json) =>new axios.get("/api/ZjisheFriends/userFriendList", {'params':json});
+//帮好友喂鸡接口
+export const feed = (json) =>new axios.get("/api/ZjisheGamelog/feed", {'params':json});
+//偷蛋
+export const stealEgg = (json) =>new axios.get("/api/ZjisheGamelog/stealEgg", {'params':json});
+//鸡舍动态			user_id 
+export const gameLogList = (json) =>new axios.post("/api/ZjisheGamelog/gameLogList", qs.stringify(json));
+//添加我的联系地址
+export const add = (json) =>new axios.post("/api/ZjisheAddress/add", qs.stringify(json));
+//获取默认收货地址信息
+export const getDefault = (json) =>new axios.post("/api/ZjisheAddress/getDefault ", qs.stringify(json));
+//订单配送计划  order_sn=JS20170719131130151 
+export const infoList = (json) =>new axios.get("/api/EggDistributionInfo/infoList", {'params':json});
+//延期配送 		id=431 
+export const delayedDelivery = (json) =>new axios.get("/api/EggDistributionInfo/delayedDelivery", {'params':json});
+//获取最近配送  http://123.57.65.163:10016/EggDistributionInfo/nextDelivery
+export const nextDelivery = (json) =>new axios.get("/api/EggDistributionInfo/nextDelivery", {'params':json});
+//领养鸡下单 
+export const order = (json) =>new axios.get("/api/EggOrder/order", {'params':json});
+
+
+
+
+

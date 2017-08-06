@@ -28,18 +28,18 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            '/h5': {
+            '/api': {
                // 
                 // target: 'http://123.57.65.163:10016',
                 // target: 'http://localhost:8080',
-                target: 'https://le.leaicai.com',
+                target: 'http://123.57.65.163:10016',
                 changeOrigin: true,
                 secure: false,
                 pathRewrite: {
-                    '^/h5': ''
+                    '^/api': ''
                 },
                 headers: {
-                  Referer: 'https://le.leaicai.com'
+                  Referer: 'http://123.57.65.163:10016'
                 }
             }
         },

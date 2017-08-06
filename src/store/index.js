@@ -18,6 +18,8 @@ const state = {
 	login: true, //是否登录
 	imgPath: null, //头像地址
 	latitude: '', // 当前位置纬度
+	usreId:'WX12345678',
+	goodnum:3,
 }
 
 export default new Vuex.Store({

@@ -27,3 +27,7 @@ export const SAVE_ADDRESS = 'SAVE_ADDRESS'
 export const SAVE_QUESTION = 'SAVE_QUESTION'
 export const ADD_ADDRESS = 'ADD_ADDRESS'
 export const BUY_CART = 'BUY_CART'
+
+
+export const CHANGE_GOODNUM = 'CHANGE_GOODNUM'			//改变good
+export const RECORD_USERID = 'RECORD_USERID'		//记录用户id

@@ -36,7 +36,7 @@
                             <img src="./images/egg_2.png" alt="">
                             <div class="egg2-tip">
                                 <span>喜蛋进度</span>
-                                <p>{{progress}}%</p>
+                                <p>{{inforesult.xi_egg}}%</p>
                             </div>
                         </dd>
                     </dl>
@@ -45,18 +45,19 @@
         </div>
         <div class="egg">
             <img src="./images/basket.png" alt="">
-            <p>共<span> {{eggNum}} </span>枚蛋</p>
+            <p>共<span> {{inforesult.egg_num}} </span>枚蛋</p>
             <router-link to="/address" class='fr'>提蛋 <i class="el-icon-arrow-right"></i></router-link>
         </div>
         <div class="friend">
             <h2>好友动态</h2>
             <ul>
-                <li v-for='item in friendinfo'>
-                    <span class="fl">{{item.name}}</span>
-                    <em class="fr">{{item.time}}</em>
-                    帮您喂鸡{{item.num}}次
+                <li v-for='item in friendinfo' class="clearfix">
+                    <span class="fl">{{item.friend_info.wx_nick_name}}</span>
+                    <em class="fr">{{item.friend_info.update_at}}</em>
+                    <strong v-if='item.action==1'>帮你喂鸡一次</strong>
+                    <strong v-if='item.action==2'>偷你一枚喜蛋</strong>
                 </li>
-                <li class="text-center">
+                <li class="text-center" v-if='friendinfo.length'>
                     <div class="clear10"></div>
                     <router-link to="/friend">查看更多</router-link>
                 </li>
@@ -65,6 +66,72 @@
         <foot></foot>
     </div>
 </template>
+<script>
+    import foot from '../common/footer/footer.vue'
+    import {info,gameLogList} from '../../service/getdata.js'
+    import {mapState, mapMutations} from 'vuex'
+export default {
+  name: 'mycoop',
+  data () {
+    return {
+        chickenNum:2,//我领养鸡的数量
+        inforesult: {
+              "id": "1",
+              "user_id": "1",
+              "chicken_num": "3", //鸡的数量
+              "egg_num": "11",    //蛋的数量
+              "update_at": "",    //更新时间
+              "xi_egg": 0         //喜蛋进度
+        },
+        friendinfo:[]
+    }
+  },
+    computed: {
+        ...mapState([
+            'userId',
+        ]),
+    },
+    components:{
+        foot
+    },
+    methods: {
+        init() {
+            let _this = this;
+            let infojson = {
+                user_id:this.$store.state.usreId
+            }
+            let x = info(infojson);
+            (async function(){
+                let info = await x;
+                var req = info.data;
+                if(req.code===1){
+                    _this.inforesult = {...req.result};
+                }
+            })();
+            let y = gameLogList(infojson);
+            (async function(){
+                let info = await y;
+                console.log(info);
+                var req = info.data;
+                if(req.code===1){
+                    _this.friendinfo = {...req.result};
+                }else{
+                    _this.$message(info.data.msg);
+                }
+            })();
+        },
+        showchange:function(data){
+            console.log(data);
+        }
+    },
+    created() {
+        // this.init()
+    },
+    mounted(){
+        this.init();
+    }
+}
+</script>
 <style scoped>
 .top{position:relative;min-height:400px;background:url(./images/bg.png) no-repeat;background-size:100% 100%;}
 .topmenu{position:absolute;top:20px;left:30px;width:200px;height:60px;}
@@ -99,61 +166,3 @@
 .friend li a{color: #98877d;}
 .friend span{font-weight:700;color:#5a463a;font-size: 16px;margin-right: 6px;}
 </style>
-
-<script>
-    import foot from '../common/footer/footer.vue'
-    import {info} from '../../service/getdata.js'
-    import {mapState, mapMutations} from 'vuex'
-export default {
-  name: 'mycoop',
-  data () {
-    return {
-        progress:'100',//进度
-        chickenNum:2,//我领养鸡的数量
-        eggNum:20,
-        friendinfo:[
-            {
-                name:'dhy',//姓名
-                action:'', //朋友做的动作
-                num:2,//次数
-                time:'11:00'
-            },
-            {
-                name:'dhy',//姓名
-                action:'', //朋友做的动作
-                num:22,//次数
-                time:'11:00'
-            }
-        ]
-    }
-  },
-    components:{
-        foot
-    },
-    methods: {
-         ...mapMutations([
-           'RECORD_ADDRESS' 
-        ]),
-        init() {
-            let infojson = {
-                'user_id':'1',
-            }
-            let x = info(infojson);
-            (async function(){
-                let info = await x;
-                console.log(info)
-            })()
-        },
-
-        showchange:function(data){
-            console.log(data);
-        }
-    },
-    created() {
-        // this.init()
-    },
-    mounted(){
-        this.init();
-    }
-}
-</script>
