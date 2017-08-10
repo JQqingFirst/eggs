@@ -46,7 +46,7 @@ export default {
         ]),
         init() {
             let infojson = {
-                'user_id':'1',
+                'user_id':this.$store.state.user_id,
             }
             let x = info(infojson);
             (async function(){

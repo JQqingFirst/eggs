@@ -17,17 +17,6 @@
                 <div class="clear10"></div>
                 <div class="clear10"></div>
             </div>
-        <!--     <div v-if='index%2==0'>
-                <h2 class="clearfix"><span class="fl">第{{item.frequency}}次</span><a class="fr" @click='DistributionPlanAlert=true'>配送计划</a></h2>
-                <div class="clear10"></div>
-                <div class="clear10"></div>
-                <p>配送日期：<span>{{distribution.data}}</span></p>
-                <div class="clear10"></div>
-                <div class="clear10"></div>
-                <p>鸡蛋数量: <span>{{distribution.num}}枚</span></p>
-                <div class="clear10"></div>
-                <div class="clear10"></div>
-            </div> -->
       </div>
     <el-dialog title="配送计划" :visible.sync="DistributionPlanAlert">
         <ul class="distributionPlanAlert">
@@ -88,7 +77,10 @@ export default {
   },
     methods: {
         async init() {
-            let info = await nextDelivery();
+            let infojson = {
+                'user_id':this.$store.state.user_id,
+            }
+            let info = await nextDelivery(infojson);
             if(info.data.code==1){
                 this.distribution = {...info.data.result}
             }else{
