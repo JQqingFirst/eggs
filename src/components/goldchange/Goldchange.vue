@@ -43,28 +43,28 @@
 
 </template>
 <style scoped>
-.goldchange{height:100%;background-color:#f2f2f2;}
-.msg{background-color: #fff;}
-.msg p{height: 50px;line-height:50px;padding-left: 20px;}
-.msg p.first{border-bottom: 1px solid #ccc;}
-.msg p span{color:#ff0000;}
-.msg p em{margin-right:10px;}
-.info{ padding:10px 20px; }
-.info img{width: 120px;height: 100px;float: left;margin-right: 20px;}
-.info .gold{float: left;}
-.gold{color:#5a463a;font-weight: bold;font-size: 16px;margin-bottom: 20px;}
-.gold span{color: #ff0000;}
-.success button{width: 80%;margin-left: 10%;}
-.changesuccess img{width:60%;}
-.rules{}
-.rules li{color:#5a463a;line-height: 30px;font-size:16px;}
-.changesuccess{}
-.changesuccess p{color:#5a463a;font-size: 16px;}
-.changesuccess p a{color:#5a463a;}
+    .goldchange{height:100%;background-color:#f2f2f2;}
+    .msg{background-color: #fff;}
+    .msg p{height: 50px;line-height:50px;padding-left: 20px;}
+    .msg p.first{border-bottom: 1px solid #ccc;}
+    .msg p span{color:#ff0000;}
+    .msg p em{margin-right:10px;}
+    .info{ padding:10px 20px; }
+    .info img{width: 120px;height: 100px;float: left;margin-right: 20px;}
+    .info .gold{float: left;}
+    .gold{color:#5a463a;font-weight: bold;font-size: 16px;margin-bottom: 20px;}
+    .gold span{color: #ff0000;}
+    .success button{width: 80%;margin-left: 10%;}
+    .changesuccess img{width:60%;}
+    .rules{}
+    .rules li{color:#5a463a;line-height: 30px;font-size:16px;}
+    .changesuccess{}
+    .changesuccess p{color:#5a463a;font-size: 16px;}
+    .changesuccess p a{color:#5a463a;}
 </style>
 <style>
-.el-dialog--small{width: 80%;}
-.el-dialog__title{color:#a9a9a9;font-weight: bolder;font-size: 16px;}
+    .el-dialog--small{width: 80%;}
+    .el-dialog__title{color:#a9a9a9;font-weight: bolder;font-size: 16px;}
 </style>
 <script>
     import banner from '../common/banner/banner.vue'
@@ -79,7 +79,7 @@ export default {
         num:1,
         ischange:false,
         dialogVisible: false,
-        dialogSuccess:true
+        dialogSuccess:false
     }
   },
     components:{
@@ -93,7 +93,7 @@ export default {
     methods: {
         init() {
             let infojson = {
-                'user_id':'1',
+                'user_id':this.$store.state.user_id
             }
             let x = info(infojson);
             (async function(){

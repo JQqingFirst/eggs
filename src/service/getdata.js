@@ -48,7 +48,10 @@ export const delayedDelivery = (json) =>new axios.get("/api/EggDistributionInfo/
 export const nextDelivery = (json) =>new axios.get("/api/EggDistributionInfo/nextDelivery", {'params':json});
 //领养鸡下单 
 export const order = (json) =>new axios.get("/api/EggOrder/order", {'params':json});
-
+//我的界面
+export const main = (json) =>new axios.get("/api/ZjisheDankuang/main", {'params':json});
+//掉微信接口
+export const wxpay = (json) =>new axios.get("http://weixin.yangjiguanjia.com/wxpay2/example/jsapi2.php", {'params':json});
 
 
 

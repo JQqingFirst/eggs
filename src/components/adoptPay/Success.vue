@@ -8,11 +8,7 @@
     </div>
 </template>
 <style scoped>
-    .success{
-        height: 100%;
-        background-color: #f2f2f2;
-        padding-top: 200px;
-    }
+    .success{height: 100%;background-color: #f2f2f2;padding-top: 200px;}
     .success img{width: 40%;display: block;margin: 0 auto 30px;}
     h2{font-size: 18px;font-weight: bolder;color: #5a463a;margin-bottom:20px;}
     div a{color:#7384a7;font-size: 16px; }

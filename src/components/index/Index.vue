@@ -46,7 +46,7 @@
         <div class="egg">
             <img src="./images/basket.png" alt="">
             <p>共<span> {{inforesult.egg_num}} </span>枚蛋</p>
-            <router-link to="/address" class='fr'>提蛋 <i class="el-icon-arrow-right"></i></router-link>
+            <router-link to="/eggbasket" class='fr'>提蛋 <i class="el-icon-arrow-right"></i></router-link>
         </div>
         <div class="friend">
             <h2>好友动态</h2>

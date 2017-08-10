@@ -95,7 +95,6 @@ export default {
                this.$message(info.data.msg);
             }
         },
-
         handleClick(tab, event) {
           console.log(tab, event);
         }
@@ -104,7 +103,7 @@ export default {
 
     },
     created() {
-        // this.init()
+        //this.init()
     },
     mounted(){
         this.init();
@@ -112,18 +111,18 @@ export default {
 }
 </script>
 <style scoped>
-.distribution{background-color: #f2f2f2;height: 100%;}
-.distribution-content{background-color: #fff; padding:30px;}
-.on.distribution-content{background-color: #e7e7e7;}
-.distribution-content h2 span{color:#a6a09d;font-weight:bolder;font-size:18px;}
-.distribution-content h2 a{color:#7384a7;font-size:16px;cursor:pointer;}
-.distribution-content p{color:#a6a09d;font-size:18px;}
-.distribution-content p span{color:#5a463a;font-size:18px;}
-.distributionPlanAlert{width: 100%}
-.distributionPlanAlert li{line-height: 40px;font-size: 18px;font-weight: bolder;color:#b5b5b5;width: 100%;}
-.distributionPlanAlert li.on{color: #5a463a;}
-.distributionPlanAlert span{display: inline-block;width: 32%;text-align: center;}
-.distributionPlanAlert{}
+    .distribution{background-color: #f2f2f2;height: 100%;}
+    .distribution-content{background-color: #fff; padding:30px;}
+    .on.distribution-content{background-color: #e7e7e7;}
+    .distribution-content h2 span{color:#a6a09d;font-weight:bolder;font-size:18px;}
+    .distribution-content h2 a{color:#7384a7;font-size:16px;cursor:pointer;}
+    .distribution-content p{color:#a6a09d;font-size:18px;}
+    .distribution-content p span{color:#5a463a;font-size:18px;}
+    .distributionPlanAlert{width: 100%}
+    .distributionPlanAlert li{line-height: 40px;font-size: 18px;font-weight: bolder;color:#b5b5b5;width: 100%;}
+    .distributionPlanAlert li.on{color: #5a463a;}
+    .distributionPlanAlert span{display: inline-block;width: 32%;text-align: center;}
+    .distributionPlanAlert{}
 </style>
 <style>
 .el-dialog--small {

@@ -4,14 +4,14 @@
             <img src="./images/bg.png" class="bg">
             <div class="info">
                 <img src="./images/mypic.png" height="121" width="120" class="head">
-                <span>{{name}}</span>
+                <span>{{infodata.user_name}}</span>
             </div>
         </div>
         <ul>
             <li class="clearfix">
                 <span class="fl">
                         <img src="./images/coin.png">
-                        {{gold}} 金币
+                        {{infodata.gold_num}} 金币
                     </span>
                 <router-link to="/goldchange">
                     <span class="fr">
@@ -22,7 +22,7 @@
             <li class="clearfix">
                 <span class="fl">
                     <img src="./images/address.png" >
-                    {{address}}
+                    {{infodata.address}}
                 </span>
                 <router-link to="/address">
                     <span class="fr">
@@ -35,16 +35,14 @@
     </div>
 </template>
 <script>
-import foot from '../common/footer/footer'
-    import {info} from '../../service/getdata.js'
+    import foot from '../common/footer/footer'
+    import {main} from '../../service/getdata.js'
     import {mapState, mapMutations} from 'vuex'
 export default {
   name: 'mycoop',
   data () { 
     return {
-        name:'隔壁老王',
-        address:'北京市 海淀区 永丰屯',
-        gold:'800'
+        infodata:{}
     }
   },
   components:{
@@ -54,16 +52,17 @@ export default {
          ...mapMutations([
            'RECORD_ADDRESS' 
         ]),
-        init() {
+        async init() {
             let infojson = {
-                'user_id':'1',
+                'user_id':this.$store.state.user_id
             }
-            let x = info(infojson);
-            (async function(){
-                let info = await x;
-                console.log(info)
-            })()
-        }
+            let info = await main(infojson);
+            if(info.data.code==1){
+                this.infodata = {...info.data.result}
+            }else{
+               this.$message(info.data.msg);
+            }
+        },
     },
     created() {
         // this.init()

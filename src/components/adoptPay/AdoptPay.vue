@@ -84,6 +84,9 @@ export default {
             let info = await order(json);
             console.log(info);
             if(info.data.code===1){
+                
+                let info = await order(json);
+
 
             }else{
                this.$message(info.data.msg);
