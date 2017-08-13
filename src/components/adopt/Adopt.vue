@@ -13,7 +13,7 @@
                 每只<span> ¥{{price}}</span> <em>原价¥918</em>
             </div>
             <div class="fr right">
-                <el-input-number v-model="num" :step="1" :min='0' size="small"></el-input-number>
+                <el-input-number v-model="goodnum" :step="1" :min='0' size="small"></el-input-number>
             </div>
         </div>
         <div class="clear1"></div>
@@ -37,7 +37,7 @@ export default {
   data () {
     return {
         price:520,
-        num:this.$store.state.goodnum
+        goodnum:this.$store.state.goodnum
     }
   },
     methods: {
@@ -55,7 +55,7 @@ export default {
             })()
         },
         storegood(){
-            this.CHANGE_GOODNUM(this.num);
+            this.CHANGE_GOODNUM(this.goodnum);
             this.$router.push({path:'/adoptPay'});
         }
     },

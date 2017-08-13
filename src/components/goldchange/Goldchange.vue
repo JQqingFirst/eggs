@@ -8,9 +8,9 @@
             <div class="info clearfix">
                 <img src="./img/egg.gif" class="fl" alt="">
                 <div class="gold">
-                    共消耗金币：<span>{{120*num}}</span>
+                    共消耗金币：<span>{{120*egg_num}}</span>
                 </div>
-                <el-input-number size="small" v-model="num" :step="1" :max ='gold|maxfiler(gold)' :min='0'></el-input-number>
+                <el-input-number size="small" v-model="egg_num" :step="1" :max ='gold|maxfiler(gold)' :min='0'></el-input-number>
             </div>
             <div class="clear10"></div>
             <div class="clear10"></div>
@@ -19,7 +19,7 @@
             </div>
             <div class="clear10"></div>
             <!--success -->
-            <el-dialog title=" " :visible.sync="dialogSuccess">
+            <el-dialog title="" :visible.sync="dialogSuccess">
                 <div class="text-center changesuccess">
                     <img src="./img/finish.png" alt="">
                     <div class="clear10"></div>
@@ -42,6 +42,64 @@
     </div>
 
 </template>
+<script>
+    import banner from '../common/banner/banner.vue'
+    import {info} from '../../service/getdata.js'
+    import {mapState} from 'vuex'
+export default {
+    name: 'goldchange',
+    data () {
+        return {
+            addfriend:false,
+            gold:this.$store.state.goodnum,                   //金币总数
+            egg_num:1,                  //需要提交的鸡蛋数量
+            gold_num:120*this.egg_num,           //需要提交的金币
+            ischange:false,
+            dialogVisible: false,
+            dialogSuccess:false
+        }
+    },
+    components:{
+        banner
+    },
+    computed: {
+        ...mapState([
+            'latitude'
+        ]),
+    },
+    methods: {
+        init() {
+            let infojson = {
+                'user_id':this.$store.state.user_id
+            }
+            let x = info(infojson);
+            (async function(){
+                let info = await x;
+                console.log(info)
+            })()
+        },
+        alertss(){
+            alert(this.latitude)
+        }
+    },
+    watch:{
+        egg_num:function(val,oldval){
+            val>0 ?this.ischange = true : this.ischange = false
+        }
+    },
+    filters:{
+        maxfiler(v){
+            return Math.floor(v/120)
+        }
+    },
+    created() {
+        // this.init()
+    },
+    mounted(){
+        this.init();
+    }
+}
+</script>
 <style scoped>
     .goldchange{height:100%;background-color:#f2f2f2;}
     .msg{background-color: #fff;}
@@ -66,60 +124,3 @@
     .el-dialog--small{width: 80%;}
     .el-dialog__title{color:#a9a9a9;font-weight: bolder;font-size: 16px;}
 </style>
-<script>
-    import banner from '../common/banner/banner.vue'
-    import {info} from '../../service/getdata.js'
-    import {mapState} from 'vuex'
-export default {
-  name: 'goldchange',
-  data () {
-    return {
-        addfriend:false,
-        gold:1000,
-        num:1,
-        ischange:false,
-        dialogVisible: false,
-        dialogSuccess:false
-    }
-  },
-    components:{
-        banner
-    },
-        computed: {
-            ...mapState([
-                'latitude'
-            ]),
-        },
-    methods: {
-        init() {
-            let infojson = {
-                'user_id':this.$store.state.user_id
-            }
-            let x = info(infojson);
-            (async function(){
-                let info = await x;
-                console.log(info)
-            })()
-        },
-        alertss(){
-            alert(this.latitude)
-        }
-    },
-    watch:{
-        num:function(val,oldval){
-            val>0 ?this.ischange = true : this.ischange = false
-        }
-    },
-    filters:{
-        maxfiler(v){
-            return Math.ceil(v/120)
-        }
-    },
-    created() {
-        // this.init()
-    },
-    mounted(){
-        this.init();
-    }
-}
-</script>

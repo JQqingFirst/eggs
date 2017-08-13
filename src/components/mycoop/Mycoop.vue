@@ -50,7 +50,7 @@ export default {
   },
     methods: {
          ...mapMutations([
-           'RECORD_ADDRESS' 
+           'CHANGE_GOODNUM' 
         ]),
         async init() {
             let infojson = {
@@ -59,6 +59,8 @@ export default {
             let info = await main(infojson);
             if(info.data.code==1){
                 this.infodata = {...info.data.result}
+                this.CHANGE_GOODNUM(info.data.result.gold_num);
+                console.log(this.$store.state.goodnum)
             }else{
                this.$message(info.data.msg);
             }

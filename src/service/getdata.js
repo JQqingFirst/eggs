@@ -52,6 +52,10 @@ export const order = (json) =>new axios.get("/api/EggOrder/order", {'params':jso
 export const main = (json) =>new axios.get("/api/ZjisheDankuang/main", {'params':json});
 //掉微信接口
 export const wxpay = (json) =>new axios.get("http://weixin.yangjiguanjia.com/wxpay2/example/jsapi2.php", {'params':json});
+//金币兑换鸡蛋接口
+export const glodforegg = (json) =>new axios.get("/api/ZjisheFriends/glodforegg",qs.stringify(json));
+//领取好友赠送的鸡蛋 
+export const getGift = (json) =>new axios.get("/api/EggDistributionInfo/getGift", {'params':json});
 
 
 
