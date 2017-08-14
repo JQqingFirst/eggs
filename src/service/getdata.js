@@ -2,7 +2,7 @@
  * @Author: 问天
  * @Date:   2017-06-27 10:19:13
  * @Last Modified by:   just success
- * @Last Modified time: 2017-07-24 09:30:23
+ * @Last Modified time: 2017-08-14 09:56:19
  */
 import axios from 'axios'
 import qs from 'qs'
@@ -53,7 +53,7 @@ export const main = (json) =>new axios.get("/api/ZjisheDankuang/main", {'params'
 //掉微信接口
 export const wxpay = (json) =>new axios.get("http://weixin.yangjiguanjia.com/wxpay2/example/jsapi2.php", {'params':json});
 //金币兑换鸡蛋接口
-export const glodforegg = (json) =>new axios.get("/api/ZjisheFriends/glodforegg",qs.stringify(json));
+export const glodforegg = (json) =>new axios.post("/api/ZjisheFriends/glodforegg",qs.stringify(json));
 //领取好友赠送的鸡蛋 
 export const getGift = (json) =>new axios.get("/api/EggDistributionInfo/getGift", {'params':json});
 

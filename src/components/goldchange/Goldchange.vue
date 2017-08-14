@@ -15,7 +15,7 @@
             <div class="clear10"></div>
             <div class="clear10"></div>
             <div class="success">
-                <el-button type="warning"  size="large" :disabled='!ischange' @click="dialogSuccess = true">立即兑换</el-button>
+                <el-button type="warning"  size="large" :disabled='!ischange' @click="changeEggs">立即兑换</el-button>
             </div>
             <div class="clear10"></div>
             <!--success -->
@@ -44,7 +44,7 @@
 </template>
 <script>
     import banner from '../common/banner/banner.vue'
-    import {info} from '../../service/getdata.js'
+    import {glodforegg} from '../../service/getdata.js'
     import {mapState} from 'vuex'
 export default {
     name: 'goldchange',
@@ -53,7 +53,6 @@ export default {
             addfriend:false,
             gold:this.$store.state.goodnum,                   //金币总数
             egg_num:1,                  //需要提交的鸡蛋数量
-            gold_num:120*this.egg_num,           //需要提交的金币
             ischange:false,
             dialogVisible: false,
             dialogSuccess:false
@@ -68,18 +67,17 @@ export default {
         ]),
     },
     methods: {
-        init() {
-            let infojson = {
-                'user_id':this.$store.state.user_id
-            }
-            let x = info(infojson);
-            (async function(){
-                let info = await x;
-                console.log(info)
-            })()
-        },
         alertss(){
             alert(this.latitude)
+        },
+        async changeEggs(){
+            let infojson = {
+                gold_num:120*this.egg_num,
+                user_id:this.$store.state.user_id,
+                egg_num:this.egg_num
+            }
+            let info = await glodforegg(infojson);
+            console.log(info);
         }
     },
     watch:{
@@ -96,7 +94,6 @@ export default {
         // this.init()
     },
     mounted(){
-        this.init();
     }
 }
 </script>
