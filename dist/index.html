@@ -1,8 +1,18 @@
-<!DOCTYPE html><html><head><meta charset=utf-8><title>vue624</title><meta name=author content=dhy><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><meta http-equiv=Content-Type content="text/html; charset=utf-8"><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=black><meta name=format-detection content="telephone=no"><meta http-equiv=Expires content=-1><meta http-equiv=Cache-Control content=no-cache><meta http-equiv=Pragma content=no-cache> <?php
-      include "../../lanewechat.php"; 
-      $redirect_uri = 'LaneWeChat2/kuailededan/send_happyegg/receive_info.php';
-      \LaneWeChat\Core\WeChatOAuth::getCode($redirect_uri, $b, $scope='snsapi_userinfo');
-      $code = $_GET['code'];
-      $a = \LaneWeChat\Core\WeChatOAuth::getAccessTokenAndOpenId($code);
-      $user_info = \LaneWeChat\Core\WeChatOAuth::getUserInfo($a['access_token'],$a['openid'],$lang='zh_CN'); 
-    ?> <link href=./static/css/app.0d1cc534903a64e3d01d606b552fcbc0.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=./static/js/manifest.19ffe5d7e92b31bb4537.js></script><script type=text/javascript src=./static/js/vendor.53850013ab4c17480eb3.js></script><script type=text/javascript src=./static/js/app.8150ad2bb143e84280d7.js></script><script type=text/javascript src=./static/js/vue.e948748461676b4eb03a.js></script></body></html>
+<!DOCTYPE html><html><head><meta charset=utf-8><title>vue624</title><meta name=author content=dhy><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><meta http-equiv=Content-Type content="text/html; charset=utf-8"><meta name=apple-mobile-web-app-capable content=yes><meta name=apple-mobile-web-app-status-bar-style content=black><meta name=format-detection content="telephone=no"><meta http-equiv=Expires content=-1><meta http-equiv=Cache-Control content=no-cache><meta http-equiv=Pragma content=no-cache><link href=./static/css/app.0d68af5785b2036016f3d066ea56f203.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=./static/js/manifest.38d235d8df4469afc43d.js></script><script type=text/javascript src=./static/js/vendor.c35e612e883dc3f1aa12.js></script><script type=text/javascript src=./static/js/app.b06c58bef5ab2fbc0b20.js></script><script type=text/javascript src=./static/js/vue.cd88a688f582293f5dfd.js></script></body><style>*{box-sizing:border-box;}
+    a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;vertical-align:baseline;font:inherit;font-size:100%;}
+    article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
+    body,html{margin:0 auto;height:100%;max-width:640px;min-width:300px;}
+    body{font-family:Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;line-height:1;}
+    ol,ul{list-style:none;}
+    blockquote,q{quotes:none;}
+    blockquote:after,blockquote:before,q:after,q:before{content:'';content:none;}
+    table{border-collapse:collapse;border-spacing:0;}
+    a{text-decoration:none;}
+    img{vertical-align:middle;}
+    .clear1{clear:both;height:1px;}
+    .clear10{clear:both;height:10px;}
+    .fl{float:left;}
+    .fr{float:right;}
+    .text-center{text-align:center;}
+    .clearfix:after,.clearfix:before{display:table;content:"";}
+    .clearfix:after{clear:both;}</style></html>
