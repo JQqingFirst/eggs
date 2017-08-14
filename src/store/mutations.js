@@ -29,7 +29,8 @@ import {
 	ADD_ADDRESS,
 	BUY_CART,
 	RECORD_USERID,
-	CHANGE_GOODNUM
+	CHANGE_GOODNUM,
+	CHANGE_CHICKENNUM,
 } from './mutation-types.js'
 
 // import {
@@ -51,6 +52,9 @@ export default {
 	},
 	[CHANGE_GOODNUM](state, goodnum) {
 		state.goodnum = goodnum;
+	},
+	[CHANGE_CHICKENNUM](state, chickennum) {
+		state.chickennum = chickennum;
 	}
 	// [RECORD_SHOPDETAIL](state, detail) {
 	// 	state.shopDetail = detail;

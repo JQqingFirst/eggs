@@ -1,36 +1,16 @@
 <template>
     <div class="distribution" v-title='"配送"'>
-      <el-tabs v-model="activeName" v-show='hide' @tab-click="handleClick">
-        <el-tab-pane label="第一批鸡" name="first"></el-tab-pane>
-        <el-tab-pane label="第二批鸡" name="second"></el-tab-pane>
-        <el-tab-pane label="第三批鸡" name="third"></el-tab-pane>
-      </el-tabs>
-      <div :class="['distribution-content',{'on':distribution}]" v-for='(item,index) in distribution'>
-            <div v-if='index%2==0'>
-                <h2 class="clearfix"><span class="fl">{{item.times}}</span><a class="fr" @click='DistributionPlanAlert=true'>配送计划</a></h2>
-                <div class="clear10"></div>
-                <div class="clear10"></div>
-                <p>配送日期：<span>{{item.delivery_time}}</span></p>
-                <div class="clear10"></div>
-                <div class="clear10"></div>
-                <p>鸡蛋数量: <span>{{item.egg_num}}枚</span></p>
-                <div class="clear10"></div>
-                <div class="clear10"></div>
-            </div>
-      </div>
-    <el-dialog title="配送计划" :visible.sync="DistributionPlanAlert">
-        <ul class="distributionPlanAlert">
-            <li v-for='item in DistributionPlanList' :class="{on:!item.iscomplete}">
-                <span>第{{item.frequency}}次</span>
-                <span>{{item.num}}枚蛋</span>
-                <span>{{item.time}}</span>
+        <ul class="distribution-con">
+            <li v-for='item in distribution' :class="{on:item.status_info=='待配送'}">
+                <span>{{item.times}}</span>
+                <span>{{item.egg_num}}枚蛋</span>
+                <span>{{item.delivery_time}}</span>
             </li>
         </ul>
-    </el-dialog>
     </div>
 </template>
 <script>
-import {nextDelivery} from '../../service/getdata.js'
+import {infoList} from '../../service/getdata.js'
 export default {
   name: 'distribution',
   data () {
@@ -38,49 +18,466 @@ export default {
         hide:false,
         activeName: 'first',
         distribution:[
-            // {
-            //     iscomplete:true,       //是否完成配送
-            //     delay:'',
-            //     data:'2019.11.09',
-            //     num:3,
-            //     frequency:9,//次数
-            // }
-        ],
-        DistributionPlanAlert:false,//配送计划弹窗
-        DistributionPlanList:[
             {
-                frequency:'2',
-                num:'3',
-                time:'2011.01.01',
-                iscomplete:false,   //未配送
+                "id": "416",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2017-07-22",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-1-期",
+                "come_from": "10",
+                "status_info": "配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 1,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周日"
             },
             {
-                frequency:'3',
-                num:'4',
-                time:'2011.01.01',
-                iscomplete:true     //已配送
+                "id": "417",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2017-08-21",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-2-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周二",
+                "lately": 1
             },
             {
-                frequency:'4',
-                num:'5',
-                time:'2011.01.01',
-                iscomplete:true
+                "id": "418",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2017-09-20",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-3-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周四"
             },
             {
-                frequency:'5',
-                num:'6',
-                time:'2011.01.01',
-                iscomplete:true
+                "id": "419",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2017-10-20",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-4-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周六"
             },
+            {
+                "id": "420",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2017-11-19",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-5-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周一"
+            },
+            {
+                "id": "421",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2017-12-19",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-6-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周三"
+            },
+            {
+                "id": "422",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2018-01-18",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-7-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周五"
+            },
+            {
+                "id": "423",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2018-02-17",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-8-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周日"
+            },
+            {
+                "id": "424",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2018-03-19",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-9-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周二"
+            },
+            {
+                "id": "425",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2018-04-18",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-10-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周四"
+            },
+            {
+                "id": "426",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2018-05-18",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-11-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周六"
+            },
+            {
+                "id": "427",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2018-06-17",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-12-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周一"
+            },
+            {
+                "id": "428",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2018-07-17",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-13-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周三"
+            },
+            {
+                "id": "429",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2018-08-16",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-14-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周五"
+            },
+            {
+                "id": "430",
+                "egg_distribution_id": "27",
+                "egg_num": "20",
+                "real_name": "陈蛋蛋",
+                "address": "北京市798",
+                "user_note": null,
+                "delivery_time": "2018-09-15",
+                "delivery_note": null,
+                "tel": "17010202177",
+                "status": "1",
+                "times": "第-15-期",
+                "come_from": "10",
+                "status_info": "待配送",
+                "order_sn": "JS20170719131130151",
+                "gifts_info": [
+                    {
+                        "goods_name": "赠品：冰球老母亲汤一份",
+                        "goods_num": "1",
+                        "delivery_status": "1",
+                        "delivery_time": "2017-07-22",
+                        "id": "46",
+                        "delivery_status_info": "待配送"
+                    }
+                ],
+                "time_out": 2,
+                "goods_name": "领养母鸡一只 x 1",
+                "come_from_info": "快乐鸡舍",
+                "week": "周日"
+            }
         ]
       }
   },
     methods: {
         async init() {
             let infojson = {
-                'user_id':this.$store.state.user_id,
+                'order_sn':'JS20170719131130151' 
             }
-            let info = await nextDelivery(infojson);
+            let info = await infoList(infojson);
             if(info.data.code==1){
                 this.distribution = {...info.data.result}
             }else{
@@ -104,20 +501,13 @@ export default {
 </script>
 <style scoped>
     .distribution{background-color: #f2f2f2;height: 100%;}
-    .distribution-content{background-color: #fff; padding:30px;}
-    .on.distribution-content{background-color: #e7e7e7;}
-    .distribution-content h2 span{color:#a6a09d;font-weight:bolder;font-size:18px;}
-    .distribution-content h2 a{color:#7384a7;font-size:16px;cursor:pointer;}
-    .distribution-content p{color:#a6a09d;font-size:18px;}
-    .distribution-content p span{color:#5a463a;font-size:18px;}
-    .distributionPlanAlert{width: 100%}
-    .distributionPlanAlert li{line-height: 40px;font-size: 18px;font-weight: bolder;color:#b5b5b5;width: 100%;}
-    .distributionPlanAlert li.on{color: #5a463a;}
-    .distributionPlanAlert span{display: inline-block;width: 32%;text-align: center;}
-    .distributionPlanAlert{}
+    .distribution-con{width: 100%}
+    .distribution-con li{line-height: 40px;font-size: 18px;font-weight: bolder;color:#b5b5b5;width: 100%;}
+    .distribution-con li.on{color: #5a463a;}
+    .distribution-con span{display: inline-block;width: 32%;text-align: center;}
 </style>
 <style>
-.el-dialog--small {
-    width: 80%;
-}
+    .el-dialog--small {
+        width: 80%;
+    }
 </style>

@@ -20,6 +20,7 @@ const state = {
 	latitude: '', 				// 当前位置纬度
 	user_id:'WX123456',
 	goodnum:3,					//
+	chickennum:1,				//领养鸡的数量
 }
 
 export default new Vuex.Store({

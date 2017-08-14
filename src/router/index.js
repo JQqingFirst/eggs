@@ -20,8 +20,7 @@ const Success = resolve => require(['../components/adoptPay/Success.vue'], resol
 const Friend = resolve => require(['../components/friend/Friend.vue'], resolve) //朋友榜
 const Distribution = resolve => require(['../components/distribution/Distribution.vue'], resolve) //配送
 const Getegg = resolve => require(['../components/getegg/Getegg.vue'], resolve) //领蛋
-const Error = resolve => require(['../components/error/Error.vue'], resolve) //领蛋
-
+const Error = resolve => require(['../components/error/Error.vue'], resolve) //错误链接
 
 
 Vue.use(Router)
@@ -30,7 +29,12 @@ export default new Router({
     path: '/',
     name: 'Index',
     component: Index
-  }, {
+  },{
+    path: '/friend_id/:friend_id',
+    name: 'Share',
+    component: Index
+  },
+   {
     path: '/vcx',
     name: 'Vcx',
     component: Vcx

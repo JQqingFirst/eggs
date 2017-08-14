@@ -13,7 +13,7 @@
                 每只<span> ¥{{price}}</span> <em>原价¥918</em>
             </div>
             <div class="fr right">
-                <el-input-number v-model="goodnum" :step="1" :min='0' size="small"></el-input-number>
+                <el-input-number v-model="chickennum" :step="step" :min='1' :max='4' size="small"></el-input-number>
             </div>
         </div>
         <div class="clear1"></div>
@@ -37,12 +37,13 @@ export default {
   data () {
     return {
         price:520,
-        goodnum:this.$store.state.goodnum
+        chickennum:1,
+        step:1,             //
     }
   },
     methods: {
          ...mapMutations([
-           'CHANGE_GOODNUM' 
+           'CHANGE_CHICKENNUM' 
         ]),
         init() {
             let infojson = {
@@ -55,12 +56,24 @@ export default {
             })()
         },
         storegood(){
-            this.CHANGE_GOODNUM(this.goodnum);
+            this.CHANGE_CHICKENNUM(this.chickennum);
             this.$router.push({path:'/adoptPay'});
         }
     },
     created() {
         // this.init()
+    },
+    watch:{
+        chickennum:function(val,oldval){
+            if(val==3){
+                this.chickennum++
+            }
+            if(val==4){
+                this.step=2
+            }else{
+                this.step=1
+            }
+        }
     },
     mounted(){
         this.init();

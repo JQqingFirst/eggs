@@ -31,3 +31,5 @@ export const BUY_CART = 'BUY_CART'
 
 export const CHANGE_GOODNUM = 'CHANGE_GOODNUM'			//改变good
 export const RECORD_USERID = 'RECORD_USERID'			//记录用户id
+export const CHANGE_CHICKENNUM = 'CHANGE_CHICKENNUM'			//记录用户id
+

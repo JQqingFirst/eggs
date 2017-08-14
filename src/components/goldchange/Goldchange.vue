@@ -44,15 +44,15 @@
 </template>
 <script>
     import banner from '../common/banner/banner.vue'
-    import {glodforegg} from '../../service/getdata.js'
+    import {goldforegg} from '../../service/getdata.js'
     import {mapState} from 'vuex'
 export default {
     name: 'goldchange',
     data () {
         return {
             addfriend:false,
-            gold:this.$store.state.goodnum,                   //金币总数
-            egg_num:1,                  //需要提交的鸡蛋数量
+            gold:this.$store.state.goodnum,                 //金币总数
+            egg_num:1,                                      //需要提交的鸡蛋数量
             ischange:false,
             dialogVisible: false,
             dialogSuccess:false
@@ -76,7 +76,7 @@ export default {
                 user_id:this.$store.state.user_id,
                 egg_num:this.egg_num
             }
-            let info = await glodforegg(infojson);
+            let info = await goldforegg(infojson);
             console.log(info);
         }
     },
@@ -111,9 +111,7 @@ export default {
     .gold span{color: #ff0000;}
     .success button{width: 80%;margin-left: 10%;}
     .changesuccess img{width:60%;}
-    .rules{}
     .rules li{color:#5a463a;line-height: 30px;font-size:16px;}
-    .changesuccess{}
     .changesuccess p{color:#5a463a;font-size: 16px;}
     .changesuccess p a{color:#5a463a;}
 </style>

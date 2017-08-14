@@ -1,5 +1,5 @@
 <template>
-    <div class="index" v-title='"我的鸡笼"'>
+    <div class="index" v-title='"快乐鸡舍"'>
         <div class="top">
             <div class="topmenu">
                 <span><img src="./images/retrospect.png" alt=""></span>
@@ -68,7 +68,7 @@
 </template>
 <script>
     import foot from '../common/footer/footer.vue'
-    import {info,gameLogList} from '../../service/getdata.js'
+    import {info,gameLogList,addFriends} from '../../service/getdata.js'
     import {mapState, mapMutations} from 'vuex'
 export default {
   name: 'mycoop',
@@ -76,12 +76,12 @@ export default {
     return {
         chickenNum:2,//我领养鸡的数量
         inforesult: {
-              "id": "1",
-              "user_id": "1",
-              "chicken_num": "3", //鸡的数量
-              "egg_num": "11",    //蛋的数量
-              "update_at": "",    //更新时间
-              "xi_egg": 0         //喜蛋进度
+            "id": "1",
+            "user_id": "1",
+            "chicken_num": "3", //鸡的数量
+            "egg_num": "11",    //蛋的数量
+            "update_at": "",    //更新时间
+            "xi_egg": 0         //喜蛋进度
         },
         friendinfo:[]
     }
@@ -97,8 +97,22 @@ export default {
     methods: {
         init() {
             let _this = this;
+            //先判断有没有好友
+            let friend_id  = _this.$route.params.friend_id;
+            if(friend_id){
+                let infojson = {
+                    user_id :this.$store.state.user_id,
+                    friend_id: friend_id
+                }
+                let x =  addFriends(infojson);
+                (async function(){
+                    let info = await x;
+                    var req = info.data;
+                    _this.$message(info.data.msg);
+                })();
+            }
             let infojson = {
-                user_id:this.$store.state.usreId
+                user_id:_this.$store.state.usre_id
             }
             let x = info(infojson);
             (async function(){
@@ -125,7 +139,6 @@ export default {
         }
     },
     created() {
-        // this.init()
     },
     mounted(){
         this.init();

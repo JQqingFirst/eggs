@@ -40,7 +40,7 @@ s                        </span>
     </div>
 </template>
 <script>
-    import {getDefault,order} from '../../service/getdata.js'
+    import {getDefault,order,wxpay} from '../../service/getdata.js'
     import {mapState, mapMutations} from 'vuex'
 export default {
   name: 'adoptPay',
@@ -55,8 +55,8 @@ export default {
         },
         good:{
             price:520,
-            num:this.$store.state.goodnum,
-            totleprice:520*this.$store.state.goodnum,
+            num:this.$store.state.chickennum,
+            totleprice:520*this.$store.state.chickennum,
             name:'快乐的鸡'
         }
 
@@ -75,19 +75,33 @@ export default {
             })()
         },
         async pay(){
+            let _this =this;
+            let chickennum = this.$store.state.chickennum;
+            let product_id;
+            switch(chickennum){
+                case 1:
+                    product_id=34;
+                break;
+                case 2:
+                    product_id=35;
+                break;
+                default:
+                    product_id=36;
+            }
             let json  = {
-                user_id:this.$store.state.userId,
-                product_id:34.2,
-                address_id:this.address.id, 
-                payable:this.good.totleprice
+                user_id:this.$store.state.user_id,
+                product_id:product_id,
+                payable:this.good.totleprice.toFixed(2)
             }
             let info = await order(json);
-            console.log(info);
-            if(info.data.code===1){
-                
-                let info = await order(json);
-
-
+            if(info.data.code==1){
+                console.log(info);
+                let infojson2 = {
+                    order_sn:info.data.result.order_sn,
+                    total_fee:_this.good.totleprice.toFixed(2)
+                }
+                let info2 = await wxpay(infojson2);
+                console.log(info2);
             }else{
                this.$message(info.data.msg);
             }

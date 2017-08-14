@@ -44,18 +44,20 @@ export const getDefault = (json) =>new axios.post("/api/ZjisheAddress/getDefault
 export const infoList = (json) =>new axios.get("/api/EggDistributionInfo/infoList", {'params':json});
 //延期配送 		id=431 
 export const delayedDelivery = (json) =>new axios.get("/api/EggDistributionInfo/delayedDelivery", {'params':json});
-//获取最近配送  http://123.57.65.163:10016/EggDistributionInfo/nextDelivery
+//获取最近配送  http://123.57.65.163:10016/EggDistributionInfo/nextDelivery  我的蛋筐
 export const nextDelivery = (json) =>new axios.get("/api/EggDistributionInfo/nextDelivery", {'params':json});
 //领养鸡下单 
-export const order = (json) =>new axios.get("/api/EggOrder/order", {'params':json});
+export const order = (json) =>new axios.post("/api/EggOrder/order", qs.stringify(json));
 //我的界面
 export const main = (json) =>new axios.get("/api/ZjisheDankuang/main", {'params':json});
 //掉微信接口
 export const wxpay = (json) =>new axios.get("http://weixin.yangjiguanjia.com/wxpay2/example/jsapi2.php", {'params':json});
 //金币兑换鸡蛋接口
-export const glodforegg = (json) =>new axios.post("/api/ZjisheFriends/glodforegg",qs.stringify(json));
+export const goldforegg = (json) =>new axios.post("/api/ZjisheFriends/goldforegg",qs.stringify(json));
 //领取好友赠送的鸡蛋 
 export const getGift = (json) =>new axios.get("/api/EggDistributionInfo/getGift", {'params':json});
+//领取好友赠送的鸡蛋 
+export const addFriends = (json) =>new axios.get("/api/ZjisheFriends/addFriends", {'params':json});
 
 
 

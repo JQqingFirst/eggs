@@ -18,8 +18,9 @@ import {
 	Input,
 	Checkbox,
 	CheckboxGroup,
-	Card , 
-	Message ,
+	Card, 
+	Message,
+	Select
 } from 'element-ui'
 
 
@@ -35,6 +36,7 @@ Vue.use(Input);
 Vue.use(Checkbox);
 Vue.use(CheckboxGroup);
 Vue.use(Card);
+Vue.use(Select);
 
 
 
