@@ -4,35 +4,27 @@
       <el-form-item label="收货人"  prop="user_name">
         <el-input v-model="form.user_name"></el-input>
       </el-form-item>
-
       <el-form-item label="手机号码" prop="tel">
         <el-input type="tel" v-model.number="form.tel" auto-complete="off"></el-input>
       </el-form-item>
-      <!-- <el-form-item label="收货地址"  prop="address">
-        <el-input v-model="form.address" @focus = "showdistpicker=true"></el-input>
-        </el-form-item> -->
       <el-form-item label="收货地址"  prop="address">
         <el-input v-model="form.address"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="warning" class='saveform' @click="submitForm('form')" size="large" :disabled="!isform">确定</el-button>
+        <el-button type="warning" class='saveform' @click="submitForm('form')" size="large">确定</el-button>
       </el-form-item>
 </el-form> 
-<!-- <v-distpicker type="mobile" @selected="onSelected" v-show='showdistpicker'></v-distpicker> -->
     </div>
 </template>
 <script>
     import {info,add,getDefault} from '../../service/getdata.js'
-    // import VDistpicker from 'v-distpicker'
 export default {
   name: 'goldchange',
   data () {
     return {
-        // showdistpicker:false,
         form: {
           user_name: '',
           tel:'',
-          // address:'',
           address:'',
           status:1      //是否默认
         },
@@ -46,61 +38,42 @@ export default {
              { required: true, message: '手机不能为空'},
              { type: 'number', message: '手机必须为数字值'}
           ],
-          // address:[
-          //    { required: true, message: '地址不能为空'}
-          // ],
           address: [
             { required: true, message: '请填写楼号门派', trigger: 'blur' }
           ]
         }
       }
   },
-  // components: { VDistpicker },
     methods: {
         async sendform(){
             let info = await add(this.form);
            this.$message(info.data.msg);
         },
         init() {
-          let _this = this;
+            let _this = this;
             let x = getDefault();
             (async function(){
                 let info = await x;
                 _this.form = {...info.data.result}
             })()
         },
-          submitForm(formName) {
+        submitForm(formName) {
             let _this = this;
             this.$refs[formName].validate((valid) => {
-              if (valid) {
-                _this.sendform(); 
-              } else {
-                _this.$message('提交错误');
-                return false;
-              }
-            });
-          },
-
-          resetForm(formName) {
-            this.$refs[formName].resetFields();
-          },
-          onSelected(data){
-            this.form.address=data.province.value+' / '+data.city.value+' / '+data.area.value;
-            // this.showdistpicker =false
-          }
-    },
-    watch:{
-        form:{
-            handler(val,oldval){
-　　　　　　　　if(val.user_name&&val.tel&&val.address){
-                    this.isform = true
-                }else{
-                    this.isform = false
+                if (valid) {
+                    _this.sendform(); 
+                } else {
+                    _this.$message('提交错误');
+                    return false;
                 }
-　　　　　　},
-　　　　　　deep:true
+            });
+        },
+        resetForm(formName) {
+            this.$refs[formName].resetFields();
+        },
+        onSelected(data){
+            this.form.address=data.province.value+' / '+data.city.value+' / '+data.area.value;
         }
-
     },
     created() {
         // this.init()
