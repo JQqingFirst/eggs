@@ -1,5 +1,5 @@
 /* 
- * @Author: 问天
+ * @Author: 111
  * @Date:   2017-06-27 10:19:13
  * @Last Modified by:   just success
  * @Last Modified time: 2017-08-14 09:56:19
@@ -27,37 +27,39 @@ function changejson(json){
 }
 
 //我的鸡笼
-export const info = (json) =>new axios.get("/api/ZjisheDankuang/info",{'params':json});
+export const info = (json) =>new axios.get("/Api2/ZjisheDankuang/info",{'params':json});
 //我的好友列表
-export const userFriendList = (json) =>new axios.get("/api/ZjisheFriends/userFriendList", {'params':json});
+export const userFriendList = (json) =>new axios.get("/Api2/ZjisheFriends/userFriendList", {'params':json});
 //帮好友喂鸡接口
-export const feed = (json) =>new axios.get("/api/ZjisheGamelog/feed", {'params':json});
+export const feed = (json) =>new axios.get("/Api2/ZjisheGamelog/feed", {'params':json});
 //偷蛋
-export const stealEgg = (json) =>new axios.get("/api/ZjisheGamelog/stealEgg", {'params':json});
+export const stealEgg = (json) =>new axios.get("/Api2/ZjisheGamelog/stealEgg", {'params':json});
 //鸡舍动态			user_id 
-export const gameLogList = (json) =>new axios.post("/api/ZjisheGamelog/gameLogList", qs.stringify(json));
+export const gameLogList = (json) =>new axios.post("/Api2/ZjisheGamelog/gameLogList", qs.stringify(json));
 //添加我的联系地址
-export const add = (json) =>new axios.post("/api/ZjisheAddress/add", qs.stringify(json));
+export const add = (json) =>new axios.post("/Api2/ZjisheAddress/add", qs.stringify(json));
 //获取默认收货地址信息
-export const getDefault = (json) =>new axios.post("/api/ZjisheAddress/getDefault ", qs.stringify(json));
+export const getDefault = (json) =>new axios.post("/Api2/ZjisheAddress/getDefault ", qs.stringify(json));
 //订单配送计划  order_sn=JS20170719131130151 
-export const infoList = (json) =>new axios.get("/api/EggDistributionInfo/infoList", {'params':json});
+export const infoList = (json) =>new axios.get("/Api2/EggDistributionInfo/infoList", {'params':json});
 //延期配送 		id=431 
-export const delayedDelivery = (json) =>new axios.get("/api/EggDistributionInfo/delayedDelivery", {'params':json});
+export const delayedDelivery = (json) =>new axios.get("/Api2/EggDistributionInfo/delayedDelivery", {'params':json});
 //获取最近配送  http://123.57.65.163:10016/EggDistributionInfo/nextDelivery  我的蛋筐
-export const nextDelivery = (json) =>new axios.get("/api/EggDistributionInfo/nextDelivery", {'params':json});
+export const nextDelivery = (json) =>new axios.get("/Api2/EggDistributionInfo/nextDelivery", {'params':json});
 //领养鸡下单 
-export const order = (json) =>new axios.post("/api/EggOrder/order", qs.stringify(json));
+export const order = (json) =>new axios.post("/Api2/EggOrder/order", qs.stringify(json));
 //我的界面
-export const main = (json) =>new axios.get("/api/ZjisheDankuang/main", {'params':json});
+export const main = (json) =>new axios.get("/Api2/ZjisheDankuang/main", {'params':json});
 //掉微信接口
 export const wxpay = (json) =>new axios.get("http://weixin.yangjiguanjia.com/wxpay2/example/jsapi2.php", {'params':json});
 //金币兑换鸡蛋接口
-export const goldforegg = (json) =>new axios.post("/api/ZjisheFriends/goldforegg",qs.stringify(json));
+export const goldforegg = (json) =>new axios.post("/Api2/ZjisheFriends/goldforegg",qs.stringify(json));
 //领取好友赠送的鸡蛋 
-export const getGift = (json) =>new axios.get("/api/EggDistributionInfo/getGift", {'params':json});
+export const getGift = (json) =>new axios.get("/Api2/EggDistributionInfo/getGift", {'params':json});
 //领取好友赠送的鸡蛋 
-export const addFriends = (json) =>new axios.get("/api/ZjisheFriends/addFriends", {'params':json});
+export const addFriends = (json) =>new axios.get("/Api2/ZjisheFriends/addFriends", {'params':json});
+//获取微信分享权限参数
+export const weichat = (json) =>new axios.get("http://weixin.yangjiguanjia.com/LaneWeChat2/api_getsign.php", {'params':json});
 
 
 

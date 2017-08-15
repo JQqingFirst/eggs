@@ -47,8 +47,8 @@ export default {
 	[RECORD_ADDRESS](state, latitude) {
 		state.latitude = latitude;
 	},
-	[RECORD_USERID](state, userid) {
-		state.userid = userid;
+	[RECORD_USERID](state, user_id) {
+		state.user_id = user_id;
 	},
 	[CHANGE_GOODNUM](state, goodnum) {
 		state.goodnum = goodnum;

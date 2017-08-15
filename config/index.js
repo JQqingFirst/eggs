@@ -28,18 +28,18 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            '/api': {
+            '/Api2': {
                // 
                 // target: 'http://123.57.65.163:10016',
                 // target: 'http://localhost:8080',
-                target: 'http://123.57.65.163:10016',
+                target: 'http://weixin.yangjiguanjia.com',
                 changeOrigin: true,
                 secure: false,
                 pathRewrite: {
-                    '^/api': ''
+                    '^/Api2': ''
                 },
                 headers: {
-                  Referer: 'http://123.57.65.163:10016'
+                  Referer: 'http://weixin.yangjiguanjia.com/'
                 }
             }
         },
