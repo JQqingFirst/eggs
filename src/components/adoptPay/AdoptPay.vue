@@ -18,7 +18,7 @@
                         <i class="el-icon-arrow-right fr"></i>
                         <span>                        
                             {{address.address}}
-s                        </span>
+                        </span>
                     </router-link>
                 </div>
             </div>
@@ -75,6 +75,10 @@ export default {
             })()
         },
         async pay(){
+            if(!this.address.user_name){
+               this.$message('请填写地址');
+                return false;
+            }
             let _this =this;
             let chickennum = this.$store.state.chickennum;
             let product_id;
@@ -101,7 +105,6 @@ export default {
                     total_fee:_this.good.totleprice.toFixed(2)
                 }
                 let info2 = await wxpay(infojson2);
-                console.log(info2);
             }else{
                this.$message(info.data.msg);
             }

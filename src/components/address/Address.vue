@@ -47,7 +47,11 @@ export default {
     methods: {
         async sendform(){
             let info = await add(this.form);
-           this.$message(info.data.msg);
+           if(info.data.code==1){
+           		window.history.go(-1)
+           }else{
+       	    	this.$message(info.data.msg);
+       		}
         },
         init() {
             let _this = this;
@@ -84,11 +88,10 @@ export default {
 }
 </script>
 <style scoped>
-.goldchange{padding:10px 15px;}
-.saveform{margin-left:-100px;}
-.top{height:354px;background-color:#fff;}
-.el-form-item{text-align:center;}
-.el-form-item__content{width:100%;}
-.el-form-item__content button{width:100%;}
-
+	.goldchange{padding:10px 15px;}
+	.saveform{margin-left:-100px;}
+	.top{height:354px;background-color:#fff;}
+	.el-form-item{text-align:center;}
+	.el-form-item__content{width:100%;}
+	.el-form-item__content button{width:100%;}
 </style>

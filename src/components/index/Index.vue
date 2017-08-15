@@ -100,8 +100,10 @@
 				'RECORD_USERID'
 			]),
 			init() {
-				alert(window.localStorage.getItem('user_id'))
-				this.RECORD_USERID(window.localStorage.getItem('user_id'))
+				let user_id = window.localStorage.getItem('user_id')
+				this.RECORD_USERID(user_id)
+				let nickname = window.localStorage.getItem('nickname');
+				let headimgurl = window.localStorage.getItem('headimgurl');
 				let _this = this;
 				//先判断有没有好友
 				let friend_id = _this.$route.params.friend_id;
@@ -118,32 +120,30 @@
 					})();
 				}
 				let infojson = {
-					user_id: _this.$store.state.usre_id
-					
+					user_id:user_id,
+					nickname:nickname,
+					headimgurl:headimgurl
 				}
-				alert(infojson)
+				//我的鸡笼
 				let x = info(infojson);
 				(async function() {
 					let info = await x;
 					var req = info.data;
 					if(req.code === 1) {
-						_this.inforesult = { ...req.result
-						};
+						_this.inforesult = { ...req.result};
 					}
 				})();
+				//我的好友
 				let y = gameLogList(infojson);
 				(async function() {
 					let info = await y;
-					console.log(info);
 					var req = info.data;
 					if(req.code === 1) {
-						_this.friendinfo = { ...req.result
-						};
+						_this.friendinfo = { ...req.result};
 					} else {
 						_this.$message(info.data.msg);
 					}
 				})();
-
 			},
 			showchange: function(data) {
 				console.log(data);
@@ -156,207 +156,36 @@
 	}
 </script>
 <style scoped>
-	.top {
-		position: relative;
-		min-height: 400px;
-		background: url(./images/bg.png) no-repeat;
-		background-size: 100% 100%;
-	}
-	
-	.topmenu {
-		position: absolute;
-		top: 20px;
-		left: 30px;
-		width: 200px;
-		height: 60px;
-	}
-	
-	.topmenu span img {
-		width: 40px;
-		height: 40px;
-	}
-	
-	.rightmeun {
-		position: absolute;
-		top: 60px;
-		right: 0;
-		width: 100px;
-		height: 100px;
-		z-index: 5;
-	}
-	
-	.rightmeun img {
-		margin-bottom: 20px;
-		height: 40px;
-	}
-	
-	.home {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 300px;
-		background: url(./images/checkenhome.png) no-repeat;
-		background-size: 100% 100%;
-		-webkit-background-size: 100% 100%;
-	}
-	
-	.tips {
-		width: 40px;
-		height: 150px;
-		background: url(./images/tip.png) no-repeat;
-		background-size: 100% 100%;
-		position: absolute;
-		left: 18px;
-		bottom: 10px;
-	}
-	
-	.tips ul {
-		padding-top: 30px;
-	}
-	
-	.tips li {
-		color: #fff;
-		margin-bottom: 10px;
-		text-align: center;
-	}
-	
-	.tips li span {
-		font-size: 11px;
-	}
-	
-	.tips li p {
-		font-size: 12px;
-		margin-top: 4px;
-	}
-	
-	.chickens {
-		position: absolute;
-		bottom: 0;
-		left: 10%;
-		width: 80%;
-		height: 180px;
-	}
-	
-	.chickens dl {
-		width: 90%;
-		height: 100%;
-		margin: 0 auto;
-	}
-	
-	.chickens dt {
-		float: left;
-		width: 33.33%;
-		height: 80px;
-		text-align: center;
-	}
-	
-	.chickens dt img {
-		margin-left: 10px;
-		height: 90%;
-		margin-top: 5%;
-	}
-	
-	.chickens .eggs {
-		float: left;
-		margin-top: 20px;
-		margin-left: 30px;
-		width: 50%;
-	}
-	
-	.chickens .eggs img {
-		width: 100%;
-		height: 100%;
-	}
-	
-	.chickens .egg2 {
-		position: relative;
-		float: left;
-		margin-top: 10px;
-		margin-left: 10px;
-		width: 33.33%;
-		height: 60px;
-	}
-	
-	.chickens .egg2 img {
-		height: 100%;
-	}
-	
-	.egg2-tip {
-		position: absolute;
-		top: -30px;
-		right: -40px;
-		width: 100px;
-		height: 60px;
-		background: url(./images/bubble.png) no-repeat;
-		background-size: 100% 100%;
-		padding-top: 8px;
-		padding-left: 20px;
-	}
-	
-	.egg2-tip span {
-		color: #fff;
-		font-size: 14px;
-	}
-	
-	.egg2-tip p {
-		color: #fff;
-		font-weight: 700;
-		font-size: 16px;
-		margin-top: 6px;
-		font-size: 18px;
-	}
-	
-	.egg {
-		overflow: hidden;
-		height: 60px;
-		background-color: #f7ebd5;
-		line-height: 60px;
-	}
-	
-	.egg img {
-		float: left;
-		height: 80px;
-	}
-	
-	.egg p {
-		float: left;
-	}
-	
-	.egg p span {
-		color: red;
-		font-weight: 700;
-		font-size: 20px;
-	}
-	
-	.egg a {
-		color: #a6a09d;
-		margin-right: 10px;
-	}
-	
-	.friend {
-		padding: 20px;
-	}
-	
-	.friend h2 {
-		font-weight: 700;
-		color: #5a463a;
-		margin-bottom: 20px;
-	}
-	
-	.friend li {
-		color: #98877d;
-		margin-bottom: 15px;
-	}
-	
-	.friend li a {
-		color: #98877d;
-	}
-	
-	.friend span {
-		font-weight: 700;
-		color: #5a463a;
-		font-size: 16px;
-		margin-right: 6px;
-	}
+	.top{position:relative;min-height:400px;background:url(./images/bg.png) no-repeat;background-size:100% 100%;}
+	.topmenu{position:absolute;top:20px;left:30px;width:200px;height:60px;}
+	.topmenu span img{width:40px;height:40px;}
+	.rightmeun{position:absolute;top:60px;right:0;z-index:5;width:100px;height:100px;}
+	.rightmeun img{margin-bottom:20px;height:40px;}
+	.home{position:absolute;bottom:0;left:0;width:100%;height:300px;background:url(./images/checkenhome.png) no-repeat;background-size:100% 100%;-webkit-background-size:100% 100%;}
+	.tips{position:absolute;bottom:10px;left:18px;width:40px;height:150px;background:url(./images/tip.png) no-repeat;background-size:100% 100%;}
+	.tips ul{padding-top:30px;}
+	.tips li{margin-bottom:10px;color:#fff;text-align:center;}
+	.tips li span{font-size:11px;}
+	.tips li p{margin-top:4px;font-size:12px;}
+	.chickens{position:absolute;bottom:0;left:10%;width:80%;height:180px;}
+	.chickens dl{margin:0 auto;width:90%;height:100%;}
+	.chickens dt{float:left;width:33.33%;height:80px;text-align:center;}
+	.chickens dt img{margin-top:5%;margin-left:10px;height:90%;}
+	.chickens .eggs{float:left;margin-top:20px;margin-left:30px;width:50%;}
+	.chickens .eggs img{width:100%;height:100%;}
+	.chickens .egg2{position:relative;float:left;margin-top:10px;margin-left:10px;width:33.33%;height:60px;}
+	.chickens .egg2 img{height:100%;}
+	.egg2-tip{position:absolute;top:-30px;right:-40px;padding-top:8px;padding-left:20px;width:100px;height:60px;background:url(./images/bubble.png) no-repeat;background-size:100% 100%;}
+	.egg2-tip span{color:#fff;font-size:14px;}
+	.egg2-tip p{margin-top:6px;color:#fff;font-weight:700;font-size:16px;font-size:18px;}
+	.egg{overflow:hidden;height:60px;background-color:#f7ebd5;line-height:60px;}
+	.egg img{float:left;height:80px;}
+	.egg p{float:left;}
+	.egg p span{color:red;font-weight:700;font-size:20px;}
+	.egg a{margin-right:10px;color:#a6a09d;}
+	.friend{padding:20px;}
+	.friend h2{margin-bottom:20px;color:#5a463a;font-weight:700;}
+	.friend li{margin-bottom:15px;color:#98877d;}
+	.friend li a{color:#98877d;}
+	.friend span{margin-right:6px;color:#5a463a;font-weight:700;font-size:16px;}
 </style>

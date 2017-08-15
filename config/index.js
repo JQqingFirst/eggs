@@ -36,10 +36,10 @@ module.exports = {
                 changeOrigin: true,
                 secure: false,
                 pathRewrite: {
-                    '^/Api2': ''
+                    '^/Api2': '/Api2'
                 },
                 headers: {
-                  Referer: 'http://weixin.yangjiguanjia.com/'
+                  Referer: 'http://weixin.yangjiguanjia.com'
                 }
             }
         },
