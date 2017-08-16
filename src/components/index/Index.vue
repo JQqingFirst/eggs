@@ -29,7 +29,9 @@
 				<div class="chickens">
 					<dl>
 						<dt v-for='item in inforesult.chicken_num'><img src="./images/chicken.png" alt=""></dt>
-						<dt v-for='item in (3-inforesult.chicken_num)'><img src="./images/chicken_2.png" alt=""></dt>
+						<dt v-for='item in (3-inforesult.chicken_num)'>
+							<router-link to="/adopt" class='fr'><img src="./images/chicken_2.png" alt=""></router-link>
+						</dt>
 						<dd class="eggs"><img src="./images/eggs.png" alt=""></dd>
 						<dd class="egg2">
 							<img src="./images/egg_2.png" alt="">
@@ -175,6 +177,7 @@
 	.chickens dl{margin:0 auto;width:90%;height:100%;}
 	.chickens dt{float:left;width:33.33%;height:80px;text-align:center;}
 	.chickens dt img{margin-top:5%;margin-left:10px;height:90%;}
+	.chickens dt a{display:block;width: 100%;height: 100%;}
 	.chickens .eggs{float:left;margin-top:20px;margin-left:30px;width:50%;}
 	.chickens .eggs img{width:100%;height:100%;}
 	.chickens .egg2{position:relative;float:left;margin-top:10px;margin-left:10px;width:33.33%;height:60px;}
