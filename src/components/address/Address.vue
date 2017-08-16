@@ -13,16 +13,17 @@
       <el-form-item>
         <el-button type="warning" class='saveform' @click="submitForm('form')" size="large">确定</el-button>
       </el-form-item>
-</el-form> 
+</el-form>
     </div>
 </template>
 <script>
     import {info,add,getDefault} from '../../service/getdata.js'
 export default {
-  name: 'goldchange',
+  name: 'address',
   data () {
     return {
         form: {
+          user_id:'',
           user_name: '',
           tel:'',
           address:'',
@@ -46,6 +47,7 @@ export default {
   },
     methods: {
         async sendform(){
+            this.form.user_id = window.localStorage.getItem('user_id')
             let info = await add(this.form);
            if(info.data.code==1){
            		window.history.go(-1)
@@ -65,7 +67,7 @@ export default {
             let _this = this;
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    _this.sendform(); 
+                    _this.sendform();
                 } else {
                     _this.$message('提交错误');
                     return false;

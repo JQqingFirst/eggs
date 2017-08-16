@@ -68,6 +68,11 @@ export default {
         ]),
         init() {
           let _this = this;
+          if(this.$store.state.chickennum == 2){
+            this.good.totleprice = 998;
+          }else if (this.$store.state.chickennum == 4){
+            this.good.totleprice = 1980;
+          }
             let x = getDefault();
             (async function(){
                 let info = await x;
@@ -75,10 +80,10 @@ export default {
             })()
         },
         async pay(){
-            if(!this.address.user_name){
-               this.$message('请填写地址');
-                return false;
-            }
+//            if(!this.address.user_name){
+//               this.$message('请填写地址');
+//                return false;
+//            }
             let _this =this;
             let user_id = window.localStorage.getItem('user_id')
             let chickennum = this.$store.state.chickennum;
@@ -106,6 +111,7 @@ export default {
                     total_fee:_this.good.totleprice.toFixed(2)
                 }
                 let info2 = await wxpay(infojson2);
+                window.location.href = 'http://weixin.yangjiguanjia.com/wxpay2/example/jsapi2.php?order_sn='+infojson2.order_sn+'&total_fee='+infojson2.total_fee
             }else{
                this.$message(info.data.msg);
             }

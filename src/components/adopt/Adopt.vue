@@ -10,7 +10,7 @@
         </div>
         <div class="good clearfix">
             <div class="fl left">
-                每只<span> ¥{{price}}</span> <em>原价¥918</em>
+                每只<span> ¥{{price}}</span> <em>原价¥1068</em>
             </div>
             <div class="fr right">
                 <el-input-number v-model="chickennum" :step="step" :min='1' :max='4' size="small"></el-input-number>
@@ -19,7 +19,7 @@
         <div class="clear1"></div>
         <el-card class="box-card">
             <div class="card">
-                <p>520元即可获得原价918元的套餐（300枚*2元/枚+15次配送*10元/次+价值168元鸡汤送货到家）</p>
+                <p>520元即可获得原价1068元的套餐（300枚*2元/枚+30次配送*10元/次+价值168元鸡汤送货到家）</p>
                 <h3>配送原则</h3>
                 <p>养一只鸡:每隔四周配送一次,20枚;养两只鸡:每隔两周配送一次,20枚;养四只鸡:每隔一周配送一次,20枚</p>
             </div>
