@@ -110,7 +110,7 @@ export default {
                     order_sn:info.data.result.order_sn,
                     total_fee:_this.good.totleprice.toFixed(2)
                 }
-                let info2 = await wxpay(infojson2);
+//                let info2 = await wxpay(infojson2);
                 window.location.href = 'http://weixin.yangjiguanjia.com/wxpay2/example/jsapi2.php?order_sn='+infojson2.order_sn+'&total_fee='+infojson2.total_fee
             }else{
                this.$message(info.data.msg);
