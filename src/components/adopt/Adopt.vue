@@ -43,11 +43,13 @@ export default {
   },
     methods: {
          ...mapMutations([
-           'CHANGE_CHICKENNUM' 
+           'CHANGE_CHICKENNUM','RECORD_USERID'
         ]),
         init() {
+            let  user_id = window.localStorage.getItem('user_id')
+            this.RECORD_USERID(user_id)
             let infojson = {
-                'user_id':this.$store.state.user_id,
+                'user_id':user_id,
             }
             let x = info(infojson);
             (async function(){

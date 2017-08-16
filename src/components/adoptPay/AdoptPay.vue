@@ -16,7 +16,7 @@
                     <router-link to='/address'>
                         <img src="./img/add.png" class="fl">
                         <i class="el-icon-arrow-right fr"></i>
-                        <span>                        
+                        <span>
                             {{address.address}}
                         </span>
                     </router-link>
@@ -64,7 +64,7 @@ export default {
   },
     methods: {
          ...mapMutations([
-           'RECORD_ADDRESS' 
+           'RECORD_ADDRESS'
         ]),
         init() {
           let _this = this;
@@ -80,6 +80,7 @@ export default {
                 return false;
             }
             let _this =this;
+            let user_id = window.localStorage.getItem('user_id')
             let chickennum = this.$store.state.chickennum;
             let product_id;
             switch(chickennum){
@@ -93,7 +94,7 @@ export default {
                     product_id=36;
             }
             let json  = {
-                user_id:this.$store.state.user_id,
+                user_id: user_id,
                 product_id:product_id,
                 payable:this.good.totleprice.toFixed(2)
             }
