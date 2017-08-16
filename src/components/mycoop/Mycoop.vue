@@ -3,8 +3,8 @@
         <div class="top">
             <img src="./images/bg.png" class="bg">
             <div class="info">
-                <img src="./images/mypic.png" height="121" width="120" class="head">
-                <span>{{infodata.user_name}}</span>
+                <img :src="this.headimgurl" height="121" width="120" class="head">
+                <span>{{this.user_name}}</span>
             </div>
         </div>
         <ul>
@@ -40,8 +40,10 @@
     import {mapState, mapMutations} from 'vuex'
 export default {
   name: 'mycoop',
-  data () { 
+  data () {
     return {
+       user_name:window.localStorage.getItem('nickname'),
+       headimgurl:window.localStorage.getItem('headimgurl'),
         infodata:{}
     }
   },
@@ -50,14 +52,18 @@ export default {
   },
     methods: {
          ...mapMutations([
-           'CHANGE_GOODNUM' 
+           'CHANGE_GOODNUM'
         ]),
         async init() {
+
             let infojson = {
-                'user_id':this.$store.state.user_id
+                'user_id':window.localStorage.getItem('user_id'),
             }
             let info = await main(infojson);
             if(info.data.code==1){
+              if(!info.data.result.address){
+                info.data.result.address = '请设置地址'
+              }
                 this.infodata = {...info.data.result}
                 this.CHANGE_GOODNUM(info.data.result.gold_num);
                 console.log(this.$store.state.goodnum)
