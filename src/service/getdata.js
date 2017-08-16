@@ -39,7 +39,7 @@ export const gameLogList = (json) =>new axios.post("/Api2/ZjisheGamelog/gameLogL
 //添加我的联系地址
 export const add = (json) =>new axios.post("/Api2/ZjisheAddress/add", qs.stringify(json));
 //获取默认收货地址信息
-export const getDefault = (json) =>new axios.post("/Api2/ZjisheAddress/getDefault ", qs.stringify(json));
+export const getDefault = (json) =>new axios.get("/Api2/ZjisheAddress/getDefault ",{'params':json});
 //订单配送计划  order_sn=JS20170719131130151 
 export const infoList = (json) =>new axios.get("/Api2/EggDistributionInfo/infoList", {'params':json});
 //延期配送 		id=431 

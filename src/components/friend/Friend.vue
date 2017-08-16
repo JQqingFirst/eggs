@@ -16,7 +16,7 @@
 				<div class='right fr'>
 					<span>
                         {{item.friend_info.user_id}}
-                        <img src="./img/egg.png"  @click='storeeggdialog(item.user_id,item.friend_id)'>
+                        <img src="./img/egg.gif"  @click='storeeggdialog(item.user_id,item.friend_id)'>
                     </span>
 					<span>
                         <img src="./img/feed.png" @click='feeddialog(item.user_id,item.friend_id)'>

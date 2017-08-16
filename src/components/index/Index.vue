@@ -28,7 +28,7 @@
 				</div>
 				<div class="chickens">
 					<dl>
-						<dt v-for='item in inforesult.chicken_num'><img src="./images/chicken.png" alt=""></dt>
+						<dt v-for='item in inforesult.chicken_num'><img src="./images/chicken.gif" alt=""></dt>
 						<dt v-for='item in (3-inforesult.chicken_num)'>
 							<router-link to="/adopt" class='fr'><img src="./images/chicken_2.png" alt=""></router-link>
 						</dt>

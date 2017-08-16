@@ -57,7 +57,10 @@ export default {
         },
         init() {
             let _this = this;
-            let x = getDefault();
+            let infojson = {
+            	user_id:window.localStorage.getItem('user_id')
+            }
+            let x = getDefault(infojson);
             (async function(){
                 let info = await x;
                 _this.form = {...info.data.result}
