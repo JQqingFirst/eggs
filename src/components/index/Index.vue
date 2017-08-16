@@ -131,9 +131,7 @@
 					let info = await x;
 					var req = info.data;
 					if(req.code === 1) {
-						if(req.result.chicken_num==0){
-							req.result.chicken_num=2
-						}else if(req.result.chicken_num>=3){
+						if(req.result.chicken_num>=3){
 							req.result.chicken_num=3
 						}
 						_this.inforesult = { ...req.result};

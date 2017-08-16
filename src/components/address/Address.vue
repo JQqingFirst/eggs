@@ -2,13 +2,13 @@
     <div class="goldchange" v-title='"填写地址"'>
    <el-form :model="form" :rules="rules" ref="form" label-width="100px" class="demo-ruleForm">
       <el-form-item label="收货人"  prop="user_name">
-        <el-input v-model="form.user_name"></el-input>
+        <el-input v-model="form.user_name" placeholder='收货人'></el-input>
       </el-form-item>
       <el-form-item label="手机号码" prop="tel">
-        <el-input type="tel" v-model.number="form.tel" auto-complete="off"></el-input>
+        <el-input type="tel" v-model.number="form.tel" auto-complete="off"  placeholder='手机号码'></el-input>
       </el-form-item>
       <el-form-item label="收货地址"  prop="address">
-        <el-input v-model="form.address"></el-input>
+        <el-input v-model="form.address" placeholder='收货地址'></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="warning" class='saveform' @click="submitForm('form')" size="large">确定</el-button>
