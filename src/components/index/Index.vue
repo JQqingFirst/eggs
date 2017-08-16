@@ -28,9 +28,8 @@
 				</div>
 				<div class="chickens">
 					<dl>
-						<dt><img src="./images/chicken.png" alt=""></dt>
-						<dt><img src="./images/chicken.png" alt=""></dt>
-						<dt><img src="./images/chicken_2.png" alt=""></dt>
+						<dt v-for='item in inforesult.chicken_num'><img src="./images/chicken.png" alt=""></dt>
+						<dt v-for='item in (3-inforesult.chicken_num)'><img src="./images/chicken_2.png" alt=""></dt>
 						<dd class="eggs"><img src="./images/eggs.png" alt=""></dd>
 						<dd class="egg2">
 							<img src="./images/egg_2.png" alt="">
@@ -79,7 +78,7 @@
 				inforesult: {
 					"id": "1",
 					"user_id": '',
-					"chicken_num": "3", //鸡的数量
+					"chicken_num":3, //鸡的数量
 					"egg_num": "11", //蛋的数量
 					"update_at": "", //更新时间
 					"xi_egg": 0 //喜蛋进度
@@ -130,6 +129,11 @@
 					let info = await x;
 					var req = info.data;
 					if(req.code === 1) {
+						if(req.result.chicken_num==0){
+							req.result.chicken_num=2
+						}else if(req.result.chicken_num>=3){
+							req.result.chicken_num=3
+						}
 						_this.inforesult = { ...req.result};
 					}
 				})();
