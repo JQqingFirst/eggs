@@ -66,7 +66,7 @@
 			async init() {
 				let _this = this;
 				let infojson = {
-					user_id: this.$store.state.usreId
+					user_id: window.localStorage.getItem('user_id')
 				}
 				let info = await userFriendList(infojson);
 				let req = info.data;
@@ -226,19 +226,19 @@
 	span.el-checkbox__label {
 		display: none;
 	}
-	
+
 	.el-dialog__footer {
 		box-sizing: content-box;
 	}
-	
+
 	.el-dialog {
 		border-radius: 3px;
 	}
-	
+
 	.el-dialog--small {
 		width: 80%;
 	}
-	
+
 	.help .el-dialog {
 		background: transparent;
 		box-shadow: none;
@@ -249,7 +249,7 @@
 		height: 100%;
 		background-color: #f2f2f2;
 	}
-	
+
 	.top {
 		height: 40px;
 		color: red;
@@ -259,41 +259,41 @@
 		color: #f39500;
 		font-size: 16px;
 	}
-	
+
 	.top img {
 		width: 18px;
 		height: 18px;
 		margin-right: 4px;
 		margin-top: -4px;
 	}
-	
+
 	.friend-list li {
 		margin: 6px;
 		background-color: #fff;
 		padding: 10px 0 10px 45px;
 	}
-	
+
 	.friend-list li:nth-child(1) {
 		background: #fff url(./img/f1.png) no-repeat 8px center;
 		background-size: 25px 25px;
 	}
-	
+
 	.friend-list li:nth-child(2) {
 		background: #fff url(./img/f2.png) no-repeat 8px center;
 		background-size: 25px 25px;
 	}
-	
+
 	.friend-list li:nth-child(3) {
 		background: #fff url(./img/f3.png) no-repeat 8px center;
 		background-size: 25px 25px;
 	}
-	
+
 	.friend-list li>img {
 		width: 80px;
 		height: 80px;
 		margin-right: 10px;
 	}
-	
+
 	.info h2 {
 		font-size: 20px;
 		font-weight: bolder;
@@ -301,23 +301,23 @@
 		margin-bottom: 10px;
 		margin-top: 15px;
 	}
-	
+
 	.info p {
 		color: #a6a09d;
 		font-size: 16px;
 	}
-	
+
 	.friend-list li .right img {
 		width: 55px;
 		margin-top: 15px;
 		margin-right: 10px;
 	}
-	
+
 	.storeegg {
 		position: relative;
 		height: 100px;
 	}
-	
+
 	.storeegg img {
 		position: absolute;
 		width: 150px;
@@ -325,7 +325,7 @@
 		margin-left: -75px;
 		top: -120px;
 	}
-	
+
 	.storeegg p {
 		padding-top: 50px;
 		text-align: center;
@@ -333,16 +333,16 @@
 		color: #5a463a;
 		font-weight: 500;
 	}
-	
+
 	.helpfriend {
 		position: relative;
 	}
-	
+
 	.helpfriend img {
 		width: 80%;
 		margin-left: 10%;
 	}
-	
+
 	.helpfriend p {
 		position: absolute;
 		left: 0;
