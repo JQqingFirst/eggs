@@ -33,7 +33,7 @@ export default {
         rules: {
           user_name: [
             { required: true, message: '请输入收货人', trigger: 'blur' },
-            { min: 3, max: 5, message: '长度在 2 到 5 个字符', trigger: 'blur' }
+            { min: 1, max: 4, message: '长度在 1 到 4 个字符', trigger: 'blur' }
           ],
           tel:[
              { required: true, message: '手机不能为空'},
