@@ -4,10 +4,6 @@ import Router from 'vue-router'
 // import Vcx from '@/components/Vcx'
 // import User from '@/components/User'
 
-const Hello = resolve => require(['../components/Hello.vue'], resolve)
-const Vcx = resolve => require(['../components/Vcx.vue'], resolve)
-const User = resolve => require(['../components/User.vue'], resolve)
-
 
 const Index = resolve => require(['../components/index/Index.vue'], resolve) //首页
 const Mycoop = resolve => require(['../components/mycoop/Mycoop.vue'], resolve) //我的鸡笼
@@ -33,15 +29,6 @@ export default new Router({
     path: '/friend_id/:friend_id',
     name: 'Share',
     component: Index
-  },
-   {
-    path: '/vcx',
-    name: 'Vcx',
-    component: Vcx
-  }, {
-    path: '/user/:userId/password/:password',
-    name: 'user',
-    component: User
   }, {
     path: '/mycoop',
     name: 'mycoop',
