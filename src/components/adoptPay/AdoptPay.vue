@@ -67,13 +67,17 @@ export default {
            'RECORD_ADDRESS'
         ]),
         init() {
-          let _this = this;
-          if(this.$store.state.chickennum == 2){
-            this.good.totleprice = 998;
-          }else if (this.$store.state.chickennum == 4){
-            this.good.totleprice = 1980;
-          }
-            let x = getDefault();
+            let _this = this;
+            if(this.$store.state.chickennum == 2){
+                this.good.totleprice = 998;
+            }else if (this.$store.state.chickennum == 4){
+                this.good.totleprice = 1980;
+            }
+            let user_id = window.localStorage.getItem('user_id')
+            let infojson =  {
+                user_id:user_id
+            }
+            let x = getDefault(infojson);
             (async function(){
                 let info = await x;
                 _this.address = {...info.data.result}
