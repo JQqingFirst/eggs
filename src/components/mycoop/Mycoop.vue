@@ -42,9 +42,11 @@ export default {
   name: 'mycoop',
   data () {
     return {
-       user_name:window.localStorage.getItem('nickname'),
-       headimgurl:window.localStorage.getItem('headimgurl'),
-        infodata:{}
+        user_name:window.localStorage.getItem('nickname'),
+        headimgurl:window.localStorage.getItem('headimgurl'),
+        infodata:{
+            address:'请设置地址'
+        }
     }
   },
   components:{
@@ -66,7 +68,6 @@ export default {
               }
                 this.infodata = {...info.data.result}
                 this.CHANGE_GOODNUM(info.data.result.gold_num);
-                console.log(this.$store.state.goodnum)
             }else{
                this.$message(info.data.msg);
             }
