@@ -58,7 +58,34 @@
 				fodder: false, //每天只能替好友喂鸡3次
 				storeegg: false, //恭喜您成功偷取好友一枚喜蛋
 				feedchecken: false, //喂鸡成功弹窗
-				userFriendList: {},
+				userFriendList: {
+			        "current_page": 1,
+			        "total_count": "2",
+			        "perPage_count": 20,
+			        "totalPage_count": 1,
+			        "data": [
+			            {
+			                "id": "3",
+			                "user_id": "144",
+			                "friend_id": "70",
+			                "action": "1",
+			                "update_at": "2017-08-17 18:51:58",
+			                "friend_info": {
+			                    "mobile": "",
+			                    "wx_open_id": "oKRYgvxYraN9nAR7OquMwZ9ZYxUk",
+			                    "wx_pic": "http://wx.qlogo.cn/mmopen/Q3auHgzwzM5gV80SkowvDDTg5TaQoBcMER6TnPXfoiarkCw0FVib5fBGb8U1paItThp2euJk5b5YFIsAk8R0VhXQ/0",
+			                    "wx_nick_name": "帝卢.速霸龙"
+			                },
+			                "user_info": {
+			                    "mobile": "",
+			                    "wx_open_id": "oKRYgvxcKj46eVedh4VPH1q3P4lA",
+			                    "wx_pic": "http://wx.qlogo.cn/mmopen/FfeaAvFCN0BqQM3ESmibHMogoK1R2M4Kxfo3czy13Eia1eurzj5AFgRoA8wktwI8A9DniahpTlJmIXjzWEPMmhsIqyaS6WyB1OL/0",
+			                    "wx_nick_name": "文艺小袁"
+			                },
+			                "action_info": "喂食"
+			            }
+			        ]
+			   },
 				shareImg: ''
 			}
 		},
@@ -70,12 +97,10 @@
 				}
 				let info = await userFriendList(infojson);
 				let req = info.data;
-				console.log(req);
 				if(req.code === 1) {
-					_this.userFriendList = { ...req.result
-					};
+					_this.userFriendList = { ...req.result};
 				} else if(req.code === 0) {
-
+						_this.$message(req.msg);
 				}
 
 //				//微信分享

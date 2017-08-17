@@ -52,13 +52,13 @@
 		<div class="friend">
 			<h2>好友动态</h2>
 			<ul>
-				<li v-for='item in friendinfo' class="clearfix">
+				<li v-for='item in friendinfo.data' class="clearfix">
 					<span class="fl">{{item.friend_info.wx_nick_name}}</span>
 					<em class="fr">{{item.friend_info.update_at}}</em>
 					<strong v-if='item.action==1'>帮你喂鸡一次</strong>
 					<strong v-if='item.action==2'>偷你一枚喜蛋</strong>
 				</li>
-				<li class="text-center" v-if='friendinfo.length'>
+				<li class="text-center" v-if='friendinfo.data.length'>
 					<div class="clear10"></div>
 					<router-link to="/friend">查看更多</router-link>
 				</li>
@@ -85,7 +85,7 @@
 					"update_at": "", //更新时间
 					"xi_egg": 0 //喜蛋进度
 				},
-				friendinfo: []
+				friendinfo: {}
 			}
 		},
 		computed: {
