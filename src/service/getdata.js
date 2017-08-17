@@ -2,7 +2,7 @@
  * @Author: 111
  * @Date:   2017-06-27 10:19:13
  * @Last Modified by:   just success
- * @Last Modified time: 2017-08-14 09:56:19
+ * @Last Modified time: 2017-08-17 10:38:18
  */
 import axios from 'axios'
 import qs from 'qs'
@@ -39,9 +39,9 @@ export const gameLogList = (json) =>new axios.post("/Api2/ZjisheGamelog/gameLogL
 //添加我的联系地址
 export const add = (json) =>new axios.post("/Api2/ZjisheAddress/add", qs.stringify(json));
 //获取默认收货地址信息
-export const getDefault = (json) =>new axios.get("/Api2/ZjisheAddress/getDefault ",{'params':json});
+export const getDefault = (json) =>new axios.get("/Api2/ZjisheAddress/getDefault",{'params':json});
 //订单配送计划  order_sn=JS20170719131130151 
-export const infoList = (json) =>new axios.get("/Api2/EggDistributionInfo/infoList", {'params':json});
+export const infoList = (json) =>new axios.get("/Api2/EggDistributionInfo/infoList",{'params':json});
 //延期配送 		id=431 
 export const delayedDelivery = (json) =>new axios.get("/Api2/EggDistributionInfo/delayedDelivery", {'params':json});
 //获取最近配送  http://123.57.65.163:10016/EggDistributionInfo/nextDelivery  我的蛋筐

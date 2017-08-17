@@ -57,8 +57,8 @@ export default {
         },
         init() {
             let _this = this;
-            let infojson = {
-            	user_id:window.localStorage.getItem('user_id')
+            let infojson={
+            	user_id:window.localStorage.getItem('user_id') || 'WX123456'
             }
             let x = getDefault(infojson);
             (async function(){
