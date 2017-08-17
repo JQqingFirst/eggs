@@ -7,6 +7,7 @@
                 <span>{{item.delivery_time}}</span>
             </li>
         </ul>
+
     </div>
 </template>
 <script>
@@ -234,8 +235,9 @@ export default {
   },
     methods: {
         async init() {
+            //根据url 获取order_sn
             let infojson = {
-                'order_sn':'552017081423303196689' 
+                'order_sn':this.$route.params.order_sn
             }
             let info = await infoList(infojson);
             if(info.data.code==1){

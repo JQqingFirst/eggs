@@ -66,7 +66,7 @@ export default new Router({
     component: Friend
   },
   {
-    path: '/distribution',
+    path: '/distribution/:order_sn',
     name: 'distribution',
     component: Distribution
   },
