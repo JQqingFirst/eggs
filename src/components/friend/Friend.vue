@@ -15,11 +15,10 @@
 				</div>
 				<div class='right fr'>
 					<span>
-                        {{item.friend_info.user_id}}
-                        <img src="./img/egg.gif"  @click='storeeggdialog(item.user_id,item.friend_id)'>
+                        <img src="./img/egg.gif" v-if='item.friend_info.xiegg_num' @click='storeeggdialog(item.user_id,item.friend_id)'>
                     </span>
 					<span>
-                        <img src="./img/feed.png" @click='feeddialog(item.user_id,item.friend_id)'>
+                        <img src="./img/feed.png" v-if='item.friend_info.chicken_num' @click='feeddialog(item.user_id,item.friend_id)'>
                     </span>
 				</div>
 			</li>
@@ -64,25 +63,18 @@
 			        "perPage_count": 20,
 			        "totalPage_count": 1,
 			        "data": [
-			            {
-			                "id": "3",
-			                "user_id": "144",
-			                "friend_id": "70",
-			                "action": "1",
-			                "update_at": "2017-08-17 18:51:58",
+		            	{
+			                "id": "1",
+			                "user_id": "1",
+			                "friend_id": "11",
 			                "friend_info": {
 			                    "mobile": "",
-			                    "wx_open_id": "oKRYgvxYraN9nAR7OquMwZ9ZYxUk",
-			                    "wx_pic": "http://wx.qlogo.cn/mmopen/Q3auHgzwzM5gV80SkowvDDTg5TaQoBcMER6TnPXfoiarkCw0FVib5fBGb8U1paItThp2euJk5b5YFIsAk8R0VhXQ/0",
-			                    "wx_nick_name": "帝卢.速霸龙"
-			                },
-			                "user_info": {
-			                    "mobile": "",
-			                    "wx_open_id": "oKRYgvxcKj46eVedh4VPH1q3P4lA",
-			                    "wx_pic": "http://wx.qlogo.cn/mmopen/FfeaAvFCN0BqQM3ESmibHMogoK1R2M4Kxfo3czy13Eia1eurzj5AFgRoA8wktwI8A9DniahpTlJmIXjzWEPMmhsIqyaS6WyB1OL/0",
-			                    "wx_nick_name": "文艺小袁"
-			                },
-			                "action_info": "喂食"
+			                    "wx_open_id": "wwe121221",
+			                    "wx_pic": "http://dl.bizhi.sogou.com/images/1920x1080/2015/02/12/1087113.jpg",
+			                    "wx_nick_name": "sdsd",
+			                    "xiegg_num": "",  //喜蛋数量
+			                    "chicken_num": "2"  //鸡的数量
+			                }
 			            }
 			        ]
 			   },
