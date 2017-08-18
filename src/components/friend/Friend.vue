@@ -202,7 +202,7 @@
 					// if(req.code===1){
 					// }else{
 					// _this.storemsg = '已经偷过了，放过他吧'
-					_this.feedmsg = req.msg
+          _this.storemsg = req.msg
 					// }
 					_this.storeegg = true;
 				})()
@@ -219,7 +219,7 @@
 					// if(req.code===1){
 					// }else{
 					// _this.storemsg = '已经偷过了，放过他吧'
-					_this.storemsg = req.msg
+          _this.feedmsg = req.msg
 					// }
 					_this.feedchecken = true;
 				})()
