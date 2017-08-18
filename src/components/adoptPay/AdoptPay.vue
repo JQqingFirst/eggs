@@ -71,7 +71,7 @@ export default {
             if(this.$store.state.chickennum == 2){
                 this.good.totleprice = 998;
             }else if (this.$store.state.chickennum == 4){
-                this.good.totleprice = 1950;
+                this.good.totleprice = 1980;
             }
             let user_id = window.localStorage.getItem('user_id')
             let infojson =  {
