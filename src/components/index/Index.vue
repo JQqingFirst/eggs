@@ -58,7 +58,7 @@
 					<strong v-if='item.action==1'>帮你喂鸡一次</strong>
 					<strong v-if='item.action==2'>偷你一枚喜蛋</strong>
 				</li>
-				<li class="text-center" v-if='friendinfo.data.length'>
+				<li class="text-center" v-if='friendinfo.data && friendinfo.data.length'>
 					<div class="clear10"></div>
 					<router-link to="/friend">查看更多</router-link>
 				</li>
