@@ -28,8 +28,8 @@
 				</div>
 				<div class="chickens">
 					<dl>
-						<dt v-for='item in inforesult.chicken_num'><img src="./images/chicken.gif" alt=""></dt>
-						<dt v-for='item in (3-inforesult.chicken_num)'>
+						<dt v-for='item in (inforesult.chicken_num>3?3:inforesult.chicken_num)'><img src="./images/chicken.gif" alt=""></dt>
+						<dt v-for='item in (inforesult.chicken_num>3?0:3-inforesult.chicken_num)'>
 							<router-link to="/adopt" class='fr'><img src="./images/chicken_2.png" alt=""></router-link>
 						</dt>
 						<dd class="eggs"><img src="./images/eggs.png" alt=""></dd>
@@ -80,7 +80,7 @@
 				inforesult: {
 					"id": "1",
 					"user_id": '',
-					"chicken_num":3, //鸡的数量
+					"chicken_num":6, //鸡的数量
 					"egg_num": "11", //蛋的数量
 					"update_at": "", //更新时间
 					"xi_egg": 0 //喜蛋进度
