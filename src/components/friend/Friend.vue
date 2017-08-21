@@ -72,7 +72,7 @@
 			                    "wx_open_id": "wwe121221",
 			                    "wx_pic": "http://dl.bizhi.sogou.com/images/1920x1080/2015/02/12/1087113.jpg",
 			                    "wx_nick_name": "sdsd",
-			                    "xiegg_num": "",  //喜蛋数量
+			                    "xiegg_num": "1",  //喜蛋数量
 			                    "chicken_num": "2"  //鸡的数量
 			                }
 			            }
@@ -183,9 +183,6 @@
 //							});
 //						});
 //					})();
-			},
-			checkListss(val) {
-				console.log(val);
 			},
 			sold() { //点击卖出
 				this.dialogFormVisible = true

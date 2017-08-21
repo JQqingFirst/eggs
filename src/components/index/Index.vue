@@ -34,7 +34,8 @@
 						</dt>
 						<dd class="eggs"><img src="./images/eggs.png" alt=""></dd>
 						<dd class="egg2">
-							<img src="./images/egg_2.png" alt="">
+						<img src="./images/egg_2.png" v-if='inforesult.xi_egg!=100' alt="">
+						<router-link to="/friend" class='fr' v-if='inforesult.xi_egg==100'><img src="./images/egg_2.png" alt=""></router-link>
 							<div class="egg2-tip">
 								<span>喜蛋进度</span>
 								<p>{{inforesult.xi_egg}}%</p>
@@ -83,7 +84,7 @@
 					"chicken_num":6, //鸡的数量
 					"egg_num": "11", //蛋的数量
 					"update_at": "", //更新时间
-					"xi_egg": 0 //喜蛋进度
+					"xi_egg": 100 //喜蛋进度
 				},
 				friendinfo: {}
 			}
@@ -180,6 +181,8 @@
 	.chickens .eggs img{width:100%;height:100%;}
 	.chickens .egg2{position:relative;float:left;margin-top:10px;margin-left:10px;width:33.33%;height:60px;}
 	.chickens .egg2 img{height:100%;}
+	.chickens .egg2 a{display: inline-block;width: 100%;height: 100%;}
+	.chickens .egg2 a img{height:100%;}
 	.egg2-tip{position:absolute;top:-30px;right:-40px;padding-top:8px;padding-left:20px;width:100px;height:60px;background:url(./images/bubble.png) no-repeat;background-size:100% 100%;}
 	.egg2-tip span{color:#fff;font-size:14px;}
 	.egg2-tip p{margin-top:6px;color:#fff;font-weight:700;font-size:16px;font-size:18px;}
