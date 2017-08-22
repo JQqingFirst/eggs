@@ -59,7 +59,7 @@ export const getGift = (json) =>new axios.get("/Api2/EggDistributionInfo/getGift
 //领取好友赠送的鸡蛋 
 export const addFriends = (json) =>new axios.get("/Api2/ZjisheFriends/addFriends", {'params':json});
 //获取微信分享权限参数
-export const weichat = (json) =>new axios.get("http://weixin.yangjiguanjia.com/LaneWeChat2/api_getsign.php", {'params':json});
+export const weichat = (json) =>new axios.get("http://weixin.yangjiguanjia.com/LaneWeChat2/api_getsign.php",{'params':json});
 
 
 
