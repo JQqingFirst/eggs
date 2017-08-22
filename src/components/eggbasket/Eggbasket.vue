@@ -1,5 +1,5 @@
 <template>
-	<div class="basket" v-title='"我的蛋筐"'>
+	<div class="basket" v-title='"近期配送"'>
 		<div class="top">
 			<img src="./img/warning.png"> 20枚鸡蛋方可卖出或送好友
 		</div>
@@ -193,35 +193,35 @@
 	span.el-checkbox__label {
 		display: none;
 	}
-	
+
 	.el-dialog__footer {
 		box-sizing: content-box;
 	}
-	
+
 	.el-dialog {
 		border-radius: 3px;
 	}
-	
+
 	.el-dialog--small {
 		width: 80%;
 	}
-	
+
 	.el-checkbox__inner {
 		border-radius: 100%;
 	}
-	
+
 	.is-focus {
 		border-color: #f7ab26;
 	}
-	
+
 	.el-checkbox__inner {
 		border-color: #f7ab26;
 	}
-	
+
 	.el-checkbox__inner:hover {
 		border-color: #f7ab26;
 	}
-	
+
 	.el-checkbox__input.is-checked .el-checkbox__inner {
 		background-color: #f7ab26;
 		border-color: #f7ab26;
@@ -232,7 +232,7 @@
 		height: 100%;
 		background-color: #f2f2f2;
 	}
-	
+
 	.top {
 		height: 40px;
 		background-color: #fae3d2;
@@ -242,14 +242,14 @@
 		font-size: 16px;
 		line-height: 40px;
 	}
-	
+
 	.top img {
 		margin-top: -4px;
 		margin-right: 4px;
 		width: 18px;
 		height: 18px;
 	}
-	
+
 	.give {
 		position: fixed;
 		top: 0;
@@ -260,13 +260,13 @@
 		height: 100%;
 		background-color: rgba(0, 0, 0, .4);
 	}
-	
+
 	.give img {
 		float: right;
 		margin: 20px 30px 0 0;
 		width: 70%;
 	}
-	
+
 	.info li {
 		margin: 10px;
 		border-radius: 3px;
@@ -274,19 +274,19 @@
 		color: #5a463a;
 		height: 100px;
 	}
-	
+
 	.info li img {
 		margin-right: 20px;
 		width: 100px;
 		border-radius: 3px;
 		height: 100%;
 	}
-	
+
 	.info li label {
 		margin-top: 40px;
 		margin-right: 30px;
 	}
-	
+
 	footer {
 		position: fixed;
 		bottom: 0;
@@ -297,20 +297,20 @@
 		line-height: 50px;
 		z-index: 2;
 	}
-	
+
 	footer ul {
 		height: 50px;
 	}
-	
+
 	footer li {
 		float: left;
 		width: 33.33%;
 	}
-	
+
 	footer li.on {
 		background-color: #fbfbfb;
 	}
-	
+
 	footer li a {
 		position: relative;
 		display: block;
@@ -321,7 +321,7 @@
 		text-align: center;
 		line-height: 50px;
 	}
-	
+
 	footer li a img {
 		position: absolute;
 		top: 10px;
@@ -329,15 +329,15 @@
 		margin-left: -55px;
 		width: 27px;
 	}
-	
+
 	.dialog-footer {
 		width: 100%;
 	}
-	
+
 	.dialog-footer button {
 		width: 100%;
 	}
-	
+
 	.dialog-info {
 		font-size: 14px;
 		line-height: 30px;

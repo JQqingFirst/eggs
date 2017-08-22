@@ -52,6 +52,8 @@
 		name: 'mycoop',
 		data() {
 			return {
+			  userId:'',
+			  share:{},
 				storemsg: '恭喜您成功偷取好友一枚喜蛋',
 				feedmsg: '成功帮好友提高30%产蛋率',
 				fodder: false, //每天只能替好友喂鸡3次
@@ -84,6 +86,7 @@
 		methods: {
 			async init() {
 				let _this = this;
+				_this.userId = window.localStorage.getItem('user_id')
 				let infojson = {
 					user_id: window.localStorage.getItem('user_id')
 				}
@@ -95,93 +98,98 @@
 						_this.$message(req.msg);
 				}
 
-//				//微信分享
-//				let z = weichat()
-//					(async function() {
-//						let winfo = await z;
-//						console.log(winfo)
-//
-//						wx.config({
-//							debug: true,
-//							appId: winfo.appId, // 和获取Ticke的必须一样------必填，公众号的唯一标识
-//							timestamp: winfo.timestamp, // 必填，生成签名的时间戳
-//							nonceStr: winfo.nonceStr, // 必填，生成签名的随机串
-//							signature: winfo.signature, // 必填，签名，见附录1
-//							//需要分享的列表项:发送给朋友，分享到朋友圈，分享到QQ，分享到QQ空间
-//							jsApiList: [
-//								'onMenuShareAppMessage', 'onMenuShareTimeline',
-//								'onMenuShareQQ', 'onMenuShareQZone'
-//							]
-//						});
-//						//处理验证失败的信息
-//						wx.error(function(res) {
-//							logUtil.printLog('验证失败返回的信息:', res);
-//						});
-//						//处理验证成功的信息
-//						wx.ready(function() {
-//							//							alert(window.location.href.split('#')[0]);
-//							//分享到朋友圈
-//							wx.onMenuShareTimeline({
-//								title: '快乐鸡舍', // 分享标题
-//								link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + window.localstorage.getItem('user_id'), // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-//								imgUrl: _this.shareImg, // 分享图标
-//								success: function(res) {
-//									// 用户确认分享后执行的回调函数
-//									alert("分享成功!")
-//								},
-//								cancel: function(res) {
-//									// 用户取消分享后执行的回调函数
-//									alert("取消分享到朋友圈返回的信息为:", res);
-//								}
-//							});
-//							//分享给朋友
-//							wx.onMenuShareAppMessage({
-//								title: '快乐鸡舍', // 分享标题
-//								desc: '此处需要添加分享描述', // 分享描述
-//								link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + window.localstorage.getItem('user_id'), // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-//								imgUrl: _this.shareImg, // 分享图标
-//								type: '', // 分享类型,music、video或link，不填默认为link
-//								dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-//								success: function(res) {
-//									// 用户确认分享后执行的回调函数
-//									alert("分享给朋友成功返回的信息为:", res);
-//								},
-//								cancel: function(res) {
-//									// 用户取消分享后执行的回调函数
-//									alert("取消分享给朋友返回的信息为:", res);
-//								}
-//							});
-//							//分享到QQ
-//							wx.onMenuShareQQ({
-//								title: '快乐鸡舍', // 分享标题
-//								desc: '此处需要添加分享描述', // 分享描述
-//								link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + window.localstorage.getItem('user_id'), // 分享链接
-//								imgUrl: _this.shareImg, // 分享图标
-//								success: function(res) {
-//									// 用户确认分享后执行的回调函数
-//									alert("分享到QQ好友成功返回的信息为:", res);
-//								},
-//								cancel: function(res) {
-//									// 用户取消分享后执行的回调函数
-//									alert("取消分享给QQ好友返回的信息为:", res);
-//								}
-//							});
-//							//分享到QQ空间
-//							wx.onMenuShareQZone({
-//								title: '快乐鸡舍', // 分享标题
-//								desc: '此处需要添加分享描述', // 分享描述
-//								link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + window.localstorage.getItem('user_id'), // 分享链接
-//								imgUrl: _this.shareImg, // 分享图标
-//								success: function(res) {
-//									// 用户确认分享后执行的回调函数
-//									alert("分享到QQ空间成功返回的信息为:", res);
-//								},
-//								cancel: function(res) {
-//									// 用户取消分享后执行的回调函数
-//									alert("取消分享到QQ空间返回的信息为:", res);
-//								}
-//							});
-//						});
+
+        let infojson1 = {
+          url: window.location.href
+        }
+        let x = weichat(infojson1);
+        (async function() {
+          let share = await x;
+          _this.share = share;
+        })();
+				//微信分享
+
+						wx.config({
+							debug: true,
+							appId: _this.share.appId, // 和获取Ticke的必须一样------必填，公众号的唯一标识
+							timestamp: _this.share.timestamp, // 必填，生成签名的时间戳
+							nonceStr: _this.share.nonceStr, // 必填，生成签名的随机串
+							signature: _this.share.signature, // 必填，签名，见附录1
+							//需要分享的列表项:发送给朋友，分享到朋友圈，分享到QQ，分享到QQ空间
+							jsApiList: [
+								'onMenuShareAppMessage', 'onMenuShareTimeline',
+								'onMenuShareQQ', 'onMenuShareQZone'
+							]
+						});
+						//处理验证失败的信息
+						wx.error(function(res) {
+							logUtil.printLog('验证失败返回的信息:', res);
+						});
+						//处理验证成功的信息
+						wx.ready(function() {
+							//							alert(window.location.href.split('#')[0]);
+							//分享到朋友圈
+							wx.onMenuShareTimeline({
+								title: '快乐鸡舍', // 分享标题
+								link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+								imgUrl: _this.shareImg, // 分享图标
+								success: function(res) {
+									// 用户确认分享后执行的回调函数
+									alert("分享成功!")
+								},
+								cancel: function(res) {
+									// 用户取消分享后执行的回调函数
+									alert("取消分享到朋友圈返回的信息为:", res);
+								}
+							});
+							//分享给朋友
+							wx.onMenuShareAppMessage({
+								title: '快乐鸡舍', // 分享标题
+								desc: '此处需要添加分享描述', // 分享描述
+								link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+								imgUrl: _this.shareImg, // 分享图标
+								type: '', // 分享类型,music、video或link，不填默认为link
+								dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+								success: function(res) {
+									// 用户确认分享后执行的回调函数
+									alert("分享给朋友成功返回的信息为:", res);
+								},
+								cancel: function(res) {
+									// 用户取消分享后执行的回调函数
+									alert("取消分享给朋友返回的信息为:", res);
+								}
+							});
+							//分享到QQ
+							wx.onMenuShareQQ({
+								title: '快乐鸡舍', // 分享标题
+								desc: '此处需要添加分享描述', // 分享描述
+								link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接
+								imgUrl: _this.shareImg, // 分享图标
+								success: function(res) {
+									// 用户确认分享后执行的回调函数
+									alert("分享到QQ好友成功返回的信息为:", res);
+								},
+								cancel: function(res) {
+									// 用户取消分享后执行的回调函数
+									alert("取消分享给QQ好友返回的信息为:", res);
+								}
+							});
+							//分享到QQ空间
+							wx.onMenuShareQZone({
+								title: '快乐鸡舍', // 分享标题
+								desc: '此处需要添加分享描述', // 分享描述
+								link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接
+								imgUrl: _this.shareImg, // 分享图标
+								success: function(res) {
+									// 用户确认分享后执行的回调函数
+									alert("分享到QQ空间成功返回的信息为:", res);
+								},
+								cancel: function(res) {
+									// 用户取消分享后执行的回调函数
+									alert("取消分享到QQ空间返回的信息为:", res);
+								}
+							});
+						});
 //					})();
 			},
 			sold() { //点击卖出

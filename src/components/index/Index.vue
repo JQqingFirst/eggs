@@ -22,14 +22,14 @@
 						</li>
 						<li>
 							<span>光照</span>
-							<p>60Lux</p>
+							<p>12Lux</p>
 						</li>
 					</ul>
 				</div>
 				<div class="chickens">
 					<dl>
-						<dt v-for='item in (inforesult.chicken_num>3?3:inforesult.chicken_num)'><img src="./images/chicken.gif" alt=""></dt>
-						<dt v-for='item in (inforesult.chicken_num>3?0:3-inforesult.chicken_num)'>
+						<dt v-for='item in chickenNum'><img src="./images/chicken3.gif" alt=""></dt>
+						<dt v-for='item in (3-chickenNum)'>
 							<router-link to="/adopt" class='fr'><img src="./images/chicken_2.png" alt=""></router-link>
 						</dt>
 						<dd class="eggs"><img src="./images/eggs.png" alt=""></dd>
@@ -132,9 +132,13 @@
 					let info = await x;
 					var req = info.data;
 					if(req.code === 1) {
-						if(req.result.chicken_num>=3){
-							req.result.chicken_num=3
-						}
+					  _this.chickenNum = req.result.chicken_num
+            if(_this.chickenNum>=3){
+              _this.chickenNum=3
+            }
+//						if(req.result.chicken_num>=3){
+//							req.result.chicken_num=3
+//						}
 						_this.inforesult = { ...req.result};
 					}
 				})();
