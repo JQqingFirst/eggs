@@ -102,20 +102,17 @@
         let infojson1 = {
           url: window.location.href
         }
-        let x = weichat(infojson1);
-        (async function() {
-          let share = await x;
-          _this.share = share;
-        })();
+        let share = await weichat(infojson1);
+        console.log(share)
+         _this.share = share;
+        console.log( _this.share)
 				//微信分享
-
 						wx.config({
 							debug: true,
-							appId: _this.share.appId, // 和获取Ticke的必须一样------必填，公众号的唯一标识
-							timestamp: _this.share.timestamp, // 必填，生成签名的时间戳
-							nonceStr: _this.share.nonceStr, // 必填，生成签名的随机串
-							signature: _this.share.signature, // 必填，签名，见附录1
-							//需要分享的列表项:发送给朋友，分享到朋友圈，分享到QQ，分享到QQ空间
+							appId: _this.share.appId,
+							timestamp: _this.share.timestamp,
+							nonceStr: _this.share.nonceStr,
+							signature: _this.share.signature,
 							jsApiList: [
 								'onMenuShareAppMessage', 'onMenuShareTimeline',
 								'onMenuShareQQ', 'onMenuShareQZone'
