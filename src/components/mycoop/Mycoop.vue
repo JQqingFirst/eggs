@@ -69,7 +69,7 @@ export default {
                 this.infodata = {...info.data.result}
                 this.CHANGE_GOODNUM(info.data.result.gold_num);
             }else{
-               this.$message(info.data.msg);
+//               this.$message(info.data.msg);
             }
         },
     },

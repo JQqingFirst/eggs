@@ -52,7 +52,7 @@ export default {
            if(info.data.code==1){
            		window.history.go(-1)
            }else{
-       	    	this.$message(info.data.msg);
+//       	    	this.$message(info.data.msg);
        		}
         },
         init() {

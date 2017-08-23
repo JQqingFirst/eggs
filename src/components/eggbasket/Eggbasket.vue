@@ -1,9 +1,9 @@
 <template>
 	<div class="basket" v-title='"近期配送"'>
-		<div class="top">
-			<img src="./img/warning.png"> 20枚鸡蛋方可卖出或送好友
-		</div>
-		<banner></banner>
+		<!--<div class="top">-->
+			<!--<img src="./img/warning.png"> 20枚鸡蛋方可卖出或送好友-->
+		<!--</div>-->
+		<!--<banner></banner>-->
 		<div class="give" v-show='give' @click='give=false'>
 			<img src="./img/give.png" alt="">
 		</div>
@@ -30,11 +30,11 @@
 						<img src="./img/gift.gif"> 送给朋友
 					</a>
 				</li>
-				<li class="on">
-					<a @click='sold'>
-						<img src="./img/gold.gif"> 卖出
-					</a>
-				</li>
+				<!--<li class="on">-->
+					<!--<a @click='sold'>-->
+						<!--<img src="./img/gold.gif"> 卖出-->
+					<!--</a>-->
+				<!--</li>-->
 			</ul>
 		</footer>
 		<el-dialog title="" :visible.sync="dialogFormVisible">
@@ -304,7 +304,7 @@
 
 	footer li {
 		float: left;
-		width: 33.33%;
+		width: 50%;
 	}
 
 	footer li.on {

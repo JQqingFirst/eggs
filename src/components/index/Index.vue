@@ -118,7 +118,7 @@
 					(async function() {
 						let info = await x;
 						var req = info.data;
-						_this.$message(info.data.msg);
+//						_this.$message(info.data.msg);
 					})();
 				}
 				let infojson = {
@@ -150,7 +150,7 @@
 					if(req.code === 1) {
 						_this.friendinfo = { ...req.result};
 					} else {
-						_this.$message(info.data.msg);
+//						_this.$message(info.data.msg);
 					}
 				})();
 			},
