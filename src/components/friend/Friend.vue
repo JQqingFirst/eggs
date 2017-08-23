@@ -133,11 +133,11 @@
 						imgUrl: _this.shareImg, // 分享图标
 						success: function(res) {
 							// 用户确认分享后执行的回调函数
-							alert("分享成功!")
+							alert("分享成功!");
 						},
 						cancel: function(res) {
 							// 用户取消分享后执行的回调函数
-							alert("取消分享到朋友圈返回的信息为:", res);
+//							alert("取消分享到朋友圈返回的信息为:", res);
 						}
 					});
 					//分享给朋友
@@ -150,11 +150,11 @@
 						dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 						success: function(res) {
 							// 用户确认分享后执行的回调函数
-							alert("分享给朋友成功返回的信息为:", res);
+              alert("分享成功!");
 						},
 						cancel: function(res) {
 							// 用户取消分享后执行的回调函数
-							alert("取消分享给朋友返回的信息为:", res);
+//							alert("取消分享给朋友返回的信息为:", res);
 						}
 					});
 					//分享到QQ
@@ -165,11 +165,12 @@
 						imgUrl: _this.shareImg, // 分享图标
 						success: function(res) {
 							// 用户确认分享后执行的回调函数
-							alert("分享到QQ好友成功返回的信息为:", res);
+              alert("分享成功!");
+//							alert("分享到QQ好友成功返回的信息为:", res);
 						},
 						cancel: function(res) {
 							// 用户取消分享后执行的回调函数
-							alert("取消分享给QQ好友返回的信息为:", res);
+//							alert("取消分享给QQ好友返回的信息为:", res);
 						}
 					});
 					//分享到QQ空间
@@ -180,11 +181,12 @@
 						imgUrl: _this.shareImg, // 分享图标
 						success: function(res) {
 							// 用户确认分享后执行的回调函数
-							alert("分享到QQ空间成功返回的信息为:", res);
+              alert("分享成功!");
+//							alert("分享到QQ空间成功返回的信息为:", res);
 						},
 						cancel: function(res) {
 							// 用户取消分享后执行的回调函数
-							alert("取消分享到QQ空间返回的信息为:", res);
+//							alert("取消分享到QQ空间返回的信息为:", res);
 						}
 					});
 				});
