@@ -107,7 +107,7 @@
 		         _this.share = {...share.data};
 				//微信分享
 				wx.config({
-					debug: true,
+					debug: false,
 					appId: _this.share.appId,
 					timestamp: _this.share.timestamp,
 					nonceStr: _this.share.nonceStr,
@@ -127,7 +127,8 @@
 					//分享到朋友圈
 					wx.onMenuShareTimeline({
 						title: '快乐鸡舍', // 分享标题
-						link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            desc: '和我一起来养鸡', // 分享描述
+						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
 						imgUrl: _this.shareImg, // 分享图标
 						success: function(res) {
 							// 用户确认分享后执行的回调函数
@@ -135,54 +136,57 @@
 						},
 						cancel: function(res) {
 							// 用户取消分享后执行的回调函数
-							alert("取消分享到朋友圈返回的信息为:", res);
+//							alert("取消分享到朋友圈返回的信息为:", res);
 						}
 					});
 					//分享给朋友
 					wx.onMenuShareAppMessage({
 						title: '快乐鸡舍', // 分享标题
-						desc: '此处需要添加分享描述', // 分享描述
-						link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+						desc: '和我一起来养鸡', // 分享描述
+						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
 						imgUrl: _this.shareImg, // 分享图标
 						type: '', // 分享类型,music、video或link，不填默认为link
 						dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 						success: function(res) {
 							// 用户确认分享后执行的回调函数
-							alert("分享给朋友成功返回的信息为:", res);
+              alert("分享成功!")
+//							alert("分享给朋友成功返回的信息为:", res);
 						},
 						cancel: function(res) {
 							// 用户取消分享后执行的回调函数
-							alert("取消分享给朋友返回的信息为:", res);
+//							alert("取消分享给朋友返回的信息为:", res);
 						}
 					});
 					//分享到QQ
 					wx.onMenuShareQQ({
 						title: '快乐鸡舍', // 分享标题
-						desc: '此处需要添加分享描述', // 分享描述
-						link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接
+						desc: '和我一起来养鸡', // 分享描述
+						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId, // 分享链接
 						imgUrl: _this.shareImg, // 分享图标
 						success: function(res) {
 							// 用户确认分享后执行的回调函数
-							alert("分享到QQ好友成功返回的信息为:", res);
+              alert("分享成功!")
+//							alert("分享到QQ好友成功返回的信息为:", res);
 						},
 						cancel: function(res) {
 							// 用户取消分享后执行的回调函数
-							alert("取消分享给QQ好友返回的信息为:", res);
+//							alert("取消分享给QQ好友返回的信息为:", res);
 						}
 					});
 					//分享到QQ空间
 					wx.onMenuShareQZone({
 						title: '快乐鸡舍', // 分享标题
-						desc: '此处需要添加分享描述', // 分享描述
-						link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接
+						desc: '和我一起来养鸡', // 分享描述
+						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId, // 分享链接
 						imgUrl: _this.shareImg, // 分享图标
 						success: function(res) {
 							// 用户确认分享后执行的回调函数
-							alert("分享到QQ空间成功返回的信息为:", res);
+              alert("分享成功!")
+//							alert("分享到QQ空间成功返回的信息为:", res);
 						},
 						cancel: function(res) {
 							// 用户取消分享后执行的回调函数
-							alert("取消分享到QQ空间返回的信息为:", res);
+//							alert("取消分享到QQ空间返回的信息为:", res);
 						}
 					});
 				});
