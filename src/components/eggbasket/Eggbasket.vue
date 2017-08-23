@@ -55,7 +55,7 @@
 				checkList: ['选中且禁用', '复选框 A'],
 				nearestDelivery: [						//最近配送
 		            {
-		              "is_gift": 2,
+		              "is_gift": 1,
 		              "goods_name": "鸡蛋20枚",
 		              "goods_pic": "http://123.57.65.163/data/uploads/egg_goods/34_5979945a01a0d.png",
 		              "status": "1",
@@ -82,6 +82,10 @@
 				'RECORD_ADDRESS'
 			]),
 	        async Delay(id){                                        //延期配送
+        	 	if(this.nearestDelivery[0].is_gift==1 || this.nearestDelivery[0].status!=1){
+					this.$message('不能延期配送');
+        	 		return false;
+        	 	}
 	            let infojson = {
 	                id:id
 	            }
