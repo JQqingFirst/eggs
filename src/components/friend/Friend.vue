@@ -6,7 +6,7 @@
 		<banner></banner>
 		<div class="clear10"></div>
 		<ul class="friend-list">
-			<li v-for='item in userFriendList.data' class="clearfix">
+			<li v-for='(item,index) in userFriendList.data' class="clearfix">
 				<!-- <img :src='item.img' alt=""> -->
 				<img :src="item.friend_info.wx_pic" alt="" class="fl">
 				<div class="info fl">
@@ -15,7 +15,7 @@
 				</div>
 				<div class='right fr'>
 					<span>
-                        <img src="./img/egg2.gif" v-if='item.friend_info.xiegg_num' @click='storeeggdialog(item.user_id,item.friend_id)'>
+                        <img src="./img/egg2.gif" v-if='item.friend_info.xiegg_num' @click='storeeggdialog(item.user_id,item.friend_id,index)'>
                     </span>
 					<span>
                         <img src="./img/feed.png" v-if='item.friend_info.chicken_num' @click='feeddialog(item.user_id,item.friend_id)'>
@@ -194,7 +194,7 @@
 			sold() { //点击卖出
 				this.dialogFormVisible = true
 			},
-			storeeggdialog(user_id, friend_id) {
+			storeeggdialog(user_id, friend_id,index) {
 				let _this = this;
 				(async function() {
 					let infojson = {
@@ -206,7 +206,9 @@
 					// if(req.code===1){
 					// }else{
 					// _this.storemsg = '已经偷过了，放过他吧'
-          _this.storemsg = req.msg
+          			_this.storemsg = req.msg;
+          			console.log(_this.userFriendList);
+          			_this.userFriendList.data[index].friend_info.xiegg_num=0;
 					// }
 					_this.storeegg = true;
 				})()
