@@ -15,7 +15,7 @@
 				</div>
 				<div class='right fr'>
 					<span>
-                        <img src="./img/egg.gif" v-if='item.friend_info.xiegg_num' @click='storeeggdialog(item.user_id,item.friend_id)'>
+                        <img src="./img/egg2.gif" v-if='item.friend_info.xiegg_num' @click='storeeggdialog(item.user_id,item.friend_id)'>
                     </span>
 					<span>
                         <img src="./img/feed.png" v-if='item.friend_info.chicken_num' @click='feeddialog(item.user_id,item.friend_id)'>
@@ -95,7 +95,7 @@
 				if(req.code === 1) {
 					_this.userFriendList = { ...req.result};
 				} else if(req.code === 0) {
-						_this.$message(req.msg);
+//						_this.$message(req.msg);
 				}
 			},
 			async wxshare(){
@@ -108,7 +108,7 @@
 		        console.log( _this.share)
 				//微信分享
 				wx.config({
-					debug: true,
+					debug: false,
 					appId: _this.share.appId,
 					timestamp: _this.share.timestamp,
 					nonceStr: _this.share.nonceStr,
@@ -128,7 +128,8 @@
 					//分享到朋友圈
 					wx.onMenuShareTimeline({
 						title: '快乐鸡舍', // 分享标题
-						link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            desc: '和我一起来养鸡', // 分享描述
+						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
 						imgUrl: _this.shareImg, // 分享图标
 						success: function(res) {
 							// 用户确认分享后执行的回调函数
@@ -142,8 +143,8 @@
 					//分享给朋友
 					wx.onMenuShareAppMessage({
 						title: '快乐鸡舍', // 分享标题
-						desc: '此处需要添加分享描述', // 分享描述
-						link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+						desc: '和我一起来养鸡', // 分享描述
+						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
 						imgUrl: _this.shareImg, // 分享图标
 						type: '', // 分享类型,music、video或link，不填默认为link
 						dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
@@ -159,8 +160,8 @@
 					//分享到QQ
 					wx.onMenuShareQQ({
 						title: '快乐鸡舍', // 分享标题
-						desc: '此处需要添加分享描述', // 分享描述
-						link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接
+						desc: '和我一起来养鸡', // 分享描述
+						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接
 						imgUrl: _this.shareImg, // 分享图标
 						success: function(res) {
 							// 用户确认分享后执行的回调函数
@@ -174,8 +175,8 @@
 					//分享到QQ空间
 					wx.onMenuShareQZone({
 						title: '快乐鸡舍', // 分享标题
-						desc: '此处需要添加分享描述', // 分享描述
-						link: window.location.href.split('#')[0] + '/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接
+						desc: '和我一起来养鸡', // 分享描述
+						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php#/friend_id/' + _this.userId, // 分享链接
 						imgUrl: _this.shareImg, // 分享图标
 						success: function(res) {
 							// 用户确认分享后执行的回调函数

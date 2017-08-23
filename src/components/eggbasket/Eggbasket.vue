@@ -30,11 +30,11 @@
 						<img src="./img/gift.gif"> 送给朋友
 					</a>
 				</li>
-				<li class="on">
-					<a @click='sold'>
-						<img src="./img/gold.gif"> 卖出
-					</a>
-				</li>
+				<!--<li class="on">-->
+					<!--<a @click='sold'>-->
+						<!--<img src="./img/gold.gif"> 卖出-->
+					<!--</a>-->
+				<!--</li>-->
 			</ul>
 		</footer>
 		<el-dialog title="" :visible.sync="dialogFormVisible">
@@ -304,7 +304,7 @@
 
 	footer li {
 		float: left;
-		width: 33.33%;
+		width: 50%;
 	}
 
 	footer li.on {

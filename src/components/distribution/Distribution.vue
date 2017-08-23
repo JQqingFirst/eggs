@@ -103,7 +103,7 @@ export default {
             }else{
                this.$message(info.data.msg);
             }
-        },  
+        },
         async Delay(id){                                        //延期配送
             let infojson = {
                 id:id
@@ -117,7 +117,7 @@ export default {
     }
 }
 </script>
-<style scoped>  
+<style scoped>
     .box-card{margin: 10px;}
     .box-card h2{}
     .box-card h2 span{float: left;font-size: 16px;font-weight: bold;}
