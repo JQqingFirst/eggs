@@ -98,11 +98,11 @@
 	        },
 			async init() {
 				let infojson = {
-					'user_id': this.$store.state.user_id,
+					'user_id': window.localStorage.getItem('user_id')
 				}
 				let info = await nextDelivery(infojson);
 				if(info.data.code == 1) {
-					this.goodlist = { ...info.data.result}
+					this.nearestDelivery = { ...info.data.result}
 				} else {
 					this.$message(info.data.msg);
 				}
