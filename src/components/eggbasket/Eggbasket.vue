@@ -1,9 +1,9 @@
 <template>
 	<div class="basket" v-title='"近期配送"'>
-		<div class="top">
-			<img src="./img/warning.png"> 20枚鸡蛋方可卖出或送好友
-		</div>
-		<banner></banner>
+		<!--<div class="top">-->
+			<!--<img src="./img/warning.png"> 20枚鸡蛋方可卖出或送好友-->
+		<!--</div>-->
+		<!--<banner></banner>-->
 		<div class="give" v-show='give' @click='give=false'>
 			<img src="./img/give.png" alt="">
 		</div>
