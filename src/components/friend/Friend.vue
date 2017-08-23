@@ -98,14 +98,13 @@
 						_this.$message(req.msg);
 				}
 			},
-			wxshare(){
+			async wxshare(){
 				let _this = this;
 		        let infojson1 = {
 		          url: window.location.href
 		        }
-		        let share = weichat(infojson1);
-		        console.log(share)
-		         _this.share = share;
+		        let share =await weichat(infojson1);
+		         _this.share = {...share.data};
 		        console.log( _this.share)
 				//微信分享
 				wx.config({
