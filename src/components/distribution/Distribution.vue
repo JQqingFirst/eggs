@@ -101,7 +101,7 @@ export default {
             if(nextDeliveryData.data.code==1){
                 this.nearestDelivery = {...nextDeliveryData.data.result}
             }else{
-               this.$message(info.data.msg);
+               this.$message(nextDeliveryData.data.msg);
             }
         },
         async Delay(id){                                        //延期配送
