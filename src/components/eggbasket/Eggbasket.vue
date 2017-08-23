@@ -1,9 +1,5 @@
 <template>
 	<div class="basket" v-title='"近期配送"'>
-		<!--<div class="top">-->
-			<!--<img src="./img/warning.png"> 20枚鸡蛋方可卖出或送好友-->
-		<!--</div>-->
-		<!--<banner></banner>-->
 		<div class="give" v-show='give' @click='give=false'>
 			<img src="./img/give.png" alt="">
 		</div>
@@ -11,9 +7,9 @@
 		<div class="info">
 			<el-checkbox-group v-model="checkList" change='checkListss'>
 				<ul>
-					<li v-for='item in goodlist'>
+					<li v-for='item in nearestDelivery'>
 						<img :src='item.goods_pic'> {{item.goods_name}}
-						<el-checkbox :label='item.id' :key='item.id' class='fr' v-if='item.is_gift!=1 && item.status==1'></el-checkbox>
+						<!-- <el-checkbox :label='item.id' :key='item.id' class='fr' v-if='item.is_gift!=1 && item.status==1'></el-checkbox> -->
 					</li>
 				</ul>
 			</el-checkbox-group>
@@ -21,7 +17,7 @@
 		<footer>
 			<ul class="clearfix">
 				<li>
-					<a>
+					<a @click='Delay(nearestDelivery[0].id)'>
 						<img src="./img/add.gif"> 延迟配送
 					</a>
 				</li>
@@ -30,11 +26,6 @@
 						<img src="./img/gift.gif"> 送给朋友
 					</a>
 				</li>
-				<!--<li class="on">-->
-					<!--<a @click='sold'>-->
-						<!--<img src="./img/gold.gif"> 卖出-->
-					<!--</a>-->
-				<!--</li>-->
 			</ul>
 		</footer>
 		<el-dialog title="" :visible.sync="dialogFormVisible">
@@ -52,8 +43,7 @@
 	</div>
 </template>
 <script>
-	import banner from '../common/banner/banner.vue'
-	import { nextDelivery, weichat } from '../../service/getdata.js'
+	import { nextDelivery, weichat ,delayedDelivery} from '../../service/getdata.js'
 	import { mapState, mapMutations, } from 'vuex'
 	import wx from 'weixin-js-sdk'
 	export default {
@@ -61,26 +51,54 @@
 		data() {
 			return {
 				give: false,
-				dialogFormVisible: false, //卖出弹窗
+				dialogFormVisible: false, 		//卖出弹窗
 				checkList: ['选中且禁用', '复选框 A'],
-				goodlist: []
+				nearestDelivery: [						//最近配送
+		            {
+		              "is_gift": 2,
+		              "goods_name": "鸡蛋20枚",
+		              "goods_pic": "http://123.57.65.163/data/uploads/egg_goods/34_5979945a01a0d.png",
+		              "status": "1",
+		              "time" : "第-1-期",
+		              "date":"2017-08-20",
+		              "status_info": "已赠送好友",
+		              "id": "2"
+		            },
+		            {
+		              "is_gift": 1,
+		              "goods_pic": "http://123.57.65.163/data/uploads/egg_goods49",
+		              "goods_name": "赠品！快乐de蛋围裙",
+		              "status": "1",
+		              "time" : "第-1-期",
+		              "date":"2017-08-20",
+		              "status_info": "待配送",
+		              "id": "2"
+		            }
+            	]
 			}
-		},
-		components: {
-			banner
 		},
 		methods: {
 			...mapMutations([
 				'RECORD_ADDRESS'
 			]),
+	        async Delay(id){                                        //延期配送
+	            let infojson = {
+	                id:id
+	            }
+	            let delayedDeliveryData = await delayedDelivery(infojson);
+	            if(delayedDeliveryData.data==1){
+	                this.init()
+	            }else{
+	                this.$message(delayedDeliveryData.data.msg);
+	            }
+	        },
 			async init() {
 				let infojson = {
 					'user_id': this.$store.state.user_id,
 				}
 				let info = await nextDelivery(infojson);
 				if(info.data.code == 1) {
-					this.goodlist = { ...info.data.result
-					}
+					this.goodlist = { ...info.data.result}
 				} else {
 					this.$message(info.data.msg);
 				}
