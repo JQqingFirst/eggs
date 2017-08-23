@@ -5,7 +5,7 @@
             <h2 class="clearfix"><span>{{item.time}}</span><em v-if='item.is_gift!=1' @click='init'>配送计划</em></h2>
             <div class="clear10"></div>
             <ul>
-                <li><span>配送日期：</span><em>{{item.time}}</em></li>
+                <li><span>配送日期：</span><em>{{item.date}}</em></li>
                 <li><span>鸡蛋数量：</span><em>{{item.goods_name}}</em></li>
             </ul>
         </el-card>
@@ -109,7 +109,11 @@ export default {
                 id:id
             }
             let delayedDeliveryData = await delayedDelivery(infojson);
-            this.$message(delayedDeliveryData.data.msg);
+            if(delayedDeliveryData.data==1){
+                this.nextDelivery()
+            }else{
+                this.$message(delayedDeliveryData.data.msg);
+            }
         }
     },
     mounted(){
@@ -126,9 +130,6 @@ export default {
     .box-card li{line-height:36px;}
     .box-card li span{color: #a6a09d;}
     .box-card li em{color:#5a463a;}
-
-
-
     .distribution{background-color: #f2f2f2;height: 100%;}
     .distribution-con{width: 100%}
     .distribution-con li{line-height: 40px;font-size: 18px;font-weight: bolder;color:#b5b5b5;width: 100%;}
