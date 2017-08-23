@@ -80,7 +80,7 @@
 			            }
 			        ]
 			   },
-				shareImg: ''
+				shareImg: 'http://weixin.yangjiguanjia.com/LaneWeChat/yangjiguanjia/send_happyegg/assets/img/imgurl.jpg'
 			}
 		},
 		methods: {
