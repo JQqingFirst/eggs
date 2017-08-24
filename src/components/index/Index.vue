@@ -34,8 +34,8 @@
 						</dt>
 						<dd class="eggs"><img src="./images/eggs.png" alt=""></dd>
 						<dd class="egg2">
-						<img src="./images/egg_2.png" v-if='inforesult.xi_egg!=100'>
-						<img src="./images/steal.gif" v-if='inforesult.xi_egg==100' class="steal" @click='steal'>
+						<img src="./images/egg_2.png" v-if='!showSteal' class="steal" @click='steal'>
+						<img src="./images/steal.gif" v-if='showSteal' class="steal">
 							<div class="egg2-tip">
 								<span>喜蛋进度</span>
 								<p>{{inforesult.xi_egg}}%</p>
@@ -78,11 +78,12 @@
 		data() {
 			return {
 				chickenNum: 2, //我领养鸡的数量
+				showSteal:false,//当点击的鸡蛋的 时候
 				inforesult: {
 					"id": "1",
 					"user_id": '',
 					"chicken_num":6, //鸡的数量
-					"egg_num": "11", //蛋的数量
+					"egg_num": 11, //蛋的数量
 					"update_at": "", //更新时间
 					"xi_egg": 100 //喜蛋进度
 				},
@@ -136,7 +137,7 @@
 			            if(_this.chickenNum>=3){
 			              _this.chickenNum=3
 			            }
-						_this.inforesult = { ...req.result};
+						// _this.inforesult = {...req.result};
 					}
 				})();
 				//我的好友
@@ -152,14 +153,18 @@
 				})();
 			},
 			async steal(){
+				if(this.inforesult.xi_egg!=100){
+					return false;
+				}
 				let infojson={
 					user_id: window.localStorage.getItem('user_id'),
 					friend_id: window.localStorage.getItem('user_id')	
 				}
 				let info = await stealEgg(infojson);
 				this.$message(info.data.msg);
-				if(req.code === 1) { //成功之后重新加载数据
-					this.init();
+				if(info.data.code === 1) { //成功之后重新加载数据
+					this.showSteal=true;	
+					this.inforesult.egg_num++
 				} else {
 //					_this.$message(info.data.msg);
 				}
