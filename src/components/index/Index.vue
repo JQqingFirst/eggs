@@ -34,8 +34,8 @@
 						</dt>
 						<dd class="eggs"><img src="./images/eggs.png" alt=""></dd>
 						<dd class="egg2">
-						<img src="./images/egg_2.png" v-if='inforesult.xi_egg!=100' alt="">
-						<router-link to="/friend" class='fr' v-if='inforesult.xi_egg==100'><img src="./images/egg_2.png" alt=""></router-link>
+						<img src="./images/egg_2.png" v-if='inforesult.xi_egg!=100'>
+						<img src="./images/steal.gif" v-if='inforesult.xi_egg==100' class="steal" @click='steal'>
 							<div class="egg2-tip">
 								<span>喜蛋进度</span>
 								<p>{{inforesult.xi_egg}}%</p>
@@ -70,7 +70,7 @@
 </template>
 <script>
 	import foot from '../common/footer/footer.vue'
-	import { info, gameLogList, addFriends, weichat } from '../../service/getdata.js'
+	import { info, gameLogList, addFriends, weichat,stealEgg } from '../../service/getdata.js'
 	import { mapState, mapMutations } from 'vuex'
 
 	export default {
@@ -132,13 +132,10 @@
 					let info = await x;
 					var req = info.data;
 					if(req.code === 1) {
-					  _this.chickenNum = req.result.chicken_num
-            if(_this.chickenNum>=3){
-              _this.chickenNum=3
-            }
-//						if(req.result.chicken_num>=3){
-//							req.result.chicken_num=3
-//						}
+					  	_this.chickenNum = req.result.chicken_num
+			            if(_this.chickenNum>=3){
+			              _this.chickenNum=3
+			            }
 						_this.inforesult = { ...req.result};
 					}
 				})();
@@ -154,6 +151,19 @@
 					}
 				})();
 			},
+			async steal(){
+				let infojson={
+					user_id: window.localStorage.getItem('user_id'),
+					friend_id: window.localStorage.getItem('user_id')	
+				}
+				let info = await stealEgg(infojson);
+				this.$message(info.data.msg);
+				if(req.code === 1) { //成功之后重新加载数据
+					this.init();
+				} else {
+//					_this.$message(info.data.msg);
+				}
+			}
 			showchange: function(data) {
 				console.log(data);
 			}
@@ -184,6 +194,7 @@
 	.chickens .eggs{float:left;margin-top:20px;margin-left:30px;width:50%;}
 	.chickens .eggs img{width:100%;height:100%;}
 	.chickens .egg2{position:relative;float:left;margin-top:10px;margin-left:10px;width:33.33%;height:60px;}
+	.chickens .egg2 .steal{position: absolute;right:36px;height:64px;bottom: 10px;}
 	.chickens .egg2 img{height:100%;}
 	.chickens .egg2 a{display: inline-block;width: 100%;height: 100%;}
 	.chickens .egg2 a img{height:100%;}
