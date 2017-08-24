@@ -60,25 +60,25 @@
 				storeegg: false, //恭喜您成功偷取好友一枚喜蛋
 				feedchecken: false, //喂鸡成功弹窗
 				userFriendList: {
-			        "current_page": 1,
-			        "total_count": "2",
-			        "perPage_count": 20,
-			        "totalPage_count": 1,
-			        "data": [
-		            	{
-			                "id": "1",
-			                "user_id": "1",
-			                "friend_id": "11",
-			                "friend_info": {
-			                    "mobile": "",
-			                    "wx_open_id": "wwe121221",
-			                    "wx_pic": "http://dl.bizhi.sogou.com/images/1920x1080/2015/02/12/1087113.jpg",
-			                    "wx_nick_name": "sdsd",
-			                    "xiegg_num": "1",  //喜蛋数量
-			                    "chicken_num": "2"  //鸡的数量
-			                }
-			            }
-			        ]
+//			        "current_page": 1,
+//			        "total_count": "2",
+//			        "perPage_count": 20,
+//			        "totalPage_count": 1,
+//			        "data": [
+//		            	{
+//			                "id": "1",
+//			                "user_id": "1",
+//			                "friend_id": "11",
+//			                "friend_info": {
+//			                    "mobile": "",
+//			                    "wx_open_id": "wwe121221",
+//			                    "wx_pic": "http://dl.bizhi.sogou.com/images/1920x1080/2015/02/12/1087113.jpg",
+//			                    "wx_nick_name": "sdsd",
+//			                    "xiegg_num": "1",  //喜蛋数量
+//			                    "chicken_num": "2"  //鸡的数量
+//			                }
+//			            }
+//			        ]
 			   },
 				shareImg: 'http://weixin.yangjiguanjia.com/LaneWeChat/yangjiguanjia/send_happyegg/assets/img/imgurl.jpg'
 			}
@@ -127,7 +127,6 @@
 					//分享到朋友圈
 					wx.onMenuShareTimeline({
 						title: '快乐鸡舍', // 分享标题
-            desc: '和我一起来养鸡', // 分享描述
 						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
 						imgUrl: _this.shareImg, // 分享图标
 						success: function(res) {
