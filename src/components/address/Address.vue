@@ -56,6 +56,7 @@ export default {
        		}
         },
         async geteggs(){
+            this.form.user_id = window.localStorage.getItem('user_id')
             this.form.info_id = this.$route.query.info_id;
             this.form.name = this.form.user_name;
             delete this.form.user_name;
