@@ -163,7 +163,7 @@
 				} else {
 //					_this.$message(info.data.msg);
 				}
-			}
+			},
 			showchange: function(data) {
 				console.log(data);
 			}
