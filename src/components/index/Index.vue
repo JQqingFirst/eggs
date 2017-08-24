@@ -137,7 +137,7 @@
 			            if(_this.chickenNum>=3){
 			              _this.chickenNum=3
 			            }
-						// _this.inforesult = {...req.result};
+						_this.inforesult = {...req.result};
 					}
 				})();
 				//我的好友
