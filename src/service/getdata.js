@@ -2,7 +2,7 @@
  * @Author: 111
  * @Date:   2017-06-27 10:19:13
  * @Last Modified by:   just success
- * @Last Modified time: 2017-08-17 10:38:18
+ * @Last Modified time: 2017-08-24 16:33:40
  */
 import axios from 'axios'
 import qs from 'qs'
@@ -55,8 +55,8 @@ export const wxpay = (json) =>new axios.get("http://weixin.yangjiguanjia.com/wxp
 //金币兑换鸡蛋接口
 export const goldforegg = (json) =>new axios.post("/Api2/ZjisheFriends/goldforegg",qs.stringify(json));
 //领取好友赠送的鸡蛋 
-export const getGift = (json) =>new axios.get("/Api2/EggDistributionInfo/getGift", {'params':json});
-//领取好友赠送的鸡蛋 
+export const getGift = (json) =>new axios.post("/Api2/EggDistributionInfo/getGift",qs.stringify(json));
+//添加朋友 
 export const addFriends = (json) =>new axios.get("/Api2/ZjisheFriends/addFriends", {'params':json});
 //获取微信分享权限参数
 export const weichat = (json) =>new axios.get("http://weixin.yangjiguanjia.com/LaneWeChat2/api_getsign.php",{'params':json});

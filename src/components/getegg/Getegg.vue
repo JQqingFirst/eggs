@@ -4,7 +4,7 @@
     	<p>关注公众号"快乐的蛋"，查看我的蛋筐</p>
     	<img src='./img/eggshare.jpg'>
         <div class="text-center">
-            <router-link to="/address" class='el-button el-button--warning'>去填写配送地址</router-link>
+            <router-link :to='{path:"address",query:{info_id:this.$route.query.info_id}}' class='el-button el-button--warning'>去填写配送地址</router-link>
         </div>
     </div>
 </template>

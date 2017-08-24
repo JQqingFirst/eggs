@@ -17,7 +17,7 @@
     </div>
 </template>
 <script>
-    import {info,add,getDefault} from '../../service/getdata.js'
+    import {info,add,getDefault,getGift} from '../../service/getdata.js'
 export default {
   name: 'address',
   data () {
@@ -55,6 +55,20 @@ export default {
 //       	    	this.$message(info.data.msg);
        		}
         },
+        async geteggs(){
+            this.form.info_id = this.$route.query.info_id;
+            this.form.name = this.form.user_name;
+            delete this.form.user_name;
+            let info = await getGift(this.form);
+                this.$message(info.data.msg);
+           if(info.data.code==1){
+                // this.$message(info.data.msg);
+                //跳转到我的页面
+                // this.$router.push('/mycoop')
+           }else{
+//              this.$message(info.data.msg);
+            }
+        },
         init() {
             let _this = this;
             let infojson={
@@ -69,6 +83,10 @@ export default {
         submitForm(formName) {
             let _this = this;
             this.$refs[formName].validate((valid) => {
+                if(this.$route.query.info_id){ //如果是领取好友蛋的
+                    _this.geteggs();
+                    return false;
+                }
                 if (valid) {
                     _this.sendform();
                 } else {
