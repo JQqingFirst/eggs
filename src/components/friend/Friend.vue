@@ -47,7 +47,6 @@
 	import banner from '../common/banner/banner.vue'
 	import { userFriendList, feed, stealEgg, weichat } from '../../service/getdata.js'
 	import { mapState } from 'vuex'
-	import wx from 'weixin-js-sdk'
 	export default {
 		name: 'mycoop',
 		data() {

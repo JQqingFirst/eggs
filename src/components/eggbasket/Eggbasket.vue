@@ -45,7 +45,6 @@
 <script>
 	import { nextDelivery, weichat ,delayedDelivery} from '../../service/getdata.js'
 	import { mapState, mapMutations, } from 'vuex'
-	import wx from 'weixin-js-sdk'
 	export default {
 		name: 'mycoop',
 		data() {
