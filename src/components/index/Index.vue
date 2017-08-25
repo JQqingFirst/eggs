@@ -164,7 +164,8 @@
 				this.$message(info.data.msg);
 				if(info.data.code === 1) { //成功之后重新加载数据
 					this.showSteal=true;	
-					this.inforesult.egg_num++
+					this.inforesult.egg_num++;
+					this.inforesult.xi_egg=0;
 				} else {
 //					_this.$message(info.data.msg);
 				}

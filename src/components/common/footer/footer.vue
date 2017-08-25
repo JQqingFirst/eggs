@@ -25,7 +25,7 @@
     </footer>
 </template>
 <style scoped>
-    footer{position:fixed;bottom:6px;left:0;width:100%;}
+    footer{position:fixed;bottom:6px;left:0;width:100%;background-color:#fff;padding-top: 6px;}
     footer ul{width:100%;}
     footer li{float:left;width:33.33%;text-align:center;}
     footer li.on a{color: #f7ab26;}
