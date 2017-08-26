@@ -106,11 +106,15 @@
 		         _this.share = {...share.data};
 				//微信分享
 				wx.config({
-					debug: false,
-					appId: _this.share.appId,
-					timestamp: _this.share.timestamp,
-					nonceStr: _this.share.nonceStr,
-					signature: _this.share.signature,
+					debug: true,
+					// appId: _this.share.appId,
+					// timestamp: _this.share.timestamp,
+					// nonceStr: _this.share.nonceStr,
+					// signature: _this.share.signature,
+					appId: "wx140e2b4a25e65077",
+					timestamp: '1503656789',
+					nonceStr:"PPPCNttUkR8HNrUT",
+					signature: 'd378cbd69b0b3495b15a1130ed0bc66f28ed3ff0',
 					jsApiList: [
 						'onMenuShareAppMessage', 'onMenuShareTimeline',
 						'onMenuShareQQ', 'onMenuShareQZone'
