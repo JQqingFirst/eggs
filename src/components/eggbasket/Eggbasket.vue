@@ -138,7 +138,7 @@
 		        	let shareinfo = {
 						title: '快乐鸡舍', 				// 分享标题
 						desc: '赠给你一个鸡蛋大礼包', 		// 分享描述
-						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/#/getegg?info_id' + _this.nearestDelivery[0].id, 					// 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/#/getegg?info_id=' + _this.nearestDelivery[0].id, 					// 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
 						imgUrl: _this.shareImg, 	// 分享图标
 						success: function(res) {	//用户确认分享后执行的回调函数
 							alert("分享成功!")
