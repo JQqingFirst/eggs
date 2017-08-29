@@ -8,8 +8,10 @@
 			<el-checkbox-group v-model="checkList" change='checkListss'>
 				<ul>
 					<li v-for='item in nearestDelivery'>
-						<img :src='item.goods_pic'> {{item.goods_name}}
-						<!-- <el-checkbox :label='item.id' :key='item.id' class='fr' v-if='item.is_gift!=1 && item.status==1'></el-checkbox> -->
+						<img :src='item.goods_pic'>
+						<div>
+							<span>{{item.goods_name}} <br>{{item.time}}{{item.date}}</span>
+						</div>
 					</li>
 				</ul>
 			</el-checkbox-group>
@@ -54,26 +56,26 @@
 				dialogFormVisible: false, 		//卖出弹窗
 				checkList: ['选中且禁用', '复选框 A'],
 				nearestDelivery: [						//最近配送
-//		            {
-//		              "is_gift": 1,
-//		              "goods_name": "鸡蛋20枚",
-//		              "goods_pic": "http://123.57.65.163/data/uploads/egg_goods/34_5979945a01a0d.png",
-//		              "status": "1",
-//		              "time" : "第-1-期",
-//		              "date":"2017-08-20",
-//		              "status_info": "已赠送好友",
-//		              "id": "2"
-//		            },
-//		            {
-//		              "is_gift": 1,
-//		              "goods_pic": "http://123.57.65.163/data/uploads/egg_goods49",
-//		              "goods_name": "赠品！快乐de蛋围裙",
-//		              "status": "1",
-//		              "time" : "第-1-期",
-//		              "date":"2017-08-20",
-//		              "status_info": "待配送",
-//		              "id": "2"
-//		            }
+		            {
+		              "is_gift": 1,
+		              "goods_name": "鸡蛋20枚",
+		              "goods_pic": "http://123.57.65.163/data/uploads/egg_goods/34_5979945a01a0d.png",
+		              "status": "1",
+		              "time" : "第-1-期",
+		              "date":"2017-08-20",
+		              "status_info": "已赠送好友",
+		              "id": "2"
+		            },
+		            {
+		              "is_gift": 1,
+		              "goods_pic": "http://123.57.65.163/data/uploads/egg_goods49",
+		              "goods_name": "赠品！快乐de蛋围裙",
+		              "status": "1",
+		              "time" : "第-1-期",
+		              "date":"2017-08-20",
+		              "status_info": "待配送",
+		              "id": "2"
+		            }
             	],
         shareImg: 'http://weixin.yangjiguanjia.com/LaneWeChat/yangjiguanjia/send_happyegg/assets/img/imgurl.jpg'
 			}
@@ -212,118 +214,23 @@
 	}
 </style>
 <style scoped>
-	.basket {
-		height: 100%;
-		background-color: #f2f2f2;
-	}
+	.basket{height:100%;background-color:#f2f2f2;}
+	.top{height:40px;background-color:#fae3d2;color:red;color:#f39500;text-align:center;font-size:16px;line-height:40px;}
+	.top img{margin-top:-4px;margin-right:4px;width:18px;height:18px;}
+	.give{position:fixed;top:0;right:0;bottom:0;left:0;z-index:33;height:100%;background-color:rgba(0,0,0,.4);}
+	.give img{float:right;margin:20px 30px 0 0;width:70%;}
+	.info li{margin:10px;height:100px;border-radius:3px;background-color:#fff;color:#5a463a;}
+	.info li img{float:left;margin-right:20px;width:80px;height:80px;border-radius:3px;margin:10px;}
+	.info li div{float:left;line-height: 30px;margin-top: 20px;margin-left:20px;}
+	.info li label{margin-top:40px;margin-right:30px;}
+	footer{position:fixed;bottom:0;left:0;z-index:2;width:100%;height:50px;background-color:#fff;line-height:50px;}
+	footer ul{height:50px;}
+	footer li{float:left;width:50%;}
+	footer li.on{background-color:#fbfbfb;}
+	footer li a{position:relative;display:block;padding-left:20px;height:50px;color:#000;color:#5a463a;text-align:center;line-height:50px;}
+	footer li a img{position:absolute;top:10px;left:50%;margin-left:-55px;width:27px;}
+	.dialog-footer{width:100%;}
+	.dialog-footer button{width:100%;}
+	.dialog-info{font-size:14px;line-height:30px;}
 
-	.top {
-		height: 40px;
-		background-color: #fae3d2;
-		color: red;
-		color: #f39500;
-		text-align: center;
-		font-size: 16px;
-		line-height: 40px;
-	}
-
-	.top img {
-		margin-top: -4px;
-		margin-right: 4px;
-		width: 18px;
-		height: 18px;
-	}
-
-	.give {
-		position: fixed;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		z-index: 33;
-		height: 100%;
-		background-color: rgba(0, 0, 0, .4);
-	}
-
-	.give img {
-		float: right;
-		margin: 20px 30px 0 0;
-		width: 70%;
-	}
-
-	.info li {
-		margin: 10px;
-		border-radius: 3px;
-		background-color: #fff;
-		color: #5a463a;
-		height: 100px;
-	}
-
-	.info li img {
-		margin-right: 20px;
-		width: 100px;
-		border-radius: 3px;
-		height: 100%;
-	}
-
-	.info li label {
-		margin-top: 40px;
-		margin-right: 30px;
-	}
-
-	footer {
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 50px;
-		background-color: #fff;
-		line-height: 50px;
-		z-index: 2;
-	}
-
-	footer ul {
-		height: 50px;
-	}
-
-	footer li {
-		float: left;
-		width: 50%;
-	}
-
-	footer li.on {
-		background-color: #fbfbfb;
-	}
-
-	footer li a {
-		position: relative;
-		display: block;
-		padding-left: 20px;
-		height: 50px;
-		color: #000;
-		color: #5a463a;
-		text-align: center;
-		line-height: 50px;
-	}
-
-	footer li a img {
-		position: absolute;
-		top: 10px;
-		left: 50%;
-		margin-left: -55px;
-		width: 27px;
-	}
-
-	.dialog-footer {
-		width: 100%;
-	}
-
-	.dialog-footer button {
-		width: 100%;
-	}
-
-	.dialog-info {
-		font-size: 14px;
-		line-height: 30px;
-	}
 </style>
