@@ -1,7 +1,7 @@
 <template>
 	<div class="basket" v-title='"近期配送"'>
 		<div class="give" v-show='give' @click='give=false'>
-			<img src="./img/give.png" alt="">
+			<img src="./img/give1.jpg" alt="">
 		</div>
 		<div class="clear1"></div>
 		<div class="info">
@@ -113,13 +113,13 @@
 		        let _this = this;
 		        _this.userId = window.localStorage.getItem('user_id')
 		        let infojson1 = {
-		          url: window.location.href
+		          url: window.location.href.split('#')[0]
 		        }
 		        let share = await weichat(infojson1);
 		        _this.share = {...share.data};
 		        //微信分享
 		        wx.config({
-					debug: true,
+					debug: false,
 					appId: _this.share.appId,
 					timestamp: _this.share.timestamp,
 					nonceStr: _this.share.nonceStr,
@@ -130,9 +130,9 @@
 					]
 		        });
 		        //处理验证失败的信息
-		        wx.error(function(res) {
-		          logUtil.printLog('验证失败返回的信息:', res);
-		        });
+//		        wx.error(function(res) {
+//		          logUtil.printLog('验证失败返回的信息:', res);
+//		        });
 		        //处理验证成功的信息
 		        wx.ready(function() {
 		        	let shareinfo = {

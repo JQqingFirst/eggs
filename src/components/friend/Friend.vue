@@ -1,8 +1,8 @@
 <template>
 	<div class="friend" v-title='"好友榜"'>
-		<div class="top">
-			<img src="./img/warning.png"> 20枚鸡蛋方可卖出或送好友
-		</div>
+		<!--<div class="top">-->
+			<!--<img src="./img/warning.png"> 20枚鸡蛋方可卖出或送好友-->
+		<!--</div>-->
 		<banner></banner>
 		<div class="clear10"></div>
 		<ul class="friend-list">
@@ -100,7 +100,7 @@
 			async wxshare(){
 				let _this = this;
 		        let infojson1 = {
-		          url: window.location.href
+		          url: window.location.href.split('#')[0]
 		        }
 		        let share = await weichat(infojson1);
 		         _this.share = {...share.data};
@@ -112,37 +112,34 @@
 					nonceStr: _this.share.nonceStr,
 					signature: _this.share.signature,
 					jsApiList: [
-						'onMenuShareAppMessage', 'onMenuShareTimeline',
-						'onMenuShareQQ', 'onMenuShareQZone'
+						'onMenuShareAppMessage', 'onMenuShareTimeline'
 					]
 				});
 				//处理验证失败的信息
-				wx.error(function(res) {
-					logUtil.printLog('验证失败返回的信息:', res);
-				});
+//				wx.error(function(res) {
+//					logUtil.printLog('验证失败返回的信息:', res);
+//				});
 				//处理验证成功的信息
 				wx.ready(function() {
-					//							alert(window.location.href.split('#')[0]);
 					//分享到朋友圈
 					wx.onMenuShareTimeline({
-						title: '快乐鸡舍', // 分享标题
-						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-						imgUrl: _this.shareImg, // 分享图标
+						title: '快乐鸡舍',
+						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId,
+						imgUrl: _this.shareImg,
 						success: function(res) {
 							// 用户确认分享后执行的回调函数
 							alert("分享成功!")
 						},
 						cancel: function(res) {
 							// 用户取消分享后执行的回调函数
-//							alert("取消分享到朋友圈返回的信息为:", res);
 						}
 					});
 					//分享给朋友
 					wx.onMenuShareAppMessage({
-						title: '快乐鸡舍', // 分享标题
-						desc: '和我一起来养鸡', // 分享描述
-						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-						imgUrl: _this.shareImg, // 分享图标
+						title: '快乐鸡舍',
+						desc: '和我一起来养鸡',
+						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId,
+						imgUrl: _this.shareImg,
 						type: '', // 分享类型,music、video或link，不填默认为link
 						dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 						success: function(res) {
@@ -152,41 +149,40 @@
 						},
 						cancel: function(res) {
 							// 用户取消分享后执行的回调函数
-//							alert("取消分享给朋友返回的信息为:", res);
 						}
 					});
 					//分享到QQ
-					wx.onMenuShareQQ({
-						title: '快乐鸡舍', // 分享标题
-						desc: '和我一起来养鸡', // 分享描述
-						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId, // 分享链接
-						imgUrl: _this.shareImg, // 分享图标
-						success: function(res) {
-							// 用户确认分享后执行的回调函数
-              alert("分享成功!")
-//							alert("分享到QQ好友成功返回的信息为:", res);
-						},
-						cancel: function(res) {
-							// 用户取消分享后执行的回调函数
-//							alert("取消分享给QQ好友返回的信息为:", res);
-						}
-					});
+//					wx.onMenuShareQQ({
+//						title: '快乐鸡舍', // 分享标题
+//						desc: '和我一起来养鸡', // 分享描述
+//						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId, // 分享链接
+//						imgUrl: _this.shareImg, // 分享图标
+//						success: function(res) {
+//							// 用户确认分享后执行的回调函数
+//              alert("分享成功!")
+////							alert("分享到QQ好友成功返回的信息为:", res);
+//						},
+//						cancel: function(res) {
+//							// 用户取消分享后执行的回调函数
+////							alert("取消分享给QQ好友返回的信息为:", res);
+//						}
+//					});
 					//分享到QQ空间
-					wx.onMenuShareQZone({
-						title: '快乐鸡舍', // 分享标题
-						desc: '和我一起来养鸡', // 分享描述
-						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId, // 分享链接
-						imgUrl: _this.shareImg, // 分享图标
-						success: function(res) {
-							// 用户确认分享后执行的回调函数
-              alert("分享成功!")
-//							alert("分享到QQ空间成功返回的信息为:", res);
-						},
-						cancel: function(res) {
-							// 用户取消分享后执行的回调函数
-//							alert("取消分享到QQ空间返回的信息为:", res);
-						}
-					});
+//					wx.onMenuShareQZone({
+//						title: '快乐鸡舍', // 分享标题
+//						desc: '和我一起来养鸡', // 分享描述
+//						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId, // 分享链接
+//						imgUrl: _this.shareImg, // 分享图标
+//						success: function(res) {
+//							// 用户确认分享后执行的回调函数
+//              alert("分享成功!")
+////							alert("分享到QQ空间成功返回的信息为:", res);
+//						},
+//						cancel: function(res) {
+//							// 用户取消分享后执行的回调函数
+////							alert("取消分享到QQ空间返回的信息为:", res);
+//						}
+//					});
 				});
 			},
 			sold() { //点击卖出

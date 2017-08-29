@@ -8,12 +8,12 @@
                 首页
             </router-link>
         </li>
-        <li>
-        <a href="https://h5.youzan.com/v2/showcase/homepage?alias=15ykd2n8k&redirect_count=2 ">
-                <img src="./img/mall.png"><br>
-                商城
-        </a>
-        </li>
+        <!--<li>-->
+        <!--<a href="https://h5.youzan.com/v2/showcase/homepage?alias=15ykd2n8k&redirect_count=2 ">-->
+                <!--<img src="./img/mall.png"><br>-->
+                <!--商城-->
+        <!--</a>-->
+        <!--</li>-->
         <li :class="$route.path=='/mycoop'?'on':''">
             <router-link to="/mycoop">
                 <img src="./img/mind.png" v-if="$route.path!='/mycoop'">
