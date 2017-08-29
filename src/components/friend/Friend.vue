@@ -106,15 +106,11 @@
 		         _this.share = {...share.data};
 				//微信分享
 				wx.config({
-					debug: true,
-					// appId: _this.share.appId,
-					// timestamp: _this.share.timestamp,
-					// nonceStr: _this.share.nonceStr,
-					// signature: _this.share.signature,
-					appId: "wx140e2b4a25e65077",
-					timestamp: '1503656789',
-					nonceStr:"PPPCNttUkR8HNrUT",
-					signature: 'd378cbd69b0b3495b15a1130ed0bc66f28ed3ff0',
+					debug: false,
+					 appId: _this.share.appId,
+					 timestamp: _this.share.timestamp,
+					 nonceStr: _this.share.nonceStr,
+					 signature: _this.share.signature,
 					jsApiList: [
 						'onMenuShareAppMessage', 'onMenuShareTimeline'
 					]
@@ -155,38 +151,7 @@
 							// 用户取消分享后执行的回调函数
 						}
 					});
-					//分享到QQ
-//					wx.onMenuShareQQ({
-//						title: '快乐鸡舍', // 分享标题
-//						desc: '和我一起来养鸡', // 分享描述
-//						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId, // 分享链接
-//						imgUrl: _this.shareImg, // 分享图标
-//						success: function(res) {
-//							// 用户确认分享后执行的回调函数
-//              alert("分享成功!")
-////							alert("分享到QQ好友成功返回的信息为:", res);
-//						},
-//						cancel: function(res) {
-//							// 用户取消分享后执行的回调函数
-////							alert("取消分享给QQ好友返回的信息为:", res);
-//						}
-//					});
-					//分享到QQ空间
-//					wx.onMenuShareQZone({
-//						title: '快乐鸡舍', // 分享标题
-//						desc: '和我一起来养鸡', // 分享描述
-//						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId, // 分享链接
-//						imgUrl: _this.shareImg, // 分享图标
-//						success: function(res) {
-//							// 用户确认分享后执行的回调函数
-//              alert("分享成功!")
-////							alert("分享到QQ空间成功返回的信息为:", res);
-//						},
-//						cancel: function(res) {
-//							// 用户取消分享后执行的回调函数
-////							alert("取消分享到QQ空间返回的信息为:", res);
-//						}
-//					});
+
 				});
 			},
 			sold() { //点击卖出
