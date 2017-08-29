@@ -10,7 +10,7 @@
 					<li v-for='item in nearestDelivery'>
 						<img :src='item.goods_pic'>
 						<div>
-							<span>{{item.goods_name}} <br>{{item.time}}{{item.date}}</span>
+							<span>{{item.goods_name}} <br>{{item.time}}&nbsp;&nbsp; {{item.date}}</span>
 						</div>
 					</li>
 				</ul>
