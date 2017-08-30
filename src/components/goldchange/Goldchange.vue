@@ -3,7 +3,7 @@
         <banner></banner>
         <div class="clear10"></div>
         <div class="msg">
-            <p class="first"><em>金币</em><span>{{gold}}</span></p>
+            <p class="first"><em>金币</em><span>{{gold-egg_num*120}}</span></p>
             <p><span>120</span>金币兑换一枚喜蛋</p>
             <div class="info clearfix">
                 <img src="./img/egg.gif" class="fl" alt="">
@@ -45,14 +45,14 @@
 <script>
     import banner from '../common/banner/banner.vue'
     import {goldforegg} from '../../service/getdata.js'
-    import {mapState} from 'vuex'
+    import {mapState,mapMutations} from 'vuex'
 export default {
     name: 'goldchange',
     data () {
         return {
             addfriend:false,
             gold:this.$store.state.goodnum,                 //金币总数
-            egg_num:1,                                      //需要提交的鸡蛋数量
+            egg_num:0,                                      //需要提交的鸡蛋数量
             ischange:false,
             dialogVisible: false,
             dialogSuccess:false
@@ -67,9 +67,9 @@ export default {
         ]),
     },
     methods: {
-        alertss(){
-            alert(this.latitude)
-        },
+         ...mapMutations([
+           'CHANGE_GOODNUM'
+        ]),
         async changeEggs(){
             let infojson = {
                 gold_num:120*this.egg_num,
@@ -77,7 +77,10 @@ export default {
                 egg_num:this.egg_num
             }
             let info = await goldforegg(infojson);
-            console.log(info);
+            if(info.data.code==1){
+                this.CHANGE_GOODNUM(this.$store.state.goodnum-(120*this.egg_num));
+            }
+            this.$message(info.data.msg);
         }
     },
     watch:{
