@@ -54,26 +54,26 @@
 				dialogFormVisible: false, 		//卖出弹窗
 				checkList: ['选中且禁用', '复选框 A'],
 				nearestDelivery: [						//最近配送
-		            {
-		              "is_gift": 1,
-		              "goods_name": "鸡蛋20枚",
-		              "goods_pic": "http://123.57.65.163/data/uploads/egg_goods/34_5979945a01a0d.png",
-		              "status": "1",
-		              "time" : "第-1-期",
-		              "date":"2017-08-20",
-		              "status_info": "已赠送好友",
-		              "id": "2"
-		            },
-		            {
-		              "is_gift": 1,
-		              "goods_pic": "http://123.57.65.163/data/uploads/egg_goods49",
-		              "goods_name": "赠品！快乐de蛋围裙",
-		              "status": "1",
-		              "time" : "第-1-期",
-		              "date":"2017-08-20",
-		              "status_info": "待配送",
-		              "id": "2"
-		            }
+//		            {
+//		              "is_gift": 1,
+//		              "goods_name": "鸡蛋20枚",
+//		              "goods_pic": "http://123.57.65.163/data/uploads/egg_goods/34_5979945a01a0d.png",
+//		              "status": "1",
+//		              "time" : "第-1-期",
+//		              "date":"2017-08-20",
+//		              "status_info": "已赠送好友",
+//		              "id": "2"
+//		            },
+//		            {
+//		              "is_gift": 1,
+//		              "goods_pic": "http://123.57.65.163/data/uploads/egg_goods49",
+//		              "goods_name": "赠品！快乐de蛋围裙",
+//		              "status": "1",
+//		              "time" : "第-1-期",
+//		              "date":"2017-08-20",
+//		              "status_info": "待配送",
+//		              "id": "2"
+//		            }
             	],
         shareImg: 'http://weixin.yangjiguanjia.com/LaneWeChat/yangjiguanjia/send_happyegg/assets/img/imgurl.jpg'
 			}

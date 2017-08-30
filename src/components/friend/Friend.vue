@@ -137,7 +137,7 @@
 					//分享给朋友
 					wx.onMenuShareAppMessage({
 						title: '快乐鸡舍',
-						desc: '和我一起来养鸡',
+						desc: '养鸡生蛋还包配送？好友之间还能互相偷蛋？快来和我一起养鸡偷蛋吧！',
 						link: 'http://weixin.yangjiguanjia.com/LaneWeChat2/kuailededan/dist/index.php?user_id=' + _this.userId,
 						imgUrl: _this.shareImg,
 						type: '', // 分享类型,music、video或link，不填默认为link
