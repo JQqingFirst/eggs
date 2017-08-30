@@ -1,9 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Hello from '@/components/Hello'
-// import Vcx from '@/components/Vcx'
-// import User from '@/components/User'
-
 
 const Index = resolve => require(['../components/index/Index.vue'], resolve) //首页
 const Mycoop = resolve => require(['../components/mycoop/Mycoop.vue'], resolve) //我的鸡笼

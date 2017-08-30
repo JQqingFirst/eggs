@@ -5,16 +5,14 @@
 		</div>
 		<div class="clear1"></div>
 		<div class="info">
-			<el-checkbox-group v-model="checkList" change='checkListss'>
-				<ul>
-					<li v-for='item in nearestDelivery'>
-						<img :src='item.goods_pic'>
-						<div>
-							<span>{{item.goods_name}} <br>{{item.time}}&nbsp;&nbsp; {{item.date}}</span>
-						</div>
-					</li>
-				</ul>
-			</el-checkbox-group>
+			<ul>
+				<li v-for='item in nearestDelivery'>
+					<img :src='item.goods_pic'>
+					<div>
+						<span>{{item.goods_name}} <br>{{item.time}}&nbsp;&nbsp; {{item.date}}</span>
+					</div>
+				</li>
+			</ul>
 		</div>
 		<footer>
 			<ul class="clearfix">
@@ -45,7 +43,7 @@
 	</div>
 </template>
 <script>
-	import { nextDelivery, weichat ,delayedDelivery} from '../../service/getdata.js'
+	import { nextDelivery,weichat,delayedDelivery} from '../../service/getdata.js'
 	import { mapState, mapMutations, } from 'vuex'
 	export default {
 		name: 'mycoop',
@@ -100,7 +98,7 @@
 	            }
 	        },
 			async init() {
-
+		        let _this = this;
 				let infojson = {
 					'user_id': window.localStorage.getItem('user_id')
 				}
@@ -110,10 +108,7 @@
 				} else {
 					this.$message(info.data.msg);
 				}
-			},
-	      	async wxshare(){
-		        let _this = this;
-		        _this.userId = window.localStorage.getItem('user_id')
+				//分享
 		        let infojson1 = {
 		          url: window.location.href.split('#')[0]
 		        }
@@ -126,10 +121,7 @@
 					timestamp: _this.share.timestamp,
 					nonceStr: _this.share.nonceStr,
 					signature: _this.share.signature,
-					jsApiList: [
-					'onMenuShareAppMessage', 'onMenuShareTimeline',
-					'onMenuShareQQ', 'onMenuShareQZone'
-					]
+					jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline','onMenuShareQQ', 'onMenuShareQZone']
 		        });
 		        //处理验证失败的信息
 //		        wx.error(function(res) {
@@ -158,9 +150,6 @@
 		          //分享到QQ空间
 		          wx.onMenuShareQZone(shareinfo);
 		        });
-	      	},
-			checkListss(val) {
-				console.log(val);
 			},
 			sold() { //点击卖出
 				this.dialogFormVisible = false
@@ -171,47 +160,19 @@
 		},
 		mounted() {
 			this.init();
-			this.wxshare();
 		}
 	}
 </script>
 <style>
-	span.el-checkbox__label {
-		display: none;
-	}
-
-	.el-dialog__footer {
-		box-sizing: content-box;
-	}
-
-	.el-dialog {
-		border-radius: 3px;
-	}
-
-	.el-dialog--small {
-		width: 80%;
-	}
-
-	.el-checkbox__inner {
-		border-radius: 100%;
-	}
-
-	.is-focus {
-		border-color: #f7ab26;
-	}
-
-	.el-checkbox__inner {
-		border-color: #f7ab26;
-	}
-
-	.el-checkbox__inner:hover {
-		border-color: #f7ab26;
-	}
-
-	.el-checkbox__input.is-checked .el-checkbox__inner {
-		background-color: #f7ab26;
-		border-color: #f7ab26;
-	}
+	span.el-checkbox__label{display:none;}
+	.el-dialog__footer{box-sizing:content-box;}
+	.el-dialog{border-radius:3px;}
+	.el-dialog--small{width:80%;}
+	.el-checkbox__inner{border-radius:100%;}
+	.is-focus{border-color:#f7ab26;}
+	.el-checkbox__inner{border-color:#f7ab26;}
+	.el-checkbox__inner:hover{border-color:#f7ab26;}
+	.el-checkbox__input.is-checked .el-checkbox__inner{border-color:#f7ab26;background-color:#f7ab26;}
 </style>
 <style scoped>
 	.basket{height:100%;background-color:#f2f2f2;}
