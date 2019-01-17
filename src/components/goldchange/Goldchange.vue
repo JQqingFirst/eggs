@@ -3,11 +3,7 @@
         <banner></banner>
         <div class="clear10"></div>
         <div class="msg">
-<<<<<<< HEAD
-            <p class="first"><em>金币</em><span>{{gold}}</span></p>
-=======
             <p class="first"><em>金币</em><span>{{gold-egg_num*120}}</span></p>
->>>>>>> parent of bd337b5... first commit
             <p><span>120</span>金币兑换一枚喜蛋</p>
             <div class="info clearfix">
                 <img src="./img/egg.gif" class="fl" alt="">
