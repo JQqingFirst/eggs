@@ -45,22 +45,14 @@
 <script>
     import banner from '../common/banner/banner.vue'
     import {goldforegg} from '../../service/getdata.js'
-<<<<<<< HEAD
-    import {mapState} from 'vuex'
-=======
     import {mapState,mapMutations} from 'vuex'
->>>>>>> parent of bd337b5... first commit
 export default {
     name: 'goldchange',
     data () {
         return {
             addfriend:false,
             gold:this.$store.state.goodnum,                 //金币总数
-<<<<<<< HEAD
-            egg_num:1,                                      //需要提交的鸡蛋数量
-=======
             egg_num:0,                                      //需要提交的鸡蛋数量
->>>>>>> parent of bd337b5... first commit
             ischange:false,
             dialogVisible: false,
             dialogSuccess:false
@@ -75,15 +67,9 @@ export default {
         ]),
     },
     methods: {
-<<<<<<< HEAD
-        alertss(){
-            alert(this.latitude)
-        },
-=======
          ...mapMutations([
            'CHANGE_GOODNUM'
         ]),
->>>>>>> parent of bd337b5... first commit
         async changeEggs(){
             let infojson = {
                 gold_num:120*this.egg_num,
@@ -91,14 +77,10 @@ export default {
                 egg_num:this.egg_num
             }
             let info = await goldforegg(infojson);
-<<<<<<< HEAD
-            console.log(info);
-=======
             if(info.data.code==1){
                 this.CHANGE_GOODNUM(this.$store.state.goodnum-(120*this.egg_num));
             }
             this.$message(info.data.msg);
->>>>>>> parent of bd337b5... first commit
         }
     },
     watch:{
